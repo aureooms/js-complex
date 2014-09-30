@@ -1,0 +1,19 @@
+{
+	"description": "complex numbers code bricks for JavaScript",
+	"main": "js/dist/complex.js",
+	"ignore": [
+		"js/index.js",
+		"js/src",
+		"test",
+		"pkg.json",
+		"package.json",
+		".groc.json",
+		".travis.yml",
+		".gitignore",
+		"README.md"
+	],
+	"name": "aureooms-js-complex",
+	"version": "0.0.0",
+	"license": "AGPL-3.0",
+	"homepage": "http://aureooms.github.io/js-complex/"
+}

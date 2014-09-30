@@ -1,0 +1,17 @@
+{
+	"code": {
+		"test": [
+			"test",
+			"js"
+		],
+		"main": [
+			"js",
+			"dist",
+			"complex.js"
+		]
+	},
+	"debug": false,
+	"out": "js/dist/",
+	"ns": "complex",
+	"src": "js/src/"
+}
