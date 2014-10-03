@@ -34,12 +34,12 @@ exports.__add__ = __add__;
  * Division algorithm
  */
 
-var __div__ = function (base, sqr, mul, add, sub) {
+var __div__ = function (base, pow2, mul, add, sub) {
 
 	var div = function (a, b, c, d) {
 		var tmp, rea, img;
 
-		tmp = add(sqr(c), sqr(d));
+		tmp = add(pow2(c), pow2(d));
 
 		rea = base(add(mul(a, c), mul(b, d)), tmp);
 		img = base(sub(mul(b, c), mul(a, d)), tmp);
@@ -82,10 +82,10 @@ exports.__mul__ = __mul__;
  * Norm
  */
 
-var __norm__ = function (args1) {
+var __norm__ = function (sqrt, pow2, add) {
 
 	var norm = function (a, b) {
-		return sqrt(add(sqr(a), sqr(b)));
+		return sqrt(add(pow2(a), pow2(b)));
 	};
 
 	return norm;

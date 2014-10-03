@@ -16,7 +16,7 @@
 	},
 	"devDependencies": {
 		"aureooms-node-package": "^1.0.0",
-		"aureooms-js-operator": "^0.1.1",
+		"aureooms-js-operator": "^0.1.2",
 		"aureooms-js-algo": "^0.2.3"
 	},
 	"dependencies": {},

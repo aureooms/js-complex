@@ -4,10 +4,10 @@
  * Norm
  */
 
-var __norm__ = function (args1) {
+var __norm__ = function (sqrt, pow2, add) {
 
 	var norm = function (a, b) {
-		return sqrt(add(sqr(a), sqr(b)));
+		return sqrt(add(pow2(a), pow2(b)));
 	};
 
 	return norm;
