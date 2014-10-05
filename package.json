@@ -22,7 +22,7 @@
 	"dependencies": {},
 	"main": "js/dist/complex.js",
 	"name": "aureooms-js-complex",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"keywords": [
 		"arithmetic",
 		"bricks",
