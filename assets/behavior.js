@@ -21,6 +21,306 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       },
       "depth": 1,
       "outline": []
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "cartesian",
+        "title": "cartesian"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/abs.js",
+            "projectPath": "js/src/cartesian/abs.js",
+            "targetPath": "cartesian/abs",
+            "pageTitle": "cartesian/abs",
+            "title": "abs"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/add.js",
+            "projectPath": "js/src/cartesian/add.js",
+            "targetPath": "cartesian/add",
+            "pageTitle": "cartesian/add",
+            "title": "add"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/arg.js",
+            "projectPath": "js/src/cartesian/arg.js",
+            "targetPath": "cartesian/arg",
+            "pageTitle": "cartesian/arg",
+            "title": "arg"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/conj.js",
+            "projectPath": "js/src/cartesian/conj.js",
+            "targetPath": "cartesian/conj",
+            "pageTitle": "cartesian/conj",
+            "title": "conj"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/div.js",
+            "projectPath": "js/src/cartesian/div.js",
+            "targetPath": "cartesian/div",
+            "pageTitle": "cartesian/div",
+            "title": "div"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/mul.js",
+            "projectPath": "js/src/cartesian/mul.js",
+            "targetPath": "cartesian/mul",
+            "pageTitle": "cartesian/mul",
+            "title": "mul"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/parse.js",
+            "projectPath": "js/src/cartesian/parse.js",
+            "targetPath": "cartesian/parse",
+            "pageTitle": "cartesian/parse",
+            "title": "parse"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/stringify.js",
+            "projectPath": "js/src/cartesian/stringify.js",
+            "targetPath": "cartesian/stringify",
+            "pageTitle": "cartesian/stringify",
+            "title": "stringify"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/sub.js",
+            "projectPath": "js/src/cartesian/sub.js",
+            "targetPath": "cartesian/sub",
+            "pageTitle": "cartesian/sub",
+            "title": "sub"
+          },
+          "depth": 2,
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "polar",
+        "title": "polar"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/polar/img.js",
+            "projectPath": "js/src/polar/img.js",
+            "targetPath": "polar/img",
+            "pageTitle": "polar/img",
+            "title": "img"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/polar/pconj.js",
+            "projectPath": "js/src/polar/pconj.js",
+            "targetPath": "polar/pconj",
+            "pageTitle": "polar/pconj",
+            "title": "pconj"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/polar/pdiv.js",
+            "projectPath": "js/src/polar/pdiv.js",
+            "targetPath": "polar/pdiv",
+            "pageTitle": "polar/pdiv",
+            "title": "pdiv"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/polar/pmul.js",
+            "projectPath": "js/src/polar/pmul.js",
+            "targetPath": "polar/pmul",
+            "pageTitle": "polar/pmul",
+            "title": "pmul"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/genius/dev/js/js-complex/js/src/polar/rea.js",
+            "projectPath": "js/src/polar/rea.js",
+            "targetPath": "polar/rea",
+            "pageTitle": "polar/rea",
+            "title": "rea"
+          },
+          "depth": 2,
+          "outline": []
+        }
+      ]
     }
   ];
 
