@@ -3,11 +3,32 @@
 	'use strict';
 
 
-/* js/src/add.js */
+/* js/src/cartesian */
+/* js/src/cartesian/abs.js */
 
 
 /**
- * Addition algorithm
+ * Computes the absolute value (or modulus or magnitude) of the complex number a + bi.
+ */
+
+var __abs__ = function (sqrt, pow2, add) {
+
+	var abs = function (a, b) {
+		return sqrt(add(pow2(a), pow2(b)));
+	};
+
+	return abs;
+};
+
+exports.__abs__ = __abs__;
+
+/* js/src/cartesian/add.js */
+
+
+/**
+ * Addition algorithm.
+ * 
+ * Returns the result of (a + bi) + (c + di).
  */
 
 var __add__ = function (base) {
@@ -26,8 +47,43 @@ var __add__ = function (base) {
 
 exports.__add__ = __add__;
 
-/* js/src/binary */
-/* js/src/div.js */
+/* js/src/cartesian/arg.js */
+
+
+/**
+ * Computes the argument of the complex number a + bi.
+ */
+
+var __arg__ = function (atan2) {
+
+	var arg = function (a, b) {
+		return atan2(b, a);
+	};
+
+	return arg;
+};
+
+exports.__arg__ = __arg__;
+
+/* js/src/cartesian/conj.js */
+
+
+/**
+ * Conjugate for cartesian representation
+ */
+
+var __conj__ = function (neg) {
+
+	var conj = function (a, b) {
+		return [a, neg(b)];
+	};
+
+	return conj;
+};
+
+exports.__conj__ = __conj__;
+
+/* js/src/cartesian/div.js */
 
 
 /**
@@ -52,7 +108,7 @@ var __div__ = function (base, pow2, mul, add, sub) {
 
 exports.__div__ = __div__;
 
-/* js/src/mul.js */
+/* js/src/cartesian/mul.js */
 
 
 /**
@@ -75,25 +131,7 @@ var __mul__ = function (base, add, sub) {
 
 exports.__mul__ = __mul__;
 
-/* js/src/norm.js */
-
-
-/**
- * Norm
- */
-
-var __norm__ = function (sqrt, pow2, add) {
-
-	var norm = function (a, b) {
-		return sqrt(add(pow2(a), pow2(b)));
-	};
-
-	return norm;
-};
-
-exports.__norm__ = __norm__;
-
-/* js/src/parse.js */
+/* js/src/cartesian/parse.js */
 
 
 /**
@@ -103,11 +141,11 @@ exports.__norm__ = __norm__;
  *     WOULD BE THE BEST IMPLEMENTATION
  */
 
-var __parse__ = function (base, zero, symbol) {
+var __parse__ = function (base, zero, one, minusone, symbol) {
 
 	var parse = function (s, i, j) {
 
-		var c, rea, img, ai, aj, bi, bj;
+		var c, ai, aj, bi, bj, dflt;
 
 		if (i === j) {
 			return [zero, zero];
@@ -123,20 +161,38 @@ var __parse__ = function (base, zero, symbol) {
 				if (ai === i) {
 					return [zero, one];
 				}
+				else if (ai === i - 1) {
+					if (s[ai] === '-') {
+						return [zero, minusone];
+					}
+					else if (s[ai] === '+') {
+						return [zero, one];
+					}
+					else {
+						return [zero, base(s, ai, i)];
+					}
+				}
 				else {
-					return [zero, base(ai, i)];
+					return [zero, base(s, ai, i)];
 				}
 			}
 
 			++i;
 
 			if (i >= j) {
-				return [base(ai, j), zero];
+				return [base(s, ai, j), zero];
 			}
 
 			c = s[i];
 
-			if ( c === '+' || c === '-') {
+			if ( c === '+' ) {
+				dflt = one;
+				aj = i;
+				bi = i;
+				break;
+			}
+			else if ( c === '-' ) {
+				dflt = minusone;
 				aj = i;
 				bi = i;
 				break;
@@ -151,11 +207,11 @@ var __parse__ = function (base, zero, symbol) {
 			c = s[i];
 
 			if (c === symbol) {
-				if (bi === i) {
-					return [base(ai, aj), one];
+				if (bi === i - 1) {
+					return [base(s, ai, aj), dflt];
 				}
 				else {
-					return [base(ai, aj), base(bi, i)];
+					return [base(s, ai, aj), base(s, bi, i)];
 				}
 			}
 
@@ -168,7 +224,7 @@ var __parse__ = function (base, zero, symbol) {
 
 exports.__parse__ = __parse__;
 
-/* js/src/stringify.js */
+/* js/src/cartesian/stringify.js */
 
 
 /**
@@ -222,11 +278,13 @@ var __stringify__ = function (base, eq, gt, zero, one, minusone, symbol) {
 
 exports.__stringify__ = __stringify__;
 
-/* js/src/sub.js */
+/* js/src/cartesian/sub.js */
 
 
 /**
  * Subtraction algorithm
+ * 
+ * Returns the result of (a + bi) - (c + di).
  */
 
 var __sub__ = function (base) {
@@ -245,23 +303,75 @@ var __sub__ = function (base) {
 
 exports.__sub__ = __sub__;
 
-/* js/src/theta.js */
+/* js/src/polar */
+/* js/src/polar/img.js */
+
+var __img__ = function (mul, sin) {
+
+	var img = function (rho, theta) {
+		return mul(rho, sin(theta));
+	};
+
+	return img;
+
+};
+
+exports.__img__ = __img__;
+/* js/src/polar/pconj.js */
 
 
 /**
- * Theta
+ * Conjugate for polar representation
  */
 
-var __theta__ = function (atan, div) {
+var __pconj__ = function (neg) {
 
-	var theta = function (a, b) {
-		return atan(div(a, b));
+	var pconj = function (a, b) {
+		return [a, neg(b)];
 	};
 
-	return theta;
+	return pconj;
 };
 
-exports.__theta__ = __theta__;
+exports.__pconj__ = __pconj__;
 
-/* js/src/unary */
+/* js/src/polar/pdiv.js */
+
+var __pdiv__ = function (base, sub) {
+
+	var pdiv = function (a, b, c, d) {
+		return [base(a, c), sub(b, d)];
+	};
+
+	return pdiv;
+
+};
+
+exports.__pdiv__ = __pdiv__;
+/* js/src/polar/pmul.js */
+
+var __pmul__ = function (base, add) {
+
+	var pmul = function (a, b, c, d) {
+		return [base(a, c), add(b, d)];
+	};
+
+	return pmul;
+
+};
+
+exports.__pmul__ = __pmul__;
+/* js/src/polar/rea.js */
+
+var __rea__ = function (mul, cos) {
+
+	var rea = function (rho, theta) {
+		return mul(rho, cos(theta));
+	};
+
+	return rea;
+
+};
+
+exports.__rea__ = __rea__;
 })(typeof exports === 'undefined' ? this['complex'] = {} : exports);

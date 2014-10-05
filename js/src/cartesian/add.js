@@ -1,7 +1,9 @@
 
 
 /**
- * Addition algorithm
+ * Addition algorithm.
+ * 
+ * Returns the result of (a + bi) + (c + di).
  */
 
 var __add__ = function (base) {

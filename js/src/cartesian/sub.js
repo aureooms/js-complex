@@ -2,6 +2,8 @@
 
 /**
  * Subtraction algorithm
+ * 
+ * Returns the result of (a + bi) - (c + di).
  */
 
 var __sub__ = function (base) {
