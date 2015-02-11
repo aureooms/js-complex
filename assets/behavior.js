@@ -13,7 +13,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "commentsOnly": true,
           "name": "Markdown"
         },
-        "sourcePath": "/home/genius/dev/js/js-complex/README.md",
+        "sourcePath": "/home/aureooms/dev/js/js-complex/README.md",
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "index",
@@ -41,7 +41,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/abs.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/abs.js",
             "projectPath": "js/src/cartesian/abs.js",
             "targetPath": "cartesian/abs",
             "pageTitle": "cartesian/abs",
@@ -61,7 +61,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/add.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/add.js",
             "projectPath": "js/src/cartesian/add.js",
             "targetPath": "cartesian/add",
             "pageTitle": "cartesian/add",
@@ -81,7 +81,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/arg.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/arg.js",
             "projectPath": "js/src/cartesian/arg.js",
             "targetPath": "cartesian/arg",
             "pageTitle": "cartesian/arg",
@@ -101,7 +101,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/conj.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/conj.js",
             "projectPath": "js/src/cartesian/conj.js",
             "targetPath": "cartesian/conj",
             "pageTitle": "cartesian/conj",
@@ -121,7 +121,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/div.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/div.js",
             "projectPath": "js/src/cartesian/div.js",
             "targetPath": "cartesian/div",
             "pageTitle": "cartesian/div",
@@ -141,7 +141,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/mul.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/mul.js",
             "projectPath": "js/src/cartesian/mul.js",
             "targetPath": "cartesian/mul",
             "pageTitle": "cartesian/mul",
@@ -161,7 +161,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/parse.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/parse.js",
             "projectPath": "js/src/cartesian/parse.js",
             "targetPath": "cartesian/parse",
             "pageTitle": "cartesian/parse",
@@ -181,7 +181,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/stringify.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/stringify.js",
             "projectPath": "js/src/cartesian/stringify.js",
             "targetPath": "cartesian/stringify",
             "pageTitle": "cartesian/stringify",
@@ -201,7 +201,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/cartesian/sub.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/sub.js",
             "projectPath": "js/src/cartesian/sub.js",
             "targetPath": "cartesian/sub",
             "pageTitle": "cartesian/sub",
@@ -231,7 +231,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/polar/img.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/polar/img.js",
             "projectPath": "js/src/polar/img.js",
             "targetPath": "polar/img",
             "pageTitle": "polar/img",
@@ -251,7 +251,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/polar/pconj.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/polar/pconj.js",
             "projectPath": "js/src/polar/pconj.js",
             "targetPath": "polar/pconj",
             "pageTitle": "polar/pconj",
@@ -271,7 +271,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/polar/pdiv.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/polar/pdiv.js",
             "projectPath": "js/src/polar/pdiv.js",
             "targetPath": "polar/pdiv",
             "pageTitle": "polar/pdiv",
@@ -291,7 +291,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/polar/pmul.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/polar/pmul.js",
             "projectPath": "js/src/polar/pmul.js",
             "targetPath": "polar/pmul",
             "pageTitle": "polar/pmul",
@@ -311,7 +311,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/genius/dev/js/js-complex/js/src/polar/rea.js",
+            "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/polar/rea.js",
             "projectPath": "js/src/polar/rea.js",
             "targetPath": "polar/rea",
             "pageTitle": "polar/rea",
@@ -545,7 +545,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       if (metaInfo.documentPath === 'index') {
         sourceURL = metaInfo.githubURL;
       } else {
-        sourceURL = "" + metaInfo.githubURL + "/blob/master/" + metaInfo.projectPath;
+        sourceURL = metaInfo.githubURL + "/blob/master/" + metaInfo.projectPath;
       }
       nav$.find('.tools').prepend("<li class=\"github\">\n  <a href=\"" + sourceURL + "\" title=\"View source on GitHub\">\n    View source on GitHub\n  </a>\n</li>");
     }
