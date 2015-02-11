@@ -4,7 +4,7 @@
 	"scripts": [
 		"js/dist/complex.js"
 	],
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "complex numbers code bricks for JavaScript",
 	"main": "js/dist/complex.js",
 	"license": "AGPL-3.0"
