@@ -1,5 +1,4 @@
 
-
 /**
  * Multiplication algorithm
  */

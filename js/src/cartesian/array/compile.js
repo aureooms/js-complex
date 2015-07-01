@@ -25,3 +25,5 @@ const compile = function ( {
 	} ;
 
 } ;
+
+exports.compile = compile ;
