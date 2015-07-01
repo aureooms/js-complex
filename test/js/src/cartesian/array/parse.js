@@ -1,13 +1,10 @@
 
 
-var base = function (s, i, j) { return parseInt(s.slice(i, j), 10); };
+var number = require("aureooms-js-number");
 
-var zero = 0;
-var one = 1;
-var minusone = -1;
-var symbol = "i";
+var symbol = "i" ;
 
-var parse = complex.__parse__(base, zero, one, minusone, symbol);
+var parse = complex.cartesian.array.compile( complex.cartesian.kernel.compile( number ) , symbol ).parse ;
 
 var t = function (a, b, c) {
 	deepEqual(parse(c, 0, c.length), [a, b], c);

@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
+var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; })();
 
 (function () {
 
-	'use strict';
+	"use strict";
 
 	var definition = function definition(exports, undefined) {
 
@@ -13,6 +13,14 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 			/* js/src/cartesian/array */
 			(function (exports) {
+
+				/* js/src/cartesian/array/$1.js */
+
+				var $1 = function $1(kernel) {
+					return kernel;
+				};
+
+				exports.$1 = $1;
 
 				/* js/src/cartesian/array/binary.js */
 
@@ -33,6 +41,39 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 				exports.binary = binary;
 
+				/* js/src/cartesian/array/compile.js */
+
+				var compile = function compile(_ref4, symbol) {
+					var $1 = _ref4.$1;
+					var add = _ref4.add;
+					var sub = _ref4.sub;
+					var mul = _ref4.mul;
+					var div = _ref4.div;
+					var abs = _ref4.abs;
+					var arg = _ref4.arg;
+					var con = _ref4.con;
+					var parse = _ref4.parse;
+					var stringify = _ref4.stringify;
+
+					return {
+
+						"complex": exports.complex,
+						"$1": exports.$1($1),
+						"add": exports.binary(add),
+						"sub": exports.binary(sub),
+						"mul": exports.binary(mul),
+						"div": exports.binary(div),
+						"abs": exports.unary(abs),
+						"arg": exports.unary(arg),
+						"con": exports.unary(con),
+						"parse": exports.parse(parse),
+						"stringify": exports.stringify(stringify)
+
+					};
+				};
+
+				exports.compile = compile;
+
 				/* js/src/cartesian/array/complex.js */
 
 				var complex = function complex(a, b) {
@@ -40,14 +81,6 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				};
 
 				exports.complex = complex;
-
-				/* js/src/cartesian/array/one.js */
-
-				var one = function one(kernel) {
-					return kernel;
-				};
-
-				exports.one = one;
 
 				/* js/src/cartesian/array/parse.js */
 
@@ -60,20 +93,6 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/cartesian/array/stringify.js */
 
 				var stringify = function stringify(kernel) {
-					return function (_ref4) {
-						var _ref42 = _slicedToArray(_ref4, 2);
-
-						var a = _ref42[0];
-						var b = _ref42[1];
-						return kernel(a, b);
-					};
-				};
-
-				exports.stringify = stringify;
-
-				/* js/src/cartesian/array/unary.js */
-
-				var unary = function unary(kernel) {
 					return function (_ref5) {
 						var _ref52 = _slicedToArray(_ref5, 2);
 
@@ -83,10 +102,34 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 					};
 				};
 
+				exports.stringify = stringify;
+
+				/* js/src/cartesian/array/unary.js */
+
+				var unary = function unary(kernel) {
+					return function (_ref6) {
+						var _ref62 = _slicedToArray(_ref6, 2);
+
+						var a = _ref62[0];
+						var b = _ref62[1];
+						return kernel(a, b);
+					};
+				};
+
 				exports.unary = unary;
-			})(exports['array'] = {});
+			})(exports["array"] = {});
 			/* js/src/cartesian/kernel */
 			(function (exports) {
+
+				/* js/src/cartesian/kernel/$1.js */
+
+				var $1 = function $1($0, _$1) {
+					return function () {
+						return [_$1(), $0()];
+					};
+				};
+
+				exports.$1 = $1;
 
 				/* js/src/cartesian/kernel/abs.js */
 
@@ -132,19 +175,58 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 				exports.arg = arg;
 
-				/* js/src/cartesian/kernel/conj.js */
+				/* js/src/cartesian/kernel/compile.js */
+
+				var compile = function compile(_ref7, symbol) {
+					var add = _ref7.add;
+					var sub = _ref7.sub;
+					var mul = _ref7.mul;
+					var div = _ref7.div;
+					var neg = _ref7.neg;
+					var sqrt = _ref7.sqrt;
+					var pow2 = _ref7.pow2;
+					var atan2 = _ref7.atan2;
+					var parse = _ref7.parse;
+					var stringify = _ref7.stringify;
+					var $0 = _ref7.$0;
+					var $1 = _ref7.$1;
+					var $_1 = _ref7.$_1;
+					var eq0 = _ref7.eq0;
+					var eq1 = _ref7.eq1;
+					var eq_1 = _ref7.eq_1;
+					var gt0 = _ref7.gt0;
+
+					return {
+
+						"$1": exports.$1($0, $1),
+						"add": exports.add(add),
+						"sub": exports.sub(sub),
+						"mul": exports.mul(mul, add, sub),
+						"div": exports.div(div, pow2, mul, add, sub),
+						"abs": exports.abs(sqrt, pow2, add),
+						"arg": exports.arg(atan2),
+						"con": exports.con(neg),
+						"parse": exports.parse(base, $0, $1, $_1, symbol),
+						"stringify": exports.stringify(base, eq0, eq1, eq_1, gt0, symbol)
+
+					};
+				};
+
+				exports.compile = compile;
+
+				/* js/src/cartesian/kernel/con.js */
 
 				/**
      * Conjugate for cartesian representation
      */
 
-				var conj = function conj(neg) {
+				var con = function con(neg) {
 					return function (a, b) {
 						return [a, neg(b)];
 					};
 				};
 
-				exports.conj = conj;
+				exports.con = con;
 
 				/* js/src/cartesian/kernel/div.js */
 
@@ -189,7 +271,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
      *     WOULD BE THE BEST IMPLEMENTATION
      */
 
-				var parse = function parse(base, zero, one, minusone, symbol) {
+				var parse = function parse(base, $0, $1, $_1, symbol) {
 
 					return function (s, i, j) {
 
@@ -198,7 +280,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 						    dflt = undefined;
 
 						if (i === j) {
-							return [zero(), zero()];
+							return [$0(), $0()];
 						}
 
 						var ai = i;
@@ -209,35 +291,35 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 							if (c === symbol) {
 								if (ai === i) {
-									return [zero(), one()];
+									return [$0(), $1()];
 								} else if (ai === i - 1) {
-									if (s[ai] === '-') {
-										return [zero(), minusone()];
-									} else if (s[ai] === '+') {
-										return [zero(), one()];
+									if (s[ai] === "-") {
+										return [$0(), $_1()];
+									} else if (s[ai] === "+") {
+										return [$0(), $1()];
 									} else {
-										return [zero(), base(s, ai, i)];
+										return [$0(), base(s.slice(ai, i))];
 									}
 								} else {
-									return [zero(), base(s, ai, i)];
+									return [$0(), base(s.slice(ai, i))];
 								}
 							}
 
 							++i;
 
 							if (i >= j) {
-								return [base(s, ai, j), zero()];
+								return [base(s.slice(ai, j)), $0()];
 							}
 
 							c = s[i];
 
-							if (c === '+') {
-								dflt = one;
+							if (c === "+") {
+								dflt = $1;
 								aj = i;
 								bi = i;
 								break;
-							} else if (c === '-') {
-								dflt = minusone;
+							} else if (c === "-") {
+								dflt = $_1;
 								aj = i;
 								bi = i;
 								break;
@@ -251,9 +333,9 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 							if (c === symbol) {
 								if (bi === i - 1) {
-									return [base(s, ai, aj), dflt()];
+									return [base(s.slice(ai, aj)), dflt()];
 								} else {
-									return [base(s, ai, aj), base(s, bi, i)];
+									return [base(s.slice(ai, aj)), base(s.slice(bi, i))];
 								}
 							}
 						}
@@ -268,34 +350,34 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
      * Stringify
      */
 
-				var stringify = function stringify(base, eq, gt, zero, one, minusone, symbol) {
+				var stringify = function stringify(base, eq0, eq1, eq_1, gt0, symbol) {
 
 					return function (a, b) {
 
-						var azero = eq(a, zero);
+						var azero = eq0(a);
 
-						var bzero = eq(b, zero);
+						var bzero = eq0(b);
 
 						if (azero && bzero) {
-							return '0';
+							return "0";
 						}
 
-						var out = '';
+						var out = "";
 
 						if (!azero) {
 
 							out += base(a);
 
-							if (gt(b, zero)) {
-								out += '+';
+							if (gt0(b)) {
+								out += "+";
 							}
 						}
 
 						if (!bzero) {
 
-							if (eq(b, minusone)) {
-								out += '-';
-							} else if (!eq(b, one)) {
+							if (eq_1(b)) {
+								out += "-";
+							} else if (!eq1(b)) {
 								out += base(b);
 							}
 
@@ -323,9 +405,19 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				};
 
 				exports.sub = sub;
-			})(exports['kernel'] = {});
+			})(exports["kernel"] = {});
 			/* js/src/cartesian/object */
 			(function (exports) {
+
+				/* js/src/cartesian/object/$1.js */
+
+				var $1 = function $1(kernel) {
+					return function () {
+						return fromarray(kernel());
+					};
+				};
+
+				exports.$1 = $1;
 
 				/* js/src/cartesian/object/Complex.js */
 
@@ -340,16 +432,49 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/cartesian/object/binary.js */
 
 				var binary = function binary(kernel) {
-					return function (_ref6, _ref7) {
-						var a = _ref6.real;
-						var b = _ref6.img;
-						var c = _ref7.real;
-						var d = _ref7.img;
+					return function (_ref8, _ref9) {
+						var a = _ref8.real;
+						var b = _ref8.img;
+						var c = _ref9.real;
+						var d = _ref9.img;
 						return fromarray(kernel(a, b, c, d));
 					};
 				};
 
 				exports.binary = binary;
+
+				/* js/src/cartesian/object/compile.js */
+
+				var compile = function compile(_ref10, symbol) {
+					var $1 = _ref10.$1;
+					var add = _ref10.add;
+					var sub = _ref10.sub;
+					var mul = _ref10.mul;
+					var div = _ref10.div;
+					var abs = _ref10.abs;
+					var arg = _ref10.arg;
+					var con = _ref10.con;
+					var parse = _ref10.parse;
+					var stringify = _ref10.stringify;
+
+					return {
+
+						"complex": exports.complex,
+						"$1": exports.$1($1),
+						"add": exports.binary(add),
+						"sub": exports.binary(sub),
+						"mul": exports.binary(mul),
+						"div": exports.binary(div),
+						"abs": exports.unary(abs),
+						"arg": exports.unary(arg),
+						"con": exports.unary(con),
+						"parse": exports.parse(parse),
+						"stringify": exports.stringify(stringify)
+
+					};
+				};
+
+				exports.compile = compile;
 
 				/* js/src/cartesian/object/complex.js */
 
@@ -361,25 +486,15 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 				/* js/src/cartesian/object/fromarray.js */
 
-				var fromarray = function fromarray(_ref8) {
-					var _ref82 = _slicedToArray(_ref8, 2);
+				var fromarray = function fromarray(_ref11) {
+					var _ref112 = _slicedToArray(_ref11, 2);
 
-					var a = _ref82[0];
-					var b = _ref82[1];
+					var a = _ref112[0];
+					var b = _ref112[1];
 					return complex(a, b);
 				};
 
 				exports.fromarray = fromarray;
-
-				/* js/src/cartesian/object/one.js */
-
-				var one = function one(kernel) {
-					return function () {
-						return fromarray(kernel());
-					};
-				};
-
-				exports.one = one;
 
 				/* js/src/cartesian/object/parse.js */
 
@@ -394,9 +509,9 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/cartesian/object/stringify.js */
 
 				var stringify = function stringify(kernel) {
-					return function (_ref9) {
-						var a = _ref9.real;
-						var b = _ref9.img;
+					return function (_ref12) {
+						var a = _ref12.real;
+						var b = _ref12.img;
 						return kernel(a, b);
 					};
 				};
@@ -406,16 +521,16 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/cartesian/object/unary.js */
 
 				var unary = function unary(kernel) {
-					return function (_ref10) {
-						var a = _ref10.real;
-						var b = _ref10.img;
+					return function (_ref13) {
+						var a = _ref13.real;
+						var b = _ref13.img;
 						return fromarray(kernel(a, b));
 					};
 				};
 
 				exports.unary = unary;
-			})(exports['object'] = {});
-		})(exports['cartesian'] = {});
+			})(exports["object"] = {});
+		})(exports["cartesian"] = {});
 		/* js/src/polar */
 		(function (exports) {
 
@@ -425,30 +540,61 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/polar/array/binary.js */
 
 				var binary = function binary(kernel) {
-					return function (_ref11, _ref12) {
-						var _ref112 = _slicedToArray(_ref11, 2);
+					return function (_ref14, _ref15) {
+						var _ref142 = _slicedToArray(_ref14, 2);
 
-						var a = _ref112[0];
-						var b = _ref112[1];
+						var a = _ref142[0];
+						var b = _ref142[1];
 
-						var _ref122 = _slicedToArray(_ref12, 2);
+						var _ref152 = _slicedToArray(_ref15, 2);
 
-						var c = _ref122[0];
-						var d = _ref122[1];
+						var c = _ref152[0];
+						var d = _ref152[1];
 						return kernel(a, b, c, d);
 					};
 				};
 
 				exports.binary = binary;
 
+				/* js/src/polar/array/compile.js */
+
+				var compile = function compile(_ref16, symbol) {
+					var mul = _ref16.mul;
+					var div = _ref16.div;
+					var real = _ref16.real;
+					var img = _ref16.img;
+					var con = _ref16.con;
+
+					return {
+
+						"complex": exports.complex,
+						"mul": exports.binary(mul),
+						"div": exports.binary(div),
+						"real": exports.real(real),
+						"img": exports.img(img),
+						"con": exports.unary(con)
+
+					};
+				};
+
+				exports.compile = compile;
+
+				/* js/src/polar/array/complex.js */
+
+				var complex = function complex(a, b) {
+					return [a, b];
+				};
+
+				exports.complex = complex;
+
 				/* js/src/polar/array/img.js */
 
 				var img = function img(kernel) {
-					return function (_ref13) {
-						var _ref132 = _slicedToArray(_ref13, 2);
+					return function (_ref17) {
+						var _ref172 = _slicedToArray(_ref17, 2);
 
-						var a = _ref132[0];
-						var b = _ref132[1];
+						var a = _ref172[0];
+						var b = _ref172[1];
 						return kernel(a, b);
 					};
 				};
@@ -458,11 +604,11 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/polar/array/real.js */
 
 				var real = function real(kernel) {
-					return function (_ref14) {
-						var _ref142 = _slicedToArray(_ref14, 2);
+					return function (_ref18) {
+						var _ref182 = _slicedToArray(_ref18, 2);
 
-						var a = _ref142[0];
-						var b = _ref142[1];
+						var a = _ref182[0];
+						var b = _ref182[1];
 						return kernel(a, b);
 					};
 				};
@@ -472,33 +618,57 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/polar/array/unary.js */
 
 				var unary = function unary(kernel) {
-					return function (_ref15) {
-						var _ref152 = _slicedToArray(_ref15, 2);
+					return function (_ref19) {
+						var _ref192 = _slicedToArray(_ref19, 2);
 
-						var a = _ref152[0];
-						var b = _ref152[1];
+						var a = _ref192[0];
+						var b = _ref192[1];
 						return kernel(a, b);
 					};
 				};
 
 				exports.unary = unary;
-			})(exports['array'] = {});
+			})(exports["array"] = {});
 			/* js/src/polar/kernel */
 			(function (exports) {
 
-				/* js/src/polar/kernel/conj.js */
+				/* js/src/polar/kernel/compile.js */
+
+				var compile = function compile(_ref20, symbol) {
+					var add = _ref20.add;
+					var sub = _ref20.sub;
+					var mul = _ref20.mul;
+					var div = _ref20.div;
+					var neg = _ref20.neg;
+					var cos = _ref20.cos;
+					var sin = _ref20.sin;
+
+					return {
+
+						"mul": exports.mul(mul, add),
+						"div": exports.div(div, sub),
+						"real": exports.real(mul, cos),
+						"img": exports.img(mul, sin),
+						"con": exports.con(neg)
+
+					};
+				};
+
+				exports.compile = compile;
+
+				/* js/src/polar/kernel/con.js */
 
 				/**
      * Conjugate for polar representation
      */
 
-				var conj = function conj(neg) {
+				var con = function con(neg) {
 					return function (a, b) {
 						return [a, neg(b)];
 					};
 				};
 
-				exports.conj = conj;
+				exports.con = con;
 
 				/* js/src/polar/kernel/div.js */
 
@@ -539,7 +709,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				};
 
 				exports.real = real;
-			})(exports['kernel'] = {});
+			})(exports["kernel"] = {});
 			/* js/src/polar/object */
 			(function (exports) {
 
@@ -556,16 +726,39 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/polar/object/binary.js */
 
 				var binary = function binary(kernel) {
-					return function (_ref16, _ref17) {
-						var a = _ref16.rho;
-						var b = _ref16.theta;
-						var c = _ref17.rho;
-						var d = _ref17.theta;
+					return function (_ref21, _ref22) {
+						var a = _ref21.rho;
+						var b = _ref21.theta;
+						var c = _ref22.rho;
+						var d = _ref22.theta;
 						return fromarray(kernel(a, b, c, d));
 					};
 				};
 
 				exports.binary = binary;
+
+				/* js/src/polar/object/compile.js */
+
+				var compile = function compile(_ref23, symbol) {
+					var mul = _ref23.mul;
+					var div = _ref23.div;
+					var real = _ref23.real;
+					var img = _ref23.img;
+					var con = _ref23.con;
+
+					return {
+
+						"complex": exports.complex,
+						"mul": exports.binary(mul),
+						"div": exports.binary(div),
+						"real": exports.real(real),
+						"img": exports.img(img),
+						"con": exports.unary(con)
+
+					};
+				};
+
+				exports.compile = compile;
 
 				/* js/src/polar/object/complex.js */
 
@@ -577,11 +770,11 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 				/* js/src/polar/object/fromarray.js */
 
-				var fromarray = function fromarray(_ref18) {
-					var _ref182 = _slicedToArray(_ref18, 2);
+				var fromarray = function fromarray(_ref24) {
+					var _ref242 = _slicedToArray(_ref24, 2);
 
-					var a = _ref182[0];
-					var b = _ref182[1];
+					var a = _ref242[0];
+					var b = _ref242[1];
 					return complex(a, b);
 				};
 
@@ -590,9 +783,9 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/polar/object/img.js */
 
 				var img = function img(kernel) {
-					return function (_ref19) {
-						var a = _ref19.rho;
-						var b = _ref19.theta;
+					return function (_ref25) {
+						var a = _ref25.rho;
+						var b = _ref25.theta;
 						return kernel(a, b);
 					};
 				};
@@ -602,9 +795,9 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/polar/object/real.js */
 
 				var real = function real(kernel) {
-					return function (_ref20) {
-						var a = _ref20.rho;
-						var b = _ref20.theta;
+					return function (_ref26) {
+						var a = _ref26.rho;
+						var b = _ref26.theta;
 						return kernel(a, b);
 					};
 				};
@@ -614,25 +807,25 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/polar/object/unary.js */
 
 				var unary = function unary(kernel) {
-					return function (_ref21) {
-						var a = _ref21.rho;
-						var b = _ref21.theta;
+					return function (_ref27) {
+						var a = _ref27.rho;
+						var b = _ref27.theta;
 						return fromarray(kernel(a, b));
 					};
 				};
 
 				exports.unary = unary;
-			})(exports['object'] = {});
-		})(exports['polar'] = {});
+			})(exports["object"] = {});
+		})(exports["polar"] = {});
 		return exports;
 	};
-	if (typeof exports === 'object') {
+	if (typeof exports === "object") {
 		definition(exports);
-	} else if (typeof define === 'function' && define.amd) {
-		define('aureooms-js-complex', [], function () {
+	} else if (typeof define === "function" && define.amd) {
+		define("aureooms-js-complex", [], function () {
 			return definition({});
 		});
-	} else if (typeof window === 'object' && typeof window.document === 'object') {
-		definition(window['complex'] = {});
-	} else console.error('unable to detect type of module to define for aureooms-js-complex');
+	} else if (typeof window === "object" && typeof window.document === "object") {
+		definition(window["complex"] = {});
+	} else console.error("unable to detect type of module to define for aureooms-js-complex");
 })();

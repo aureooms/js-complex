@@ -34,18 +34,18 @@ const parse = function (base, $0, $1, $_1, symbol) {
 						return [$0(), $1()];
 					}
 					else {
-						return [$0(), base(s, ai, i)];
+						return [$0(), base(s.slice( ai , i))];
 					}
 				}
 				else {
-					return [$0(), base(s, ai, i)];
+					return [$0(), base(s.slice( ai , i))];
 				}
 			}
 
 			++i;
 
 			if (i >= j) {
-				return [base(s, ai, j), $0()];
+				return [base(s.slice( ai , j)), $0()];
 			}
 
 			c = s[i];
@@ -73,10 +73,10 @@ const parse = function (base, $0, $1, $_1, symbol) {
 
 			if (c === symbol) {
 				if (bi === i - 1) {
-					return [base(s, ai, aj), dflt()];
+					return [base(s.slice( ai , aj)), dflt()];
 				}
 				else {
-					return [base(s, ai, aj), base(s, bi, i)];
+					return [base(s.slice( ai , aj)), base(s.slice( bi , i))];
 				}
 			}
 

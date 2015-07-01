@@ -1,20 +1,14 @@
 
 
-var operator = require("aureooms-js-operator");
+var number = require("aureooms-js-number");
 
-var base = function (x) { return x; };
+var symbol = "i" ;
 
-var eq = operator.is;
-var gt = operator.gt;
-var zero = 0;
-var one = 1;
-var minusone = -1;
-var symbol = "i";
+var stringify = complex.cartesian.array.compile( complex.cartesian.kernel.compile( number ) , symbol ).stringify ;
 
-var stringify = complex.__stringify__(base, eq, gt, zero, one, minusone, symbol);
 
 var t = function (a, b, c) {
-	deepEqual(stringify(a, b), c, c);
+	deepEqual(stringify( [ a, b ]), c, c);
 };
 
 test("stringify", function () {
