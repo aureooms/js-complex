@@ -11,7 +11,7 @@ var polar = complex.polar.array.compile( complex.polar.kernel.compile( number ) 
 var aeq = algo.__absepsilon__(0.0001);
 
 var aeq2 = function (a, b) {
-	return aeq(a[0], b[0]) && aeq(a[1], b[1]);
+	return aeq(a[0], b[0]) === 0 && aeq(a[1], b[1]) === 0;
 };
 
 var tests = [];
@@ -76,13 +76,13 @@ var one = function (item) {
 	deepEqual(img2, 0, "multiplying conjugates results in a non-complex number (cartesian)");
 	deepEqual(the2, 0, "multiplying conjugates results in a non-complex number (polar)");
 
-	ok(aeq(rea2, rho2), "square of absolute value equals real component of conjugates product");
+	ok(aeq(rea2, rho2) === 0, "square of absolute value equals real component of conjugates product");
 
-	ok(aeq(polar.real( [ rho2, the2 ]), rea2), "retrieve real part from polar notation (product)");
-	ok(aeq(polar.img( [ rho2, the2 ] ), img2), "retrieve imaginary part from polar notation (product)");
+	ok(aeq(polar.real( [ rho2, the2 ]), rea2) === 0, "retrieve real part from polar notation (product)");
+	ok(aeq(polar.img( [ rho2, the2 ] ), img2) === 0, "retrieve imaginary part from polar notation (product)");
 
-	ok(aeq(polar.real([rho1, the1]), rea1), "retrieve real part from polar notation (conjugate)");
-	ok(aeq(polar.img([rho1, the1]), img1), "retrieve imaginary part from polar notation (conjugate)");
+	ok(aeq(polar.real([rho1, the1]), rea1) === 0, "retrieve real part from polar notation (conjugate)");
+	ok(aeq(polar.img([rho1, the1]), img1) === 0, "retrieve imaginary part from polar notation (conjugate)");
 
 	ok(aeq2(polar.div([rho2, the2], [r, t]), [rho1, the1]), "polar.div 1");
 	ok(aeq2(polar.div([rho2, the2], [rho1, the1]), [r, t]), "polar.div 2");
@@ -90,6 +90,6 @@ var one = function (item) {
 };
 
 
-test("add", function () {
+test("joined", function () {
 	tests.forEach(one);
 });

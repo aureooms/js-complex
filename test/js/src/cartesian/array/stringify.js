@@ -4,7 +4,7 @@ var number = require("aureooms-js-number");
 
 var symbol = "i" ;
 
-var stringify = complex.cartesian.array.compile( complex.cartesian.kernel.compile( number ) , symbol ).stringify ;
+var stringify = complex.cartesian.array.compile( complex.cartesian.kernel.compile( number , symbol ) ).stringify ;
 
 
 var t = function (a, b, c) {

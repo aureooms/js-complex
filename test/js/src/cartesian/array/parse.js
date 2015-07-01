@@ -4,7 +4,7 @@ var number = require("aureooms-js-number");
 
 var symbol = "i" ;
 
-var parse = complex.cartesian.array.compile( complex.cartesian.kernel.compile( number ) , symbol ).parse ;
+var parse = complex.cartesian.array.compile( complex.cartesian.kernel.compile( number , symbol ) ).parse ;
 
 var t = function (a, b, c) {
 	deepEqual(parse(c, 0, c.length), [a, b], c);

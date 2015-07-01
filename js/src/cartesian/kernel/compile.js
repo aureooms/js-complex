@@ -20,8 +20,8 @@ const compile = function ( {
 		"abs" : exports.abs( sqrt , pow2 , add ) ,
 		"arg" : exports.arg( atan2 ) ,
 		"con" : exports.con( neg ) ,
-		"parse" : exports.parse( base , $0 , $1 , $_1 , symbol ) ,
-		"stringify" : exports.stringify ( base , eq0 , eq1 , eq_1 , gt0 , symbol )
+		"parse" : exports.parse( parse , $0 , $1 , $_1 , symbol ) ,
+		"stringify" : exports.stringify ( stringify , eq0 , eq1 , eq_1 , gt0 , symbol )
 
 	} ;
 
