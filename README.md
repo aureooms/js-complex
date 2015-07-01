@@ -1,7 +1,12 @@
 [js-complex](http://aureooms.github.io/js-complex)
 ==
 
-complex numbers code bricks for JavaScript
+Complex numbers code bricks for JavaScript.
+
+```js
+let kernel = complex.cartesian.kernel.compile( number , "i" ) ;
+let { add , sub , mul , div } = complex.cartesian.array.compile( kernel ) ;
+```
 
 [![NPM license](http://img.shields.io/npm/l/aureooms-js-complex.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-complex/master/LICENSE)
 [![NPM version](http://img.shields.io/npm/v/aureooms-js-complex.svg?style=flat)](https://www.npmjs.org/package/aureooms-js-complex)
