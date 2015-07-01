@@ -15,9 +15,9 @@
 		"url": "https://github.com/aureooms/js-complex/issues"
 	},
 	"devDependencies": {
-		"aureooms-node-package": "^1.0.0",
-		"aureooms-js-operator": "^0.1.2",
-		"aureooms-js-algo": "^0.2.3"
+		"aureooms-node-package": "^4.2.5",
+		"aureooms-js-operator": "^1.0.2",
+		"aureooms-js-algo": "^3.0.4"
 	},
 	"dependencies": {},
 	"main": "js/dist/complex.js",

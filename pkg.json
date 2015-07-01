@@ -12,6 +12,8 @@
 	},
 	"debug": false,
 	"out": "js/dist/",
-	"ns": "complex",
-	"src": "js/src/"
+	"name": "complex",
+	"src": "js/src/",
+	"rec": true,
+	"babel": true
 }

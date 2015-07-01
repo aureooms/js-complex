@@ -7,46 +7,46 @@
  *     WOULD BE THE BEST IMPLEMENTATION
  */
 
-var __parse__ = function (base, zero, one, minusone, symbol) {
+const parse = function (base, zero, one, minusone, symbol) {
 
-	var parse = function (s, i, j) {
+	return function (s, i, j) {
 
-		var c, ai, aj, bi, bj, dflt;
+		let aj , bi , dflt ;
 
 		if (i === j) {
-			return [zero, zero];
+			return [zero(), zero()];
 		}
 
-		ai = i;
+		let ai = i;
 
-		c = s[i];
+		let c = s[i];
 
 		for (;;) {
 
 			if (c === symbol) {
 				if (ai === i) {
-					return [zero, one];
+					return [zero(), one()];
 				}
 				else if (ai === i - 1) {
 					if (s[ai] === '-') {
-						return [zero, minusone];
+						return [zero(), minusone()];
 					}
 					else if (s[ai] === '+') {
-						return [zero, one];
+						return [zero(), one()];
 					}
 					else {
-						return [zero, base(s, ai, i)];
+						return [zero(), base(s, ai, i)];
 					}
 				}
 				else {
-					return [zero, base(s, ai, i)];
+					return [zero(), base(s, ai, i)];
 				}
 			}
 
 			++i;
 
 			if (i >= j) {
-				return [base(s, ai, j), zero];
+				return [base(s, ai, j), zero()];
 			}
 
 			c = s[i];
@@ -74,7 +74,7 @@ var __parse__ = function (base, zero, one, minusone, symbol) {
 
 			if (c === symbol) {
 				if (bi === i - 1) {
-					return [base(s, ai, aj), dflt];
+					return [base(s, ai, aj), dflt()];
 				}
 				else {
 					return [base(s, ai, aj), base(s, bi, i)];
@@ -84,8 +84,6 @@ var __parse__ = function (base, zero, one, minusone, symbol) {
 		}
 
 	};
-
-	return parse;
 };
 
-exports.__parse__ = __parse__;
+exports.parse = parse;

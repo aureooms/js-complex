@@ -4,21 +4,19 @@
  * Stringify
  */
 
-var __stringify__ = function (base, eq, gt, zero, one, minusone, symbol) {
+const stringify = function (base, eq, gt, zero, one, minusone, symbol) {
 
-	var stringify = function (a, b) {
+	return function ( a , b ) {
 
-		var out, azero, bzero;
+		const azero = eq(a, zero);
 
-		azero = eq(a, zero);
-
-		bzero = eq(b, zero);
+		const bzero = eq(b, zero);
 
 		if (azero && bzero) {
 			return "0";
 		}
 
-		out = "";
+		let out = "";
 
 		if (!azero) {
 
@@ -45,8 +43,6 @@ var __stringify__ = function (base, eq, gt, zero, one, minusone, symbol) {
 		return out;
 
 	};
-
-	return stringify;
 };
 
-exports.__stringify__ = __stringify__;
+exports.stringify = stringify;
