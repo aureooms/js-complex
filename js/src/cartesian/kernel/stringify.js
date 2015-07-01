@@ -4,13 +4,13 @@
  * Stringify
  */
 
-const stringify = function (base, eq, gt, zero, one, minusone, symbol) {
+const stringify = function ( base , eq0 , eq1 , eqm1 , gt0 , symbol ) {
 
 	return function ( a , b ) {
 
-		const azero = eq(a, zero);
+		const azero = eq0(a);
 
-		const bzero = eq(b, zero);
+		const bzero = eq0(b);
 
 		if (azero && bzero) {
 			return "0";
@@ -22,7 +22,7 @@ const stringify = function (base, eq, gt, zero, one, minusone, symbol) {
 
 			out += base(a);
 
-			if (gt(b, zero)) {
+			if (gt0(b)) {
 				out += "+";
 			}
 
@@ -30,10 +30,10 @@ const stringify = function (base, eq, gt, zero, one, minusone, symbol) {
 
 		if (!bzero) {
 
-			if (eq(b, minusone)) {
+			if (eqm1(b)) {
 				out += "-";
 			}
-			else if (!eq(b, one)) {
+			else if (!eq1(b)) {
 				out += base(b);
 			}
 
