@@ -1,6 +1,7 @@
 
 const compile = function ( {
 
+	$1 ,
 	add , sub , mul , div ,
 	abs , arg ,
 	con ,
@@ -11,7 +12,7 @@ const compile = function ( {
 	return {
 
 		"complex" : exports.complex ,
-		"one" : exports.one( one ) ,
+		"$1" : exports.$1( $1 ) ,
 		"add" : exports.binary( add ) ,
 		"sub" : exports.binary( sub ) ,
 		"mul" : exports.binary( mul ) ,

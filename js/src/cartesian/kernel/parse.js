@@ -6,14 +6,14 @@
  *     WOULD BE THE BEST IMPLEMENTATION
  */
 
-const parse = function (base, zero, one, minusone, symbol) {
+const parse = function (base, $0, $1, $_1, symbol) {
 
 	return function (s, i, j) {
 
 		let aj , bi , dflt ;
 
 		if (i === j) {
-			return [zero(), zero()];
+			return [$0(), $0()];
 		}
 
 		let ai = i;
@@ -24,40 +24,40 @@ const parse = function (base, zero, one, minusone, symbol) {
 
 			if (c === symbol) {
 				if (ai === i) {
-					return [zero(), one()];
+					return [$0(), $1()];
 				}
 				else if (ai === i - 1) {
 					if (s[ai] === '-') {
-						return [zero(), minusone()];
+						return [$0(), $_1()];
 					}
 					else if (s[ai] === '+') {
-						return [zero(), one()];
+						return [$0(), $1()];
 					}
 					else {
-						return [zero(), base(s, ai, i)];
+						return [$0(), base(s, ai, i)];
 					}
 				}
 				else {
-					return [zero(), base(s, ai, i)];
+					return [$0(), base(s, ai, i)];
 				}
 			}
 
 			++i;
 
 			if (i >= j) {
-				return [base(s, ai, j), zero()];
+				return [base(s, ai, j), $0()];
 			}
 
 			c = s[i];
 
 			if ( c === '+' ) {
-				dflt = one;
+				dflt = $1;
 				aj = i;
 				bi = i;
 				break;
 			}
 			else if ( c === '-' ) {
-				dflt = minusone;
+				dflt = $_1;
 				aj = i;
 				bi = i;
 				break;

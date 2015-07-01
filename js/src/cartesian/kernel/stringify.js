@@ -3,7 +3,7 @@
  * Stringify
  */
 
-const stringify = function ( base , eq0 , eq1 , eqm1 , gt0 , symbol ) {
+const stringify = function ( base , eq0 , eq1 , eq_1 , gt0 , symbol ) {
 
 	return function ( a , b ) {
 
@@ -29,7 +29,7 @@ const stringify = function ( base , eq0 , eq1 , eqm1 , gt0 , symbol ) {
 
 		if (!bzero) {
 
-			if (eqm1(b)) {
+			if (eq_1(b)) {
 				out += "-";
 			}
 			else if (!eq1(b)) {
