@@ -19,3 +19,82 @@ let { add , sub , mul , div } = complex.cartesian.array.compile( kernel ) ;
 [![NPM downloads per month](http://img.shields.io/npm/dm/aureooms-js-complex.svg?style=flat)](https://www.npmjs.org/package/aureooms-js-complex)
 [![GitHub issues](http://img.shields.io/github/issues/aureooms/js-complex.svg?style=flat)](https://github.com/aureooms/js-complex/issues)
 [![Inline docs](http://inch-ci.org/github/aureooms/js-complex.svg?branch=master&style=shields)](http://inch-ci.org/github/aureooms/js-complex)
+
+Can be managed through [jspm](https://github.com/jspm/jspm-cli),
+[duo](https://github.com/duojs/duo),
+[component](https://github.com/componentjs/component),
+[bower](https://github.com/bower/bower),
+[ender](https://github.com/ender-js/Ender),
+[jam](https://github.com/caolan/jam),
+[spm](https://github.com/spmjs/spm),
+and [npm](https://github.com/npm/npm).
+
+## Install
+
+### jspm
+```terminal
+jspm install github:aureooms/js-complex
+# or
+jspm install npm:aureooms-js-complex
+```
+### duo
+No install step needed for duo!
+
+### component
+```terminal
+component install aureooms/js-complex
+```
+
+### bower
+```terminal
+bower install aureooms-js-complex
+```
+
+### ender
+```terminal
+ender add aureooms-js-complex
+```
+
+### jam
+```terminal
+jam install aureooms-js-complex
+```
+
+### spm
+```terminal
+spm install aureooms-js-complex --save
+```
+
+### npm
+```terminal
+npm install aureooms-js-complex --save
+```
+
+## Require
+### jspm
+```js
+let complex = require( "github:aureooms/js-complex" ) ;
+// or
+import complex from 'aureooms-js-complex' ;
+```
+### duo
+```js
+let complex = require( "aureooms/js-complex" ) ;
+```
+
+### component, ender, spm, npm
+```js
+let complex = require( "aureooms-js-complex" ) ;
+```
+
+### bower
+The script tag exposes the global variable `complex`.
+```html
+<script src="bower_components/aureooms-js-complex/js/dist/complex.min.js"></script>
+```
+Alternatively, you can use any tool mentioned [here](http://bower.io/docs/tools/).
+
+### jam
+```js
+require( [ "aureooms-js-complex" ] , function ( complex ) { ... } ) ;
+```
