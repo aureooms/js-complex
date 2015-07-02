@@ -1,38 +1,38 @@
 {
-  "description": "complex numbers code bricks for JavaScript",
-  "author": "aureooms",
-  "license": "AGPL-3.0",
-  "scripts": {
-    "test": "./node_modules/.bin/aureooms-node-package-test",
-    "doc": "./node_modules/.bin/groc",
-    "build": "./node_modules/.bin/aureooms-node-package-build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/aureooms/js-complex.git"
-  },
-  "bugs": {
-    "url": "https://github.com/aureooms/js-complex/issues"
-  },
-  "devDependencies": {
-    "aureooms-js-algo": "^3.0.4",
-    "aureooms-js-number": "^2.1.0",
-    "aureooms-js-random": "^1.0.2",
-    "aureooms-node-package": "^4.2.5"
-  },
-  "dependencies": {},
-  "main": "js/dist/complex.js",
-  "name": "aureooms-js-complex",
-  "version": "1.0.0",
-  "keywords": [
-    "arithmetic",
-    "bricks",
-    "complex",
-    "javascript",
-    "js"
-  ],
-  "homepage": "http://aureooms.github.io/js-complex/",
-  "spm": {
-    "main": "js/dist/complex.js"
-  }
+	"description": "complex numbers code bricks for JavaScript",
+	"author": "aureooms",
+	"license": "AGPL-3.0",
+	"scripts": {
+		"test": "./node_modules/.bin/aureooms-node-package-test",
+		"doc": "./node_modules/.bin/groc",
+		"build": "./node_modules/.bin/aureooms-node-package-build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/aureooms/js-complex.git"
+	},
+	"bugs": {
+		"url": "https://github.com/aureooms/js-complex/issues"
+	},
+	"devDependencies": {
+		"aureooms-js-algo": "^3.0.4",
+		"aureooms-js-number": "^2.1.0",
+		"aureooms-js-random": "^1.0.2",
+		"aureooms-node-package": "^4.2.5"
+	},
+	"dependencies": {},
+	"main": "js/dist/complex.js",
+	"name": "aureooms-js-complex",
+	"version": "1.0.1",
+	"keywords": [
+		"arithmetic",
+		"bricks",
+		"complex",
+		"javascript",
+		"js"
+	],
+	"homepage": "http://aureooms.github.io/js-complex/",
+	"spm": {
+		"main": "js/dist/complex.js"
+	}
 }
