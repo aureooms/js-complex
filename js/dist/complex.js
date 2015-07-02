@@ -45,10 +45,13 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 				var compile = function compile(_ref4, symbol) {
 					var $1 = _ref4.$1;
+					var root2n = _ref4.root2n;
 					var add = _ref4.add;
 					var sub = _ref4.sub;
 					var mul = _ref4.mul;
 					var div = _ref4.div;
+					var imul = _ref4.imul;
+					var div2 = _ref4.div2;
 					var abs = _ref4.abs;
 					var arg = _ref4.arg;
 					var con = _ref4.con;
@@ -59,10 +62,13 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 						"complex": exports.complex,
 						"$1": exports.$1($1),
+						"root2n": exports.root2n(root2n),
 						"add": exports.binary(add),
 						"sub": exports.binary(sub),
 						"mul": exports.binary(mul),
+						"imul": exports.binary(imul),
 						"div": exports.binary(div),
+						"div2": exports.unary(div2),
 						"abs": exports.unary(abs),
 						"arg": exports.unary(arg),
 						"con": exports.unary(con),
@@ -89,6 +95,14 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				};
 
 				exports.parse = parse;
+
+				/* js/src/cartesian/array/root2n.js */
+
+				var root2n = function root2n(kernel) {
+					return kernel;
+				};
+
+				exports.root2n = root2n;
 
 				/* js/src/cartesian/array/stringify.js */
 
@@ -182,9 +196,14 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 					var sub = _ref7.sub;
 					var mul = _ref7.mul;
 					var div = _ref7.div;
+					var div2 = _ref7.div2;
+					var div2n = _ref7.div2n;
 					var neg = _ref7.neg;
 					var sqrt = _ref7.sqrt;
 					var pow2 = _ref7.pow2;
+					var PI = _ref7.PI;
+					var cos = _ref7.cos;
+					var sin = _ref7.sin;
 					var atan2 = _ref7.atan2;
 					var parse = _ref7.parse;
 					var stringify = _ref7.stringify;
@@ -196,13 +215,18 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 					var eq_1 = _ref7.eq_1;
 					var gt0 = _ref7.gt0;
 
+					var _mul = exports.mul(mul, add, sub);
+
 					return {
 
 						"$1": exports.$1($0, $1),
+						"root2n": exports.root2n(cos, sin, PI, div2n),
 						"add": exports.add(add),
 						"sub": exports.sub(sub),
-						"mul": exports.mul(mul, add, sub),
+						"mul": _mul,
+						"imul": _mul,
 						"div": exports.div(div, pow2, mul, add, sub),
+						"div2": exports.div2(div2),
 						"abs": exports.abs(sqrt, pow2, add),
 						"arg": exports.arg(atan2),
 						"con": exports.con(neg),
@@ -247,6 +271,16 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				};
 
 				exports.div = div;
+
+				/* js/src/cartesian/kernel/div2.js */
+
+				var div2 = function div2(base) {
+					return function (a, b) {
+						return [base(a), base(b)];
+					};
+				};
+
+				exports.div2 = div2;
 
 				/* js/src/cartesian/kernel/mul.js */
 
@@ -343,6 +377,17 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				};
 
 				exports.parse = parse;
+
+				/* js/src/cartesian/kernel/root2n.js */
+
+				// l > 0
+				var root2n = function root2n(cos, sin, pi, div2n) {
+					return function (l) {
+						return [cos(div2n(pi, l - 1)), sin(div2n(pi, l - 1))];
+					};
+				};
+
+				exports.root2n = root2n;
 
 				/* js/src/cartesian/kernel/stringify.js */
 
@@ -447,10 +492,13 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 				var compile = function compile(_ref10, symbol) {
 					var $1 = _ref10.$1;
+					var root2n = _ref10.root2n;
 					var add = _ref10.add;
 					var sub = _ref10.sub;
 					var mul = _ref10.mul;
 					var div = _ref10.div;
+					var imul = _ref10.imul;
+					var div2 = _ref10.div2;
 					var abs = _ref10.abs;
 					var arg = _ref10.arg;
 					var con = _ref10.con;
@@ -461,10 +509,13 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 						"complex": exports.complex,
 						"$1": exports.$1($1),
+						"root2n": exports.root2n(root2n),
 						"add": exports.binary(add),
 						"sub": exports.binary(sub),
 						"mul": exports.binary(mul),
+						"imul": exports.binary(imul),
 						"div": exports.binary(div),
+						"div2": exports.unary(div2),
 						"abs": exports.unary(abs),
 						"arg": exports.unary(arg),
 						"con": exports.unary(con),
@@ -505,6 +556,16 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				};
 
 				exports.parse = parse;
+
+				/* js/src/cartesian/object/root2n.js */
+
+				var root2n = function root2n(kernel) {
+					return function (l) {
+						return fromarray(kernel(l));
+					};
+				};
+
+				exports.root2n = root2n;
 
 				/* js/src/cartesian/object/stringify.js */
 
