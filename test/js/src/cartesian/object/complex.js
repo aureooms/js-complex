@@ -18,7 +18,8 @@ for (var i = 0; i < n; ++i) {
 
 	var tmp = _( a , b ) ;
 
-	deepEqual( tmp , { real : a , img : b } , a + ", " + b ) ;
+	deepEqual( tmp.real , a , a + ", " + b + " .real" ) ;
+	deepEqual( tmp.img , b , a + ", " + b + " .img" ) ;
 
 }
 
