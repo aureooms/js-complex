@@ -46,6 +46,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				var compile = function compile(_ref4, symbol) {
 					var $1 = _ref4.$1;
 					var root2n = _ref4.root2n;
+					var iroot2n = _ref4.iroot2n;
 					var add = _ref4.add;
 					var sub = _ref4.sub;
 					var mul = _ref4.mul;
@@ -63,6 +64,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 						"complex": exports.complex,
 						"$1": exports.$1($1),
 						"root2n": exports.root2n(root2n),
+						"iroot2n": exports.root2n(iroot2n),
 						"add": exports.binary(add),
 						"sub": exports.binary(sub),
 						"mul": exports.binary(mul),
@@ -221,6 +223,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 						"$1": exports.$1($0, $1),
 						"root2n": exports.root2n(cos, sin, PI, div2n),
+						"iroot2n": exports.iroot2n(cos, sin, PI, div2n, neg),
 						"add": exports.add(add),
 						"sub": exports.sub(sub),
 						"mul": _mul,
@@ -281,6 +284,17 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				};
 
 				exports.div2 = div2;
+
+				/* js/src/cartesian/kernel/iroot2n.js */
+
+				// l > 0
+				var iroot2n = function iroot2n(cos, sin, pi, div2n, neg) {
+					return function (l) {
+						return [cos(div2n(pi, l - 1)), neg(sin(div2n(pi, l - 1)))];
+					};
+				};
+
+				exports.iroot2n = iroot2n;
 
 				/* js/src/cartesian/kernel/mul.js */
 
@@ -493,6 +507,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				var compile = function compile(_ref10, symbol) {
 					var $1 = _ref10.$1;
 					var root2n = _ref10.root2n;
+					var iroot2n = _ref10.iroot2n;
 					var add = _ref10.add;
 					var sub = _ref10.sub;
 					var mul = _ref10.mul;
@@ -510,6 +525,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 						"complex": exports.complex,
 						"$1": exports.$1($1),
 						"root2n": exports.root2n(root2n),
+						"iroot2n": exports.root2n(iroot2n),
 						"add": exports.binary(add),
 						"sub": exports.binary(sub),
 						"mul": exports.binary(mul),

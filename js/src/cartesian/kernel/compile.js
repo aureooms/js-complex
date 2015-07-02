@@ -18,6 +18,7 @@ const compile = function ( {
 
 		"$1" : exports.$1( $0 , $1 ) ,
 		"root2n" : exports.root2n( cos , sin , PI , div2n ) ,
+		"iroot2n" : exports.iroot2n( cos , sin , PI , div2n , neg ) ,
 		"add" : exports.add( add ) ,
 		"sub" : exports.sub( sub ) ,
 		"mul" : _mul ,
