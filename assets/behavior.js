@@ -507,6 +507,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/kernel/iroot2n.js",
+                "projectPath": "js/src/cartesian/kernel/iroot2n.js",
+                "targetPath": "cartesian/kernel/iroot2n",
+                "pageTitle": "cartesian/kernel/iroot2n",
+                "title": "iroot2n"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/kernel/mul.js",
                 "projectPath": "js/src/cartesian/kernel/mul.js",
                 "targetPath": "cartesian/kernel/mul",
