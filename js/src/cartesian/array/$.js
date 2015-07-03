@@ -1,0 +1,4 @@
+
+const $ = kernel => kernel ;
+
+exports.$ = $ ;

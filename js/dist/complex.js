@@ -14,13 +14,13 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 			/* js/src/cartesian/array */
 			(function (exports) {
 
-				/* js/src/cartesian/array/$1.js */
+				/* js/src/cartesian/array/$.js */
 
-				var $1 = function $1(kernel) {
+				var $ = function $(kernel) {
 					return kernel;
 				};
 
-				exports.$1 = $1;
+				exports.$ = $;
 
 				/* js/src/cartesian/array/binary.js */
 
@@ -44,6 +44,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/cartesian/array/compile.js */
 
 				var compile = function compile(_ref4, symbol) {
+					var $0 = _ref4.$0;
 					var $1 = _ref4.$1;
 					var root2n = _ref4.root2n;
 					var iroot2n = _ref4.iroot2n;
@@ -62,7 +63,8 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 					return {
 
 						"complex": exports.complex,
-						"$1": exports.$1($1),
+						"$0": exports.$($0),
+						"$1": exports.$($1),
 						"root2n": exports.root2n(root2n),
 						"iroot2n": exports.root2n(iroot2n),
 						"add": exports.binary(add),
@@ -136,6 +138,16 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 			})(exports["array"] = {});
 			/* js/src/cartesian/kernel */
 			(function (exports) {
+
+				/* js/src/cartesian/kernel/$0.js */
+
+				var $0 = function $0(_$0) {
+					return function () {
+						return [_$0(), _$0()];
+					};
+				};
+
+				exports.$0 = $0;
 
 				/* js/src/cartesian/kernel/$1.js */
 
@@ -221,6 +233,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 					return {
 
+						"$0": exports.$0($0),
 						"$1": exports.$1($0, $1),
 						"root2n": exports.root2n(cos, sin, PI, div2n),
 						"iroot2n": exports.iroot2n(cos, sin, PI, div2n, neg),
@@ -468,15 +481,15 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 			/* js/src/cartesian/object */
 			(function (exports) {
 
-				/* js/src/cartesian/object/$1.js */
+				/* js/src/cartesian/object/$.js */
 
-				var $1 = function $1(kernel) {
+				var $ = function $(kernel) {
 					return function () {
 						return fromarray(kernel());
 					};
 				};
 
-				exports.$1 = $1;
+				exports.$ = $;
 
 				/* js/src/cartesian/object/Complex.js */
 
@@ -505,6 +518,7 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 				/* js/src/cartesian/object/compile.js */
 
 				var compile = function compile(_ref10, symbol) {
+					var $0 = _ref10.$0;
 					var $1 = _ref10.$1;
 					var root2n = _ref10.root2n;
 					var iroot2n = _ref10.iroot2n;
@@ -523,7 +537,8 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 					return {
 
 						"complex": exports.complex,
-						"$1": exports.$1($1),
+						"$0": exports.$($0),
+						"$1": exports.$($1),
 						"root2n": exports.root2n(root2n),
 						"iroot2n": exports.root2n(iroot2n),
 						"add": exports.binary(add),

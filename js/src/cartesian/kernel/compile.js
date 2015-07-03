@@ -16,6 +16,7 @@ const compile = function ( {
 
 	return {
 
+		"$0" : exports.$0( $0 ) ,
 		"$1" : exports.$1( $0 , $1 ) ,
 		"root2n" : exports.root2n( cos , sin , PI , div2n ) ,
 		"iroot2n" : exports.iroot2n( cos , sin , PI , div2n , neg ) ,

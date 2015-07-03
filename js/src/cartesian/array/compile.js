@@ -1,7 +1,7 @@
 
 const compile = function ( {
 
-	$1 , root2n , iroot2n ,
+	$0 , $1 , root2n , iroot2n ,
 	add , sub , mul , div ,
 	imul ,
 	div2 ,
@@ -14,7 +14,8 @@ const compile = function ( {
 	return {
 
 		"complex" : exports.complex ,
-		"$1" : exports.$1( $1 ) ,
+		"$0" : exports.$( $0 ) ,
+		"$1" : exports.$( $1 ) ,
 		"root2n" : exports.root2n( root2n ) ,
 		"iroot2n" : exports.root2n( iroot2n ) ,
 		"add" : exports.binary( add ) ,
