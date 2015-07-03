@@ -177,11 +177,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/array/$1.js",
-                "projectPath": "js/src/cartesian/array/$1.js",
-                "targetPath": "cartesian/array/$1",
-                "pageTitle": "cartesian/array/$1",
-                "title": "$1"
+                "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/array/$.js",
+                "projectPath": "js/src/cartesian/array/$.js",
+                "targetPath": "cartesian/array/$",
+                "pageTitle": "cartesian/array/$",
+                "title": "$"
               },
               "depth": 3,
               "outline": []
@@ -336,6 +336,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/kernel/$0.js",
+                "projectPath": "js/src/cartesian/kernel/$0.js",
+                "targetPath": "cartesian/kernel/$0",
+                "pageTitle": "cartesian/kernel/$0",
+                "title": "$0"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -637,11 +657,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/object/$1.js",
-                "projectPath": "js/src/cartesian/object/$1.js",
-                "targetPath": "cartesian/object/$1",
-                "pageTitle": "cartesian/object/$1",
-                "title": "$1"
+                "sourcePath": "/home/aureooms/dev/js/js-complex/js/src/cartesian/object/$.js",
+                "projectPath": "js/src/cartesian/object/$.js",
+                "targetPath": "cartesian/object/$",
+                "pageTitle": "cartesian/object/$",
+                "title": "$"
               },
               "depth": 3,
               "outline": []
