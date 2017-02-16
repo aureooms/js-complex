@@ -1,5 +1,5 @@
 
-var number = require("aureooms-js-number");
+var number = require("@aureooms/js-number");
 
 var $0 = complex.cartesian.array.compile( complex.cartesian.kernel.compile( number ) ).$0 ;
 

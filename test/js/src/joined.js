@@ -1,9 +1,9 @@
 
 var format = require("util").format ;
 
-var algo = require("aureooms-js-algo");
-var number = require("aureooms-js-number");
-var random = require("aureooms-js-random");
+var algo = require("@aureooms/js-algo");
+var number = require("@aureooms/js-number");
+var random = require("@aureooms/js-random");
 
 var cartesian = complex.cartesian.array.compile( complex.cartesian.kernel.compile( number ) ) ;
 var polar = complex.polar.array.compile( complex.polar.kernel.compile( number ) ) ;

@@ -1,6 +1,6 @@
 
 
-var number = require("aureooms-js-number");
+var number = require("@aureooms/js-number");
 
 var symbol = "i" ;
 

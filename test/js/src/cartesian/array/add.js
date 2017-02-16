@@ -1,9 +1,9 @@
 
 var format = require("util").format ;
 
-var number = require("aureooms-js-number");
+var number = require("@aureooms/js-number");
 
-var random = require("aureooms-js-random");
+var random = require("@aureooms/js-random");
 
 var add = complex.cartesian.array.compile( complex.cartesian.kernel.compile( number ) ).add ;
 

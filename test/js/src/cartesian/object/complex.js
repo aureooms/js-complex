@@ -1,7 +1,7 @@
 
-var number = require("aureooms-js-number");
+var number = require("@aureooms/js-number");
 
-var random = require("aureooms-js-random");
+var random = require("@aureooms/js-random");
 
 var _ = complex.cartesian.object.compile( complex.cartesian.kernel.compile( number ) ).complex ;
 
