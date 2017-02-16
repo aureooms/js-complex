@@ -15,14 +15,14 @@
 		"url": "https://github.com/aureooms/js-complex/issues"
 	},
 	"devDependencies": {
-		"aureooms-js-algo": "^3.0.4",
-		"aureooms-js-number": "^3.0.0",
-		"aureooms-js-random": "^1.0.2",
+		"@aureooms/js-algo": "^3.0.4",
+		"@aureooms/js-number": "^3.0.0",
+		"@aureooms/js-random": "^1.0.2",
 		"aureooms-node-package": "^6.0.1"
 	},
 	"dependencies": {},
 	"main": "js/dist/complex.js",
-	"name": "aureooms-js-complex",
+	"name": "@aureooms/js-complex",
 	"version": "1.2.0",
 	"keywords": [
 		"arithmetic",
