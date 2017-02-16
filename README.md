@@ -8,7 +8,7 @@ let kernel = complex.cartesian.kernel.compile( number , "i" ) ;
 let { add , sub , mul , div } = complex.cartesian.array.compile( kernel ) ;
 ```
 
-[![NPM license](https://img.shields.io/npm/l/@aureooms/js-complex.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-complex/master/LICENSE)
+[![License](https://img.shields.io/github/license/aureooms/js-complex.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-complex/master/LICENSE)
 [![NPM version](https://img.shields.io/npm/v/@aureooms/js-complex.svg?style=flat)](https://www.npmjs.org/package/@aureooms/js-complex)
 [![Bower version](https://img.shields.io/bower/v/@aureooms/js-complex.svg?style=flat)](http://bower.io/search/?q=@aureooms/js-complex)
 [![Build Status](https://img.shields.io/travis/aureooms/js-complex.svg?style=flat)](https://travis-ci.org/aureooms/js-complex)
