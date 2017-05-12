@@ -1,6 +1,8 @@
 [js-complex](http://aureooms.github.io/js-complex)
 ==
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Newton-lplane-Mandelbrot.jpg" width="864">
+
 Complex numbers code bricks for JavaScript.
 
 ```js
