@@ -30,6 +30,8 @@ export default function compile ( {
 		"con" : core.unary( con ) ,
 		"parse" : core.parse( parse ) ,
 		"stringify" : core.stringify ( stringify )
+		"exp" : core.unary( exp ) ,
+		"pow" : core.binary( pow ) ,
 
 	} ;
 

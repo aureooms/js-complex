@@ -8,7 +8,8 @@ export default function compile ( {
 	div2 ,
 	abs , arg ,
 	con ,
-	parse , stringify
+	parse , stringify ,
+	exp , pow ,
 
 } , symbol ) {
 
@@ -29,7 +30,10 @@ export default function compile ( {
 		"arg" : core.unary( arg ) ,
 		"con" : core.unary( con ) ,
 		"parse" : parse ,
-		"stringify" : core.unary ( stringify )
+		"stringify" : core.unary ( stringify ) ,
+		"exp" : core.unary( exp ) ,
+		"pow" : core.binary( pow ) ,
+
 
 	} ;
 

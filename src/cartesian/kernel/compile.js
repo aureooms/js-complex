@@ -5,7 +5,8 @@ export default function compile ( {
 	add , sub , mul , div ,
 	div2 , div2n ,
 	neg ,
-	sqrt , pow2 ,
+	sqrt , pow2 , exp ,
+	loge ,
 	PI , cos , sin , atan2 ,
 	parse , stringify ,
 	$0 , $1 , $_1 ,
@@ -14,6 +15,9 @@ export default function compile ( {
 } , symbol ) {
 
 	const _mul = core.mul( mul , add , sub ) ;
+	const _exp = core.exp( exp , cos , sin , mul ) ;
+	const _abs = core.abs( sqrt , pow2 , add ) ;
+	const _arg = core.arg( atan2 ) ;
 
 	return {
 
@@ -27,11 +31,13 @@ export default function compile ( {
 		"imul" : _mul ,
 		"div" : core.div( div , pow2 , mul , add , sub ) ,
 		"div2" : core.div2( div2 ) ,
-		"abs" : core.abs( sqrt , pow2 , add ) ,
-		"arg" : core.arg( atan2 ) ,
+		"abs" : _abs ,
+		"arg" : _arg ,
 		"con" : core.con( neg ) ,
 		"parse" : core.parse( parse , $0 , $1 , $_1 , symbol ) ,
-		"stringify" : core.stringify ( stringify , eq0 , eq1 , eq_1 , gt0 , symbol )
+		"stringify" : core.stringify ( stringify , eq0 , eq1 , eq_1 , gt0 , symbol ) ,
+		"exp" : _exp ,
+		"pow" : core.pow( _exp , _abs , _arg , loge , mul , sub , add ) ,
 
 	} ;
 
