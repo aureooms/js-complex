@@ -6,9 +6,21 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "@aureooms/js-complex/src/complex.js~$0",
+    "function/index.html#static-function-$0",
+    "<span>$0</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
+    "function"
+  ],
+  [
     "@aureooms/js-complex/src/cartesian/kernel/core/$1.js~$1",
     "function/index.html#static-function-$1",
     "<span>$1</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/cartesian/kernel/core/$1.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/complex.js~$1",
+    "function/index.html#static-function-$1",
+    "<span>$1</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
     "function"
   ],
   [
@@ -16,6 +28,12 @@ window.esdocSearchIndex = [
     "function/index.html#static-function-$",
     "<span>$</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/cartesian/object/core/$.js</span>",
     "function"
+  ],
+  [
+    "@aureooms/js-complex/src/complex.js~complex",
+    "class/src/Complex.js~Complex.html",
+    "<span>Complex</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/Complex.js</span>",
+    "class"
   ],
   [
     "@aureooms/js-complex/src/cartesian/object/core/complex.js~complex",
@@ -30,6 +48,18 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "@aureooms/js-complex/src/complexfield.js~complexfield",
+    "class/src/ComplexField.js~ComplexField.html",
+    "<span>ComplexField</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/ComplexField.js</span>",
+    "class"
+  ],
+  [
+    "@aureooms/js-complex/src/zerodivisionerror.js~zerodivisionerror",
+    "class/src/ZeroDivisionError.js~ZeroDivisionError.html",
+    "<span>ZeroDivisionError</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/ZeroDivisionError.js</span>",
+    "class"
+  ],
+  [
     "@aureooms/js-complex/src/cartesian/kernel/core/abs.js~abs",
     "function/index.html#static-function-abs",
     "<span>abs</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/cartesian/kernel/core/abs.js</span>",
@@ -39,6 +69,12 @@ window.esdocSearchIndex = [
     "@aureooms/js-complex/src/cartesian/kernel/core/add.js~add",
     "function/index.html#static-function-add",
     "<span>add</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/cartesian/kernel/core/add.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/complex.js~add",
+    "function/index.html#static-function-add",
+    "<span>add</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
     "function"
   ],
   [
@@ -156,9 +192,21 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "@aureooms/js-complex/src/complex.js~div",
+    "function/index.html#static-function-div",
+    "<span>div</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
+    "function"
+  ],
+  [
     "@aureooms/js-complex/src/polar/kernel/core/div.js~div",
     "function/index.html#static-function-div",
     "<span>div</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/polar/kernel/core/div.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/cartesian/kernel/core/exp.js~exp",
+    "function/index.html#static-function-exp",
+    "<span>exp</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/cartesian/kernel/core/exp.js</span>",
     "function"
   ],
   [
@@ -171,6 +219,18 @@ window.esdocSearchIndex = [
     "@aureooms/js-complex/src/polar/object/core/fromarray.js~fromarray",
     "function/index.html#static-function-fromarray",
     "<span>fromarray</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/polar/object/core/fromarray.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/complex.js~iadd",
+    "function/index.html#static-function-iadd",
+    "<span>iadd</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/complex.js~idiv",
+    "function/index.html#static-function-idiv",
+    "<span>idiv</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
     "function"
   ],
   [
@@ -192,15 +252,51 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "@aureooms/js-complex/src/complex.js~imod",
+    "function/index.html#static-function-imod",
+    "<span>imod</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/complex.js~imul",
+    "function/index.html#static-function-imul",
+    "<span>imul</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/complex.js~ipow",
+    "function/index.html#static-function-ipow",
+    "<span>ipow</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
+    "function"
+  ],
+  [
     "@aureooms/js-complex/src/cartesian/kernel/core/iroot2n.js~iroot2n",
     "function/index.html#static-function-iroot2n",
     "<span>iroot2n</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/cartesian/kernel/core/iroot2n.js</span>",
     "function"
   ],
   [
+    "@aureooms/js-complex/src/complex.js~isub",
+    "function/index.html#static-function-isub",
+    "<span>isub</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/complex.js~mod",
+    "function/index.html#static-function-mod",
+    "<span>mod</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
+    "function"
+  ],
+  [
     "@aureooms/js-complex/src/cartesian/kernel/core/mul.js~mul",
     "function/index.html#static-function-mul",
     "<span>mul</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/cartesian/kernel/core/mul.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/complex.js~mul",
+    "function/index.html#static-function-mul",
+    "<span>mul</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
     "function"
   ],
   [
@@ -219,6 +315,24 @@ window.esdocSearchIndex = [
     "@aureooms/js-complex/src/cartesian/object/core/parse.js~parse",
     "function/index.html#static-function-parse",
     "<span>parse</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/cartesian/object/core/parse.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/complex.js~parse",
+    "function/index.html#static-function-parse",
+    "<span>parse</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/cartesian/kernel/core/pow.js~pow",
+    "function/index.html#static-function-pow",
+    "<span>pow</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/cartesian/kernel/core/pow.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/complex.js~pow",
+    "function/index.html#static-function-pow",
+    "<span>pow</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
     "function"
   ],
   [
@@ -264,9 +378,15 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "@aureooms/js-complex/src/cartesian/kernel/core/sub.js~sub",
+    "@aureooms/js-complex/src/complex.js~stringify",
+    "function/index.html#static-function-stringify",
+    "<span>stringify</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-complex/src/complex.js~sub",
     "function/index.html#static-function-sub",
-    "<span>sub</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/cartesian/kernel/core/sub.js</span>",
+    "<span>sub</span> <span class=\"search-result-import-path\">@aureooms/js-complex/src/complex.js</span>",
     "function"
   ],
   [
@@ -624,6 +744,378 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "src/cc.js",
+    "file/src/CC.js.html",
+    "src/CC.js",
+    "file"
+  ],
+  [
+    "src/complex_default_display.js",
+    "file/src/COMPLEX_DEFAULT_DISPLAY.js.html",
+    "src/COMPLEX_DEFAULT_DISPLAY.js",
+    "file"
+  ],
+  [
+    "src/complex_default_representation.js",
+    "file/src/COMPLEX_DEFAULT_REPRESENTATION.js.html",
+    "src/COMPLEX_DEFAULT_REPRESENTATION.js",
+    "file"
+  ],
+  [
+    "src/complex.js",
+    "file/src/Complex.js.html",
+    "src/Complex.js",
+    "file"
+  ],
+  [
+    "src/complex.js~complex#__floordiv__",
+    "class/src/Complex.js~Complex.html#instance-method-__floordiv__",
+    "src/Complex.js~Complex#__floordiv__",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#__truediv__",
+    "class/src/Complex.js~Complex.html#instance-method-__truediv__",
+    "src/Complex.js~Complex#__truediv__",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#abs",
+    "class/src/Complex.js~Complex.html#instance-method-abs",
+    "src/Complex.js~Complex#abs",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#add",
+    "class/src/Complex.js~Complex.html#instance-method-add",
+    "src/Complex.js~Complex#add",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#cmp",
+    "class/src/Complex.js~Complex.html#instance-method-cmp",
+    "src/Complex.js~Complex#cmp",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#conjugate",
+    "class/src/Complex.js~Complex.html#instance-method-conjugate",
+    "src/Complex.js~Complex#conjugate",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#constructor",
+    "class/src/Complex.js~Complex.html#instance-constructor-constructor",
+    "src/Complex.js~Complex#constructor",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#copy",
+    "class/src/Complex.js~Complex.html#instance-method-copy",
+    "src/Complex.js~Complex#copy",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#div",
+    "class/src/Complex.js~Complex.html#instance-method-div",
+    "src/Complex.js~Complex#div",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#divide_knowing_divisible_by",
+    "class/src/Complex.js~Complex.html#instance-method-divide_knowing_divisible_by",
+    "src/Complex.js~Complex#divide_knowing_divisible_by",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#divide_knowing_model_contains",
+    "class/src/Complex.js~Complex.html#instance-method-divide_knowing_model_contains",
+    "src/Complex.js~Complex#divide_knowing_model_contains",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#divides",
+    "class/src/Complex.js~Complex.html#instance-method-divides",
+    "src/Complex.js~Complex#divides",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#divmod",
+    "class/src/Complex.js~Complex.html#instance-method-divmod",
+    "src/Complex.js~Complex#divmod",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#eq",
+    "class/src/Complex.js~Complex.html#instance-method-eq",
+    "src/Complex.js~Complex#eq",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#ge",
+    "class/src/Complex.js~Complex.html#instance-method-ge",
+    "src/Complex.js~Complex#ge",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#gt",
+    "class/src/Complex.js~Complex.html#instance-method-gt",
+    "src/Complex.js~Complex#gt",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#iadd",
+    "class/src/Complex.js~Complex.html#instance-method-iadd",
+    "src/Complex.js~Complex#iadd",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#idiv",
+    "class/src/Complex.js~Complex.html#instance-method-idiv",
+    "src/Complex.js~Complex#idiv",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#img",
+    "class/src/Complex.js~Complex.html#instance-member-img",
+    "src/Complex.js~Complex#img",
+    "member"
+  ],
+  [
+    "src/complex.js~complex#imod",
+    "class/src/Complex.js~Complex.html#instance-method-imod",
+    "src/Complex.js~Complex#imod",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#imul",
+    "class/src/Complex.js~Complex.html#instance-method-imul",
+    "src/Complex.js~Complex#imul",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#ipow",
+    "class/src/Complex.js~Complex.html#instance-method-ipow",
+    "src/Complex.js~Complex#ipow",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#isone",
+    "class/src/Complex.js~Complex.html#instance-method-isone",
+    "src/Complex.js~Complex#isone",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#isquare",
+    "class/src/Complex.js~Complex.html#instance-method-isquare",
+    "src/Complex.js~Complex#isquare",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#isub",
+    "class/src/Complex.js~Complex.html#instance-method-isub",
+    "src/Complex.js~Complex#isub",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#iszero",
+    "class/src/Complex.js~Complex.html#instance-method-iszero",
+    "src/Complex.js~Complex#iszero",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#le",
+    "class/src/Complex.js~Complex.html#instance-method-le",
+    "src/Complex.js~Complex#le",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#lt",
+    "class/src/Complex.js~Complex.html#instance-method-lt",
+    "src/Complex.js~Complex#lt",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#mod",
+    "class/src/Complex.js~Complex.html#instance-method-mod",
+    "src/Complex.js~Complex#mod",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#move",
+    "class/src/Complex.js~Complex.html#instance-method-move",
+    "src/Complex.js~Complex#move",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#mul",
+    "class/src/Complex.js~Complex.html#instance-method-mul",
+    "src/Complex.js~Complex#mul",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#ne",
+    "class/src/Complex.js~Complex.html#instance-method-ne",
+    "src/Complex.js~Complex#ne",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#negate",
+    "class/src/Complex.js~Complex.html#instance-method-negate",
+    "src/Complex.js~Complex#negate",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#nonzero",
+    "class/src/Complex.js~Complex.html#instance-method-nonzero",
+    "src/Complex.js~Complex#nonzero",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#opposite",
+    "class/src/Complex.js~Complex.html#instance-method-opposite",
+    "src/Complex.js~Complex#opposite",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#pow",
+    "class/src/Complex.js~Complex.html#instance-method-pow",
+    "src/Complex.js~Complex#pow",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#real",
+    "class/src/Complex.js~Complex.html#instance-member-real",
+    "src/Complex.js~Complex#real",
+    "member"
+  ],
+  [
+    "src/complex.js~complex#representation",
+    "class/src/Complex.js~Complex.html#instance-member-representation",
+    "src/Complex.js~Complex#representation",
+    "member"
+  ],
+  [
+    "src/complex.js~complex#signum",
+    "class/src/Complex.js~Complex.html#instance-method-signum",
+    "src/Complex.js~Complex#signum",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#square",
+    "class/src/Complex.js~Complex.html#instance-method-square",
+    "src/Complex.js~Complex#square",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#sub",
+    "class/src/Complex.js~Complex.html#instance-method-sub",
+    "src/Complex.js~Complex#sub",
+    "method"
+  ],
+  [
+    "src/complex.js~complex#tostring",
+    "class/src/Complex.js~Complex.html#instance-method-toString",
+    "src/Complex.js~Complex#toString",
+    "method"
+  ],
+  [
+    "src/complexfield.js",
+    "file/src/ComplexField.js.html",
+    "src/ComplexField.js",
+    "file"
+  ],
+  [
+    "src/complexfield.js~complexfield#$0",
+    "class/src/ComplexField.js~ComplexField.html#instance-method-$0",
+    "src/ComplexField.js~ComplexField#$0",
+    "method"
+  ],
+  [
+    "src/complexfield.js~complexfield#$1",
+    "class/src/ComplexField.js~ComplexField.html#instance-method-$1",
+    "src/ComplexField.js~ComplexField#$1",
+    "method"
+  ],
+  [
+    "src/complexfield.js~complexfield#$j",
+    "class/src/ComplexField.js~ComplexField.html#instance-method-$j",
+    "src/ComplexField.js~ComplexField#$j",
+    "method"
+  ],
+  [
+    "src/complexfield.js~complexfield#characteristic",
+    "class/src/ComplexField.js~ComplexField.html#instance-method-characteristic",
+    "src/ComplexField.js~ComplexField#characteristic",
+    "method"
+  ],
+  [
+    "src/complexfield.js~complexfield#constructor",
+    "class/src/ComplexField.js~ComplexField.html#instance-constructor-constructor",
+    "src/ComplexField.js~ComplexField#constructor",
+    "method"
+  ],
+  [
+    "src/complexfield.js~complexfield#from",
+    "class/src/ComplexField.js~ComplexField.html#instance-method-from",
+    "src/ComplexField.js~ComplexField#from",
+    "method"
+  ],
+  [
+    "src/complexfield.js~complexfield#from_number",
+    "class/src/ComplexField.js~ComplexField.html#instance-method-from_number",
+    "src/ComplexField.js~ComplexField#from_number",
+    "method"
+  ],
+  [
+    "src/complexfield.js~complexfield#from_string",
+    "class/src/ComplexField.js~ComplexField.html#instance-method-from_string",
+    "src/ComplexField.js~ComplexField#from_string",
+    "method"
+  ],
+  [
+    "src/complexfield.js~complexfield#name",
+    "class/src/ComplexField.js~ComplexField.html#instance-member-name",
+    "src/ComplexField.js~ComplexField#name",
+    "member"
+  ],
+  [
+    "src/complexfield.js~complexfield#representation",
+    "class/src/ComplexField.js~ComplexField.html#instance-member-representation",
+    "src/ComplexField.js~ComplexField#representation",
+    "member"
+  ],
+  [
+    "src/complexfield.js~complexfield#tostring",
+    "class/src/ComplexField.js~ComplexField.html#instance-method-toString",
+    "src/ComplexField.js~ComplexField#toString",
+    "method"
+  ],
+  [
+    "src/zerodivisionerror.js",
+    "file/src/ZeroDivisionError.js.html",
+    "src/ZeroDivisionError.js",
+    "file"
+  ],
+  [
+    "src/zerodivisionerror.js~zerodivisionerror#constructor",
+    "class/src/ZeroDivisionError.js~ZeroDivisionError.html#instance-constructor-constructor",
+    "src/ZeroDivisionError.js~ZeroDivisionError#constructor",
+    "method"
+  ],
+  [
+    "src/zerodivisionerror.js~zerodivisionerror#message",
+    "class/src/ZeroDivisionError.js~ZeroDivisionError.html#instance-member-message",
+    "src/ZeroDivisionError.js~ZeroDivisionError#message",
+    "member"
+  ],
+  [
+    "src/zerodivisionerror.js~zerodivisionerror#tostring",
+    "class/src/ZeroDivisionError.js~ZeroDivisionError.html#instance-method-toString",
+    "src/ZeroDivisionError.js~ZeroDivisionError#toString",
+    "method"
+  ],
+  [
     "src/cartesian/array/compile.js",
     "file/src/cartesian/array/compile.js.html",
     "src/cartesian/array/compile.js",
@@ -720,6 +1212,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/cartesian/kernel/core/exp.js",
+    "file/src/cartesian/kernel/core/exp.js.html",
+    "src/cartesian/kernel/core/exp.js",
+    "file"
+  ],
+  [
     "src/cartesian/kernel/core/index.js",
     "file/src/cartesian/kernel/core/index.js.html",
     "src/cartesian/kernel/core/index.js",
@@ -741,6 +1239,12 @@ window.esdocSearchIndex = [
     "src/cartesian/kernel/core/parse.js",
     "file/src/cartesian/kernel/core/parse.js.html",
     "src/cartesian/kernel/core/parse.js",
+    "file"
+  ],
+  [
+    "src/cartesian/kernel/core/pow.js",
+    "file/src/cartesian/kernel/core/pow.js.html",
+    "src/cartesian/kernel/core/pow.js",
     "file"
   ],
   [
@@ -837,6 +1341,12 @@ window.esdocSearchIndex = [
     "src/cartesian/object/index.js",
     "file/src/cartesian/object/index.js.html",
     "src/cartesian/object/index.js",
+    "file"
+  ],
+  [
+    "src/complex.js",
+    "file/src/complex.js.html",
+    "src/complex.js",
     "file"
   ],
   [

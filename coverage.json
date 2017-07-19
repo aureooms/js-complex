@@ -1,6 +1,6 @@
 {
-  "coverage": "20.4%",
-  "expectCount": 49,
+  "coverage": "8%",
+  "expectCount": 125,
   "actualCount": 10,
   "files": {
     "src/cartesian/object/core/$.js": {
@@ -17,7 +17,102 @@
         2
       ]
     },
+    "src/ComplexField.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        77,
+        81,
+        85,
+        5,
+        12,
+        7,
+        20,
+        57,
+        66,
+        8,
+        9,
+        16
+      ]
+    },
+    "src/complex.js": {
+      "expectCount": 16,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        8,
+        20,
+        52,
+        24,
+        56,
+        64,
+        40,
+        48,
+        32,
+        60,
+        36,
+        12,
+        44,
+        16,
+        28
+      ]
+    },
     "src/cartesian/kernel/core/$1.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        2
+      ]
+    },
+    "src/Complex.js": {
+      "expectCount": 43,
+      "actualCount": 1,
+      "undocumentLines": [
+        5,
+        121,
+        116,
+        171,
+        29,
+        175,
+        129,
+        7,
+        20,
+        95,
+        161,
+        165,
+        157,
+        112,
+        181,
+        189,
+        193,
+        37,
+        99,
+        10,
+        108,
+        63,
+        80,
+        148,
+        90,
+        50,
+        143,
+        197,
+        201,
+        104,
+        13,
+        55,
+        185,
+        133,
+        153,
+        125,
+        9,
+        8,
+        139,
+        85,
+        42,
+        24
+      ]
+    },
+    "src/polar/object/core/Complex.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
@@ -31,11 +126,14 @@
         2
       ]
     },
-    "src/polar/object/core/Complex.js": {
-      "expectCount": 1,
+    "src/ZeroDivisionError.js": {
+      "expectCount": 4,
       "actualCount": 0,
       "undocumentLines": [
-        2
+        2,
+        4,
+        5,
+        8
       ]
     },
     "src/cartesian/kernel/core/abs.js": {
@@ -53,7 +151,7 @@
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/cartesian/array/core/binary.js": {
+    "src/polar/array/core/binary.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
@@ -67,6 +165,13 @@
         2
       ]
     },
+    "src/cartesian/array/core/binary.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        2
+      ]
+    },
     "src/polar/object/core/binary.js": {
       "expectCount": 1,
       "actualCount": 0,
@@ -74,42 +179,7 @@
         2
       ]
     },
-    "src/polar/array/core/binary.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        2
-      ]
-    },
-    "src/polar/kernel/compile.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
-      ]
-    },
     "src/cartesian/array/compile.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
-      ]
-    },
-    "src/polar/object/compile.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
-      ]
-    },
-    "src/cartesian/kernel/compile.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
-      ]
-    },
-    "src/cartesian/object/compile.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
@@ -123,14 +193,35 @@
         3
       ]
     },
-    "src/cartesian/array/core/complex.js": {
+    "src/polar/kernel/compile.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        2
+        3
       ]
     },
-    "src/polar/object/core/complex.js": {
+    "src/polar/object/compile.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "src/cartesian/object/compile.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "src/cartesian/kernel/compile.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "src/cartesian/array/core/complex.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
@@ -151,12 +242,24 @@
         2
       ]
     },
+    "src/polar/object/core/complex.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        2
+      ]
+    },
     "src/polar/kernel/core/con.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
     "src/cartesian/kernel/core/con.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/cartesian/kernel/core/div.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
@@ -168,11 +271,6 @@
         2
       ]
     },
-    "src/cartesian/kernel/core/div.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
     "src/cartesian/kernel/core/div2.js": {
       "expectCount": 1,
       "actualCount": 0,
@@ -180,7 +278,7 @@
         2
       ]
     },
-    "src/polar/object/core/fromarray.js": {
+    "src/cartesian/kernel/core/exp.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
@@ -188,6 +286,13 @@
       ]
     },
     "src/cartesian/object/core/fromarray.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        2
+      ]
+    },
+    "src/polar/object/core/fromarray.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
@@ -222,17 +327,17 @@
         3
       ]
     },
+    "src/cartesian/kernel/core/mul.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
     "src/polar/kernel/core/mul.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
         2
       ]
-    },
-    "src/cartesian/kernel/core/mul.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
     },
     "src/cartesian/object/core/parse.js": {
       "expectCount": 1,
@@ -246,7 +351,14 @@
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/polar/object/core/real.js": {
+    "src/cartesian/kernel/core/pow.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "src/polar/array/core/real.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
@@ -260,7 +372,7 @@
         2
       ]
     },
-    "src/polar/array/core/real.js": {
+    "src/polar/object/core/real.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
@@ -293,19 +405,7 @@
         1
       ]
     },
-    "src/cartesian/kernel/core/sub.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "src/cartesian/array/core/unary.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        2
-      ]
-    },
-    "src/cartesian/object/core/unary.js": {
+    "src/polar/object/core/unary.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
@@ -319,7 +419,14 @@
         2
       ]
     },
-    "src/polar/object/core/unary.js": {
+    "src/cartesian/object/core/unary.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        2
+      ]
+    },
+    "src/cartesian/array/core/unary.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [

@@ -2,8 +2,1865 @@
   {
     "__docId__": 0,
     "kind": "file",
+    "name": "src/CC.js",
+    "content": "import COMPLEX_DEFAULT_REPRESENTATION from './COMPLEX_DEFAULT_REPRESENTATION' ;\nimport ComplexField from './ComplexField' ;\n\nexport default new ComplexField( 'Complex Field' , COMPLEX_DEFAULT_REPRESENTATION ) ;\n",
+    "static": true,
+    "longname": "src/CC.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 1,
+    "kind": "file",
+    "name": "src/COMPLEX_DEFAULT_DISPLAY.js",
+    "content": "import * as number from '@aureooms/js-number' ;\n\nimport compile from './cartesian/kernel/compile' ;\n\nconst model = number ;\nconst symbol = 'j' ;\n\nexport default {\n\ttype : 'cartesian' , // cartesian or polar\n\tmodel ,\n\tsymbol ,\n\tkernel : compile( model , symbol ) ,\n} ;\n",
+    "static": true,
+    "longname": "src/COMPLEX_DEFAULT_DISPLAY.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 2,
+    "kind": "variable",
+    "name": "model",
+    "memberof": "src/COMPLEX_DEFAULT_DISPLAY.js",
+    "static": true,
+    "longname": "src/COMPLEX_DEFAULT_DISPLAY.js~model",
+    "access": null,
+    "export": false,
+    "importPath": "@aureooms/js-complex/src/COMPLEX_DEFAULT_DISPLAY.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 3,
+    "kind": "variable",
+    "name": "symbol",
+    "memberof": "src/COMPLEX_DEFAULT_DISPLAY.js",
+    "static": true,
+    "longname": "src/COMPLEX_DEFAULT_DISPLAY.js~symbol",
+    "access": null,
+    "export": false,
+    "importPath": "@aureooms/js-complex/src/COMPLEX_DEFAULT_DISPLAY.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 4,
+    "kind": "file",
+    "name": "src/COMPLEX_DEFAULT_REPRESENTATION.js",
+    "content": "import COMPLEX_DEFAULT_DISPLAY from './COMPLEX_DEFAULT_DISPLAY' ;\n\nexport default COMPLEX_DEFAULT_DISPLAY ;\n",
+    "static": true,
+    "longname": "src/COMPLEX_DEFAULT_REPRESENTATION.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 5,
+    "kind": "file",
+    "name": "src/Complex.js",
+    "content": "import ZeroDivisionError from './ZeroDivisionError' ;\n\nimport COMPLEX_DEFAULT_DISPLAY from './COMPLEX_DEFAULT_DISPLAY' ;\n\nexport default class Complex {\n\n\tconstructor ( representation , real , img ) {\n\t\tthis.representation = representation ;\n\t\tthis.real = real ;\n\t\tthis.img = img ;\n\t}\n\n\tmove ( other ) {\n\t\tother.representation = this.representation ;\n\t\tother.real = this.real ;\n\t\tother.img = this.img ;\n\t\treturn other ;\n\t}\n\n\tcopy ( ) {\n\t\treturn new Complex( this.representation , this.real , this.img ) ;\n\t}\n\n\ttoString ( representation = COMPLEX_DEFAULT_DISPLAY ) {\n\t\t// TODO use proper representation conversion\n\t\treturn this.representation.kernel.stringify( this.real , this.img ) ;\n\t}\n\n\tadd ( other ) {\n\n\t\tconst [ real , img ] = this.representation.kernel.add( this.real , this.img , other.real , other.img ) ;\n\n\t\treturn new Complex( this.representation , real , img ) ;\n\n\t}\n\n\tiadd ( other ) {\n\t\t// TODO optimize but be careful with side effects\n\t\treturn this.add(other).move(this);\n\t}\n\n\tsub ( other ) {\n\n\t\tconst [ real , img ] = this.representation.kernel.sub( this.real , this.img , other.real , other.img ) ;\n\n\t\treturn new Complex( this.representation , real , img ) ;\n\n\t}\n\n\tisub ( other ) {\n\t\t// TODO optimize but be careful with side effects\n\t\treturn this.sub(other).move(this);\n\t}\n\n\tmul ( other ) {\n\n\t\tconst [ real , img ] = this.representation.kernel.mul( this.real , this.img , other.real , other.img ) ;\n\n\t\treturn new Complex( this.representation , real , img ) ;\n\n\t}\n\n\timul ( other ) {\n\t\t// TODO optimize but be careful with side effects\n\t\treturn this.mul(other).move(this);\n\t}\n\n\t/**\n\t * Computes <code>this</code> raised to the <code>x</code>th power.\n\t *\n\t * @param {Complex} x The power to raise <code>this</code> to.\n\t * @return {Complex} <code>this ^ x</code>\n\t */\n\tpow ( other ) {\n\t\t// TODO optimize for special cases\n\t\tconst [ real , img ] = this.representation.kernel.pow( this.real , this.img , other.real , other.img ) ;\n\t\treturn new Complex( this.representation , real , img ) ;\n\t}\n\n\tipow ( other ) {\n\t\t// TODO optimize but be careful with side effects\n\t\treturn this.pow(x).move(this);\n\t}\n\n\tsquare ( ) {\n\t\t// TODO optimize\n\t\treturn this.mul(this);\n\t}\n\n\tisquare ( ) {\n\t\t// TODO optimize but be careful with side effects\n\t\treturn this.square().move(this);\n\t}\n\n\tdiv ( other ) {\n\t\treturn this.__truediv__( other ) ;\n\t}\n\n\tidiv ( other ) {\n\t\t// TODO optimize but be careful with side effects\n\t\treturn this.div(other).move(this);\n\t}\n\n\tmod ( other ) {\n\t\tthrow new TypeError( \"can't mod complex numbers.\" ) ;\n\t}\n\n\timod ( other ) {\n\t\tthrow new TypeError( \"can't mod complex numbers.\" ) ;\n\t}\n\n\tdivmod ( other ) {\n\t\tthrow new TypeError( \"can't take floor or mod of complex number.\" ) ;\n\t}\n\n\t__truediv__ ( other ) {\n\t\tconst [ real , img ] = this.representation.kernel.div( this.real , this.img , other.real , other.img ) ;\n\t\treturn new Complex( this.representation , real , img ) ;\n\t}\n\n\t__floordiv__ ( other ) {\n\t\tthrow new TypeError( \"can't take floor of complex number.\" ) ;\n\t}\n\n\topposite ( ) {\n\t\treturn new Complex( this.representation , this.representation.model.neg( this.real ) , this.representation.model.neg( this.img ) ) ;\n\t}\n\n\tconjugate ( ) {\n\t\treturn new Complex( this.representation , this.real , this.representation.model.neg( this.img ) ) ;\n\t}\n\n\tnegate ( ) {\n\t\t// TODO optimize but be careful with side effects\n\t\t// TODO what would be the name for in-place conjugate -_- ?\n\t\treturn this.opposite().move(this);\n\t}\n\n\tsignum ( ) {\n\t\treturn this.iszero() ? this : this.divide_knowing_model_contains( this.abs() ) ;\n\t}\n\n\tiszero ( ) {\n\t\treturn this.representation.model.eq( this.representation.model.$0() , this.real ) &&\n\t\tthis.representation.model.eq( this.representation.model.$0() , this.img ) ;\n\t}\n\n\tisone ( ) {\n\t\treturn this.representation.model.eq( this.representation.model.$1() , this.real ) &&\n\t\tthis.representation.model.eq( this.representation.model.$0() , this.img ) ;\n\t}\n\n\tnonzero ( ) {\n\t\treturn !this.iszero();\n\t}\n\n\tdivides ( other ) {\n\t\treturn other.mod( this ).iszero( ) ;\n\t}\n\n\tdivide_knowing_divisible_by ( other ) {\n\t\treturn this.div( other ) ;\n\t}\n\n\tdivide_knowing_model_contains ( other ) {\n\t\tconst real = this.representation.model.div( this.real , other ) ;\n\t\tconst img = this.representation.model.div( this.img , other ) ;\n\t\treturn new Complex( this.representation , real , img ) ;\n\t}\n\n\tabs ( ) {\n\t\treturn this.representation.kernel.abs( this.real , this.img ) ;\n\t}\n\n\tcmp ( other ) {\n\t\t// TODO could also be\n\t\t// throw TypeError: no ordering relation is defined for complex numbers\n\t\treturn this.representation.model.increasing( this.abs() , other.abs() ) ;\n\t}\n\n\teq ( other ) {\n\t\treturn this.representation.model.eq(this.real, other.real) && this.representation.model.eq(this.img, other.img) ;\n\t}\n\n\tne ( other ) {\n\t\treturn !this.eq(other) ;\n\t}\n\n\tge ( other ) {\n\t\treturn this.cmp( other ) >= 0 ;\n\t}\n\n\tgt ( other ) {\n\t\treturn this.cmp( other ) > 0 ;\n\t}\n\n\tle ( other ) {\n\t\treturn this.cmp( other ) <= 0 ;\n\t}\n\n\tlt ( other ) {\n\t\treturn this.cmp( other ) < 0 ;\n\t}\n\n}\n",
+    "static": true,
+    "longname": "src/Complex.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 6,
+    "kind": "class",
+    "name": "Complex",
+    "memberof": "src/Complex.js",
+    "static": true,
+    "longname": "src/Complex.js~Complex",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/Complex.js",
+    "importStyle": "Complex",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 7,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "representation",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "real",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "img",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 8,
+    "kind": "member",
+    "name": "representation",
+    "memberof": "src/Complex.js~Complex",
+    "static": false,
+    "longname": "src/Complex.js~Complex#representation",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 9,
+    "kind": "member",
+    "name": "real",
+    "memberof": "src/Complex.js~Complex",
+    "static": false,
+    "longname": "src/Complex.js~Complex#real",
+    "access": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 10,
+    "kind": "member",
+    "name": "img",
+    "memberof": "src/Complex.js~Complex",
+    "static": false,
+    "longname": "src/Complex.js~Complex#img",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 11,
+    "kind": "method",
+    "name": "move",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#move",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 12,
+    "kind": "method",
+    "name": "copy",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#copy",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 13,
+    "kind": "method",
+    "name": "toString",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#toString",
+    "access": null,
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "representation",
+        "optional": true,
+        "types": [
+          "*"
+        ],
+        "defaultRaw": "COMPLEX_DEFAULT_DISPLAY",
+        "defaultValue": "COMPLEX_DEFAULT_DISPLAY"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 14,
+    "kind": "method",
+    "name": "add",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#add",
+    "access": null,
+    "description": null,
+    "lineNumber": 29,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 15,
+    "kind": "method",
+    "name": "iadd",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#iadd",
+    "access": null,
+    "description": null,
+    "lineNumber": 37,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 16,
+    "kind": "method",
+    "name": "sub",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#sub",
+    "access": null,
+    "description": null,
+    "lineNumber": 42,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 17,
+    "kind": "method",
+    "name": "isub",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#isub",
+    "access": null,
+    "description": null,
+    "lineNumber": 50,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 18,
+    "kind": "method",
+    "name": "mul",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#mul",
+    "access": null,
+    "description": null,
+    "lineNumber": 55,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 19,
+    "kind": "method",
+    "name": "imul",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#imul",
+    "access": null,
+    "description": null,
+    "lineNumber": 63,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 20,
+    "kind": "method",
+    "name": "pow",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#pow",
+    "access": null,
+    "description": "Computes <code>this</code> raised to the <code>x</code>th power.",
+    "lineNumber": 74,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Complex"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": "The power to raise <code>this</code> to."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Complex"
+      ],
+      "spread": false,
+      "description": "<code>this ^ x</code>"
+    }
+  },
+  {
+    "__docId__": 21,
+    "kind": "method",
+    "name": "ipow",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#ipow",
+    "access": null,
+    "description": null,
+    "lineNumber": 80,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 22,
+    "kind": "method",
+    "name": "square",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#square",
+    "access": null,
+    "description": null,
+    "lineNumber": 85,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 23,
+    "kind": "method",
+    "name": "isquare",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#isquare",
+    "access": null,
+    "description": null,
+    "lineNumber": 90,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 24,
+    "kind": "method",
+    "name": "div",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#div",
+    "access": null,
+    "description": null,
+    "lineNumber": 95,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 25,
+    "kind": "method",
+    "name": "idiv",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#idiv",
+    "access": null,
+    "description": null,
+    "lineNumber": 99,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 26,
+    "kind": "method",
+    "name": "mod",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#mod",
+    "access": null,
+    "description": null,
+    "lineNumber": 104,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 27,
+    "kind": "method",
+    "name": "imod",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#imod",
+    "access": null,
+    "description": null,
+    "lineNumber": 108,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 28,
+    "kind": "method",
+    "name": "divmod",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#divmod",
+    "access": null,
+    "description": null,
+    "lineNumber": 112,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 29,
+    "kind": "method",
+    "name": "__truediv__",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#__truediv__",
+    "access": null,
+    "description": null,
+    "lineNumber": 116,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 30,
+    "kind": "method",
+    "name": "__floordiv__",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#__floordiv__",
+    "access": null,
+    "description": null,
+    "lineNumber": 121,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 31,
+    "kind": "method",
+    "name": "opposite",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#opposite",
+    "access": null,
+    "description": null,
+    "lineNumber": 125,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 32,
+    "kind": "method",
+    "name": "conjugate",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#conjugate",
+    "access": null,
+    "description": null,
+    "lineNumber": 129,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 33,
+    "kind": "method",
+    "name": "negate",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#negate",
+    "access": null,
+    "description": null,
+    "lineNumber": 133,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 34,
+    "kind": "method",
+    "name": "signum",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#signum",
+    "access": null,
+    "description": null,
+    "lineNumber": 139,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 35,
+    "kind": "method",
+    "name": "iszero",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#iszero",
+    "access": null,
+    "description": null,
+    "lineNumber": 143,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 36,
+    "kind": "method",
+    "name": "isone",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#isone",
+    "access": null,
+    "description": null,
+    "lineNumber": 148,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 37,
+    "kind": "method",
+    "name": "nonzero",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#nonzero",
+    "access": null,
+    "description": null,
+    "lineNumber": 153,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 38,
+    "kind": "method",
+    "name": "divides",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#divides",
+    "access": null,
+    "description": null,
+    "lineNumber": 157,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 39,
+    "kind": "method",
+    "name": "divide_knowing_divisible_by",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#divide_knowing_divisible_by",
+    "access": null,
+    "description": null,
+    "lineNumber": 161,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 40,
+    "kind": "method",
+    "name": "divide_knowing_model_contains",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#divide_knowing_model_contains",
+    "access": null,
+    "description": null,
+    "lineNumber": 165,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 41,
+    "kind": "method",
+    "name": "abs",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#abs",
+    "access": null,
+    "description": null,
+    "lineNumber": 171,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 42,
+    "kind": "method",
+    "name": "cmp",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#cmp",
+    "access": null,
+    "description": null,
+    "lineNumber": 175,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 43,
+    "kind": "method",
+    "name": "eq",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#eq",
+    "access": null,
+    "description": null,
+    "lineNumber": 181,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 44,
+    "kind": "method",
+    "name": "ne",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#ne",
+    "access": null,
+    "description": null,
+    "lineNumber": 185,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 45,
+    "kind": "method",
+    "name": "ge",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#ge",
+    "access": null,
+    "description": null,
+    "lineNumber": 189,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 46,
+    "kind": "method",
+    "name": "gt",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#gt",
+    "access": null,
+    "description": null,
+    "lineNumber": 193,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 47,
+    "kind": "method",
+    "name": "le",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#le",
+    "access": null,
+    "description": null,
+    "lineNumber": 197,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 48,
+    "kind": "method",
+    "name": "lt",
+    "memberof": "src/Complex.js~Complex",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/Complex.js~Complex#lt",
+    "access": null,
+    "description": null,
+    "lineNumber": 201,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "other",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 49,
+    "kind": "file",
+    "name": "src/ComplexField.js",
+    "content": "import Complex from './Complex' ;\nimport COMPLEX_DEFAULT_DISPLAY from './COMPLEX_DEFAULT_DISPLAY' ;\nimport { TypeError , ValueError } from '@aureooms/js-error' ;\n\nexport default class ComplexField {\n\n\tconstructor ( name , representation ) {\n\t\tthis.name = name ;\n\t\tthis.representation = representation ;\n\t}\n\n\tcharacteristic ( ) {\n\t\treturn this.$0() ;\n\t}\n\n\ttoString ( ) {\n\t\treturn this.name ;\n\t}\n\n\tfrom ( object , representation = undefined ) {\n\n\t\tif ( object === null || object === undefined ) return this.$0();\n\n\t\tswitch ( object.constructor.prototype ) {\n\n\t\t\tcase Number.prototype :\n\t\t\t\tif ( representation !== undefined ) throw new ValueError('ComplexField#from: using the representation parameter does not make sense when passing a Number.') ;\n\t\t\t\treturn this.from_number( object ) ;\n\n\t\t\tcase String.prototype :\n\t\t\t\tif ( representation === undefined ) representation = COMPLEX_DEFAULT_DISPLAY ;\n\t\t\t\treturn this.from_string( object , representation ) ;\n\n\t\t\tcase Array.prototype :\n\t\t\t\tif ( representation === undefined ) representation = this.representation ;\n\t\t\t\treturn new Complex( representation , object[0] , object[1] ) ;\n\n\t\t\tcase Boolean.prototype :\n\t\t\t\tif ( representation !== undefined ) throw new ValueError('ComplexField#from: using the representation parameter does not make sense when passing a Boolean.') ;\n\t\t\t\tconst { $0 , $1 } = representation.model ;\n\t\t\t\treturn new Complex( representation , object ? $1() : $0() , $0() ) ;\n\n\t\t\tcase Complex.prototype :\n\t\t\t\tif ( representation !== undefined ) throw new ValueError('ComplexField#from: using the representation parameter does not make sense when passing an Complex.') ;\n\t\t\t\treturn new Complex( object.representation , object.real , object.img ) ;\n\n\t\t\tcase Object.prototype :\n\t\t\t\treturn new Complex( representation , object.real , object.img ) ;\n\n\t\t\tdefault:\n\t\t\t\tthrow new TypeError(`ComplexField#from cannot handle ${object.constructor.prototype}`) ;\n\n\t\t}\n\n\t}\n\n\tfrom_number ( number ) {\n\n\t\tconst real = this.representation.model.parse( number ) ;\n\t\tconst img = this.representation.model.$0() ;\n\n\t\treturn new Complex( this.representation , real , img ) ;\n\n\t}\n\n\tfrom_string ( string , representation = COMPLEX_DEFAULT_DISPLAY ) {\n\n\t\tif ( string.length === 0 ) throw new ValueError( 'ComplexField#from_string cannot parse empty string.' ) ;\n\n\t\tconst [ real , img ] = representation.kernel.parse( string , 0 , string.length ) ;\n\n\t\t// TODO should convert representations\n\t\treturn new Complex( representation , real , img ) ;\n\n\t}\n\n\t$0 ( ) {\n\t\treturn new Complex( this.representation , 0 , 0 ) ;\n\t}\n\n\t$1 ( ) {\n\t\treturn new Complex( this.representation , 1 , 0 ) ;\n\t}\n\n\t$j ( ) {\n\t\treturn new Complex( this.representation , 0 , 1 ) ;\n\t}\n\n}\n",
+    "static": true,
+    "longname": "src/ComplexField.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 50,
+    "kind": "class",
+    "name": "ComplexField",
+    "memberof": "src/ComplexField.js",
+    "static": true,
+    "longname": "src/ComplexField.js~ComplexField",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/ComplexField.js",
+    "importStyle": "ComplexField",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 51,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/ComplexField.js~ComplexField",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ComplexField.js~ComplexField#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "name",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "representation",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 52,
+    "kind": "member",
+    "name": "name",
+    "memberof": "src/ComplexField.js~ComplexField",
+    "static": false,
+    "longname": "src/ComplexField.js~ComplexField#name",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "member",
+    "name": "representation",
+    "memberof": "src/ComplexField.js~ComplexField",
+    "static": false,
+    "longname": "src/ComplexField.js~ComplexField#representation",
+    "access": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "method",
+    "name": "characteristic",
+    "memberof": "src/ComplexField.js~ComplexField",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ComplexField.js~ComplexField#characteristic",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "method",
+    "name": "toString",
+    "memberof": "src/ComplexField.js~ComplexField",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ComplexField.js~ComplexField#toString",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "method",
+    "name": "from",
+    "memberof": "src/ComplexField.js~ComplexField",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ComplexField.js~ComplexField#from",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "object",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "representation",
+        "optional": true,
+        "types": [
+          "*"
+        ],
+        "defaultRaw": "undefined",
+        "defaultValue": "undefined"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "method",
+    "name": "from_number",
+    "memberof": "src/ComplexField.js~ComplexField",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ComplexField.js~ComplexField#from_number",
+    "access": null,
+    "description": null,
+    "lineNumber": 57,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "number",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "method",
+    "name": "from_string",
+    "memberof": "src/ComplexField.js~ComplexField",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ComplexField.js~ComplexField#from_string",
+    "access": null,
+    "description": null,
+    "lineNumber": 66,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "string",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "representation",
+        "optional": true,
+        "types": [
+          "*"
+        ],
+        "defaultRaw": "COMPLEX_DEFAULT_DISPLAY",
+        "defaultValue": "COMPLEX_DEFAULT_DISPLAY"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "method",
+    "name": "$0",
+    "memberof": "src/ComplexField.js~ComplexField",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ComplexField.js~ComplexField#$0",
+    "access": null,
+    "description": null,
+    "lineNumber": 77,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 60,
+    "kind": "method",
+    "name": "$1",
+    "memberof": "src/ComplexField.js~ComplexField",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ComplexField.js~ComplexField#$1",
+    "access": null,
+    "description": null,
+    "lineNumber": 81,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 61,
+    "kind": "method",
+    "name": "$j",
+    "memberof": "src/ComplexField.js~ComplexField",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ComplexField.js~ComplexField#$j",
+    "access": null,
+    "description": null,
+    "lineNumber": 85,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 62,
+    "kind": "file",
+    "name": "src/ZeroDivisionError.js",
+    "content": "\nexport default class ZeroDivisionError {\n\n\tconstructor ( message ) {\n\t\tthis.message = message ;\n\t}\n\n\ttoString ( ) {\n\t\treturn `ZeroDivisionError: ${this.message}` ;\n\t}\n\n}\n",
+    "static": true,
+    "longname": "src/ZeroDivisionError.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 63,
+    "kind": "class",
+    "name": "ZeroDivisionError",
+    "memberof": "src/ZeroDivisionError.js",
+    "static": true,
+    "longname": "src/ZeroDivisionError.js~ZeroDivisionError",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/ZeroDivisionError.js",
+    "importStyle": "ZeroDivisionError",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 64,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/ZeroDivisionError.js~ZeroDivisionError",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ZeroDivisionError.js~ZeroDivisionError#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "message",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 65,
+    "kind": "member",
+    "name": "message",
+    "memberof": "src/ZeroDivisionError.js~ZeroDivisionError",
+    "static": false,
+    "longname": "src/ZeroDivisionError.js~ZeroDivisionError#message",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 66,
+    "kind": "method",
+    "name": "toString",
+    "memberof": "src/ZeroDivisionError.js~ZeroDivisionError",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ZeroDivisionError.js~ZeroDivisionError#toString",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "file",
     "name": "src/cartesian/array/compile.js",
-    "content": "import core from './core' ;\n\nexport default function compile ( {\n\n\t$0 , $1 , root2n , iroot2n ,\n\tadd , sub , mul , div ,\n\timul ,\n\tdiv2 ,\n\tabs , arg ,\n\tcon ,\n\tparse , stringify\n\n} , symbol ) {\n\n\treturn {\n\n\t\t\"complex\" : core.complex ,\n\t\t\"$0\" : $0 ,\n\t\t\"$1\" : $1 ,\n\t\t\"root2n\" : root2n ,\n\t\t\"iroot2n\" : iroot2n ,\n\t\t\"add\" : core.binary( add ) ,\n\t\t\"sub\" : core.binary( sub ) ,\n\t\t\"mul\" : core.binary( mul ) ,\n\t\t\"imul\" : core.binary( imul ) ,\n\t\t\"div\" : core.binary( div ) ,\n\t\t\"div2\" : core.unary( div2 ) ,\n\t\t\"abs\" : core.unary( abs ) ,\n\t\t\"arg\" : core.unary( arg ) ,\n\t\t\"con\" : core.unary( con ) ,\n\t\t\"parse\" : parse ,\n\t\t\"stringify\" : core.unary ( stringify )\n\n\t} ;\n\n}\n\n",
+    "content": "import core from './core' ;\n\nexport default function compile ( {\n\n\t$0 , $1 , root2n , iroot2n ,\n\tadd , sub , mul , div ,\n\timul ,\n\tdiv2 ,\n\tabs , arg ,\n\tcon ,\n\tparse , stringify ,\n\texp , pow ,\n\n} , symbol ) {\n\n\treturn {\n\n\t\t\"complex\" : core.complex ,\n\t\t\"$0\" : $0 ,\n\t\t\"$1\" : $1 ,\n\t\t\"root2n\" : root2n ,\n\t\t\"iroot2n\" : iroot2n ,\n\t\t\"add\" : core.binary( add ) ,\n\t\t\"sub\" : core.binary( sub ) ,\n\t\t\"mul\" : core.binary( mul ) ,\n\t\t\"imul\" : core.binary( imul ) ,\n\t\t\"div\" : core.binary( div ) ,\n\t\t\"div2\" : core.unary( div2 ) ,\n\t\t\"abs\" : core.unary( abs ) ,\n\t\t\"arg\" : core.unary( arg ) ,\n\t\t\"con\" : core.unary( con ) ,\n\t\t\"parse\" : parse ,\n\t\t\"stringify\" : core.unary ( stringify ) ,\n\t\t\"exp\" : core.unary( exp ) ,\n\t\t\"pow\" : core.binary( pow ) ,\n\n\n\t} ;\n\n}\n\n",
     "static": true,
     "longname": "src/cartesian/array/compile.js",
     "access": null,
@@ -11,7 +1868,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 1,
+    "__docId__": 68,
     "kind": "function",
     "name": "compile",
     "memberof": "src/cartesian/array/compile.js",
@@ -36,7 +1893,7 @@
       {
         "name": "objectPattern",
         "types": [
-          "{\"$0\": *, \"$1\": *, \"root2n\": *, \"iroot2n\": *, \"add\": *, \"sub\": *, \"mul\": *, \"div\": *, \"imul\": *, \"div2\": *, \"abs\": *, \"arg\": *, \"con\": *, \"parse\": *, \"stringify\": *}"
+          "{\"$0\": *, \"$1\": *, \"root2n\": *, \"iroot2n\": *, \"add\": *, \"sub\": *, \"mul\": *, \"div\": *, \"imul\": *, \"div2\": *, \"abs\": *, \"arg\": *, \"con\": *, \"parse\": *, \"stringify\": *, \"exp\": *, \"pow\": *}"
         ],
         "defaultRaw": {
           "$0": null,
@@ -53,9 +1910,11 @@
           "arg": null,
           "con": null,
           "parse": null,
-          "stringify": null
+          "stringify": null,
+          "exp": null,
+          "pow": null
         },
-        "defaultValue": "{\"$0\":null,\"$1\":null,\"root2n\":null,\"iroot2n\":null,\"add\":null,\"sub\":null,\"mul\":null,\"div\":null,\"imul\":null,\"div2\":null,\"abs\":null,\"arg\":null,\"con\":null,\"parse\":null,\"stringify\":null}"
+        "defaultValue": "{\"$0\":null,\"$1\":null,\"root2n\":null,\"iroot2n\":null,\"add\":null,\"sub\":null,\"mul\":null,\"div\":null,\"imul\":null,\"div2\":null,\"abs\":null,\"arg\":null,\"con\":null,\"parse\":null,\"stringify\":null,\"exp\":null,\"pow\":null}"
       },
       {
         "name": "symbol",
@@ -66,12 +1925,12 @@
     ],
     "return": {
       "types": [
-        "{\"complex\": *, \"$0\": *, \"$1\": *, \"root2n\": *, \"iroot2n\": *, \"add\": *, \"sub\": *, \"mul\": *, \"imul\": *, \"div\": *, \"div2\": *, \"abs\": *, \"arg\": *, \"con\": *, \"parse\": *, \"stringify\": *}"
+        "{\"complex\": *, \"$0\": *, \"$1\": *, \"root2n\": *, \"iroot2n\": *, \"add\": *, \"sub\": *, \"mul\": *, \"imul\": *, \"div\": *, \"div2\": *, \"abs\": *, \"arg\": *, \"con\": *, \"parse\": *, \"stringify\": *, \"exp\": *, \"pow\": *}"
       ]
     }
   },
   {
-    "__docId__": 2,
+    "__docId__": 69,
     "kind": "file",
     "name": "src/cartesian/array/core/binary.js",
     "content": "\nexport default kernel => ( [ a , b ] , [ c , d ] )  => kernel( a , b , c , d ) ;\n\n",
@@ -82,7 +1941,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 3,
+    "__docId__": 70,
     "kind": "function",
     "name": "binary",
     "memberof": "src/cartesian/array/core/binary.js",
@@ -113,7 +1972,7 @@
     ]
   },
   {
-    "__docId__": 4,
+    "__docId__": 71,
     "kind": "file",
     "name": "src/cartesian/array/core/complex.js",
     "content": "\nexport default ( a , b )  => [ a , b ] ;\n\n",
@@ -124,7 +1983,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 5,
+    "__docId__": 72,
     "kind": "function",
     "name": "complex",
     "memberof": "src/cartesian/array/core/complex.js",
@@ -161,7 +2020,7 @@
     ]
   },
   {
-    "__docId__": 6,
+    "__docId__": 73,
     "kind": "file",
     "name": "src/cartesian/array/core/index.js",
     "content": "import binary from './binary' ;\nimport complex from './complex' ;\nimport unary from './unary' ;\n\nexport default {\n\tbinary ,\n\tcomplex ,\n\tunary ,\n} ;\n\nexport {\n\tbinary ,\n\tcomplex ,\n\tunary ,\n} ;\n",
@@ -172,7 +2031,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 7,
+    "__docId__": 74,
     "kind": "file",
     "name": "src/cartesian/array/core/unary.js",
     "content": "\nexport default kernel => ( [ a , b ] )  => kernel( a , b ) ;\n\n",
@@ -183,7 +2042,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 8,
+    "__docId__": 75,
     "kind": "function",
     "name": "unary",
     "memberof": "src/cartesian/array/core/unary.js",
@@ -214,7 +2073,7 @@
     ]
   },
   {
-    "__docId__": 9,
+    "__docId__": 76,
     "kind": "file",
     "name": "src/cartesian/array/index.js",
     "content": "import compile from './compile' ;\nimport core from './core' ;\n\nexport default {\n\tcompile ,\n\tcore ,\n} ;\n\nexport {\n\tcompile ,\n\tcore ,\n} ;\n",
@@ -225,7 +2084,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 10,
+    "__docId__": 77,
     "kind": "file",
     "name": "src/cartesian/index.js",
     "content": "import array from './array' ;\nimport kernel from './kernel' ;\nimport object from './object' ;\n\nexport default {\n\tarray ,\n\tkernel ,\n\tobject ,\n} ;\n\nexport {\n\tarray ,\n\tkernel ,\n\tobject ,\n} ;\n",
@@ -236,10 +2095,10 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 11,
+    "__docId__": 78,
     "kind": "file",
     "name": "src/cartesian/kernel/compile.js",
-    "content": "import core from './core' ;\n\nexport default function compile ( {\n\n\tadd , sub , mul , div ,\n\tdiv2 , div2n ,\n\tneg ,\n\tsqrt , pow2 ,\n\tPI , cos , sin , atan2 ,\n\tparse , stringify ,\n\t$0 , $1 , $_1 ,\n\teq0 , eq1 , eq_1 , gt0\n\n} , symbol ) {\n\n\tconst _mul = core.mul( mul , add , sub ) ;\n\n\treturn {\n\n\t\t\"$0\" : core.$0( $0 ) ,\n\t\t\"$1\" : core.$1( $0 , $1 ) ,\n\t\t\"root2n\" : core.root2n( cos , sin , PI , div2n ) ,\n\t\t\"iroot2n\" : core.iroot2n( cos , sin , PI , div2n , neg ) ,\n\t\t\"add\" : core.add( add ) ,\n\t\t\"sub\" : core.sub( sub ) ,\n\t\t\"mul\" : _mul ,\n\t\t\"imul\" : _mul ,\n\t\t\"div\" : core.div( div , pow2 , mul , add , sub ) ,\n\t\t\"div2\" : core.div2( div2 ) ,\n\t\t\"abs\" : core.abs( sqrt , pow2 , add ) ,\n\t\t\"arg\" : core.arg( atan2 ) ,\n\t\t\"con\" : core.con( neg ) ,\n\t\t\"parse\" : core.parse( parse , $0 , $1 , $_1 , symbol ) ,\n\t\t\"stringify\" : core.stringify ( stringify , eq0 , eq1 , eq_1 , gt0 , symbol )\n\n\t} ;\n\n}\n\n",
+    "content": "import core from './core' ;\n\nexport default function compile ( {\n\n\tadd , sub , mul , div ,\n\tdiv2 , div2n ,\n\tneg ,\n\tsqrt , pow2 , exp ,\n\tloge ,\n\tPI , cos , sin , atan2 ,\n\tparse , stringify ,\n\t$0 , $1 , $_1 ,\n\teq0 , eq1 , eq_1 , gt0\n\n} , symbol ) {\n\n\tconst _mul = core.mul( mul , add , sub ) ;\n\tconst _exp = core.exp( exp , cos , sin , mul ) ;\n\tconst _abs = core.abs( sqrt , pow2 , add ) ;\n\tconst _arg = core.arg( atan2 ) ;\n\n\treturn {\n\n\t\t\"$0\" : core.$0( $0 ) ,\n\t\t\"$1\" : core.$1( $0 , $1 ) ,\n\t\t\"root2n\" : core.root2n( cos , sin , PI , div2n ) ,\n\t\t\"iroot2n\" : core.iroot2n( cos , sin , PI , div2n , neg ) ,\n\t\t\"add\" : core.add( add ) ,\n\t\t\"sub\" : core.sub( sub ) ,\n\t\t\"mul\" : _mul ,\n\t\t\"imul\" : _mul ,\n\t\t\"div\" : core.div( div , pow2 , mul , add , sub ) ,\n\t\t\"div2\" : core.div2( div2 ) ,\n\t\t\"abs\" : _abs ,\n\t\t\"arg\" : _arg ,\n\t\t\"con\" : core.con( neg ) ,\n\t\t\"parse\" : core.parse( parse , $0 , $1 , $_1 , symbol ) ,\n\t\t\"stringify\" : core.stringify ( stringify , eq0 , eq1 , eq_1 , gt0 , symbol ) ,\n\t\t\"exp\" : _exp ,\n\t\t\"pow\" : core.pow( _exp , _abs , _arg , loge , mul , sub , add ) ,\n\n\t} ;\n\n}\n\n",
     "static": true,
     "longname": "src/cartesian/kernel/compile.js",
     "access": null,
@@ -247,7 +2106,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 12,
+    "__docId__": 79,
     "kind": "function",
     "name": "compile",
     "memberof": "src/cartesian/kernel/compile.js",
@@ -272,7 +2131,7 @@
       {
         "name": "objectPattern",
         "types": [
-          "{\"add\": *, \"sub\": *, \"mul\": *, \"div\": *, \"div2\": *, \"div2n\": *, \"neg\": *, \"sqrt\": *, \"pow2\": *, \"PI\": *, \"cos\": *, \"sin\": *, \"atan2\": *, \"parse\": *, \"stringify\": *, \"$0\": *, \"$1\": *, \"$_1\": *, \"eq0\": *, \"eq1\": *, \"eq_1\": *, \"gt0\": *}"
+          "{\"add\": *, \"sub\": *, \"mul\": *, \"div\": *, \"div2\": *, \"div2n\": *, \"neg\": *, \"sqrt\": *, \"pow2\": *, \"exp\": *, \"loge\": *, \"PI\": *, \"cos\": *, \"sin\": *, \"atan2\": *, \"parse\": *, \"stringify\": *, \"$0\": *, \"$1\": *, \"$_1\": *, \"eq0\": *, \"eq1\": *, \"eq_1\": *, \"gt0\": *}"
         ],
         "defaultRaw": {
           "add": null,
@@ -284,6 +2143,8 @@
           "neg": null,
           "sqrt": null,
           "pow2": null,
+          "exp": null,
+          "loge": null,
           "PI": null,
           "cos": null,
           "sin": null,
@@ -298,7 +2159,7 @@
           "eq_1": null,
           "gt0": null
         },
-        "defaultValue": "{\"add\":null,\"sub\":null,\"mul\":null,\"div\":null,\"div2\":null,\"div2n\":null,\"neg\":null,\"sqrt\":null,\"pow2\":null,\"PI\":null,\"cos\":null,\"sin\":null,\"atan2\":null,\"parse\":null,\"stringify\":null,\"$0\":null,\"$1\":null,\"$_1\":null,\"eq0\":null,\"eq1\":null,\"eq_1\":null,\"gt0\":null}"
+        "defaultValue": "{\"add\":null,\"sub\":null,\"mul\":null,\"div\":null,\"div2\":null,\"div2n\":null,\"neg\":null,\"sqrt\":null,\"pow2\":null,\"exp\":null,\"loge\":null,\"PI\":null,\"cos\":null,\"sin\":null,\"atan2\":null,\"parse\":null,\"stringify\":null,\"$0\":null,\"$1\":null,\"$_1\":null,\"eq0\":null,\"eq1\":null,\"eq_1\":null,\"gt0\":null}"
       },
       {
         "name": "symbol",
@@ -309,12 +2170,12 @@
     ],
     "return": {
       "types": [
-        "{\"$0\": *, \"$1\": *, \"root2n\": *, \"iroot2n\": *, \"add\": *, \"sub\": *, \"mul\": *, \"imul\": *, \"div\": *, \"div2\": *, \"abs\": *, \"arg\": *, \"con\": *, \"parse\": *, \"stringify\": *}"
+        "{\"$0\": *, \"$1\": *, \"root2n\": *, \"iroot2n\": *, \"add\": *, \"sub\": *, \"mul\": *, \"imul\": *, \"div\": *, \"div2\": *, \"abs\": *, \"arg\": *, \"con\": *, \"parse\": *, \"stringify\": *, \"exp\": *, \"pow\": *}"
       ]
     }
   },
   {
-    "__docId__": 13,
+    "__docId__": 80,
     "kind": "file",
     "name": "src/cartesian/kernel/core/$0.js",
     "content": "\nexport default ( $0 ) => ( )  => [ $0( ) , $0( ) ] ;\n\n",
@@ -325,7 +2186,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 14,
+    "__docId__": 81,
     "kind": "function",
     "name": "$0",
     "memberof": "src/cartesian/kernel/core/$0.js",
@@ -356,7 +2217,7 @@
     ]
   },
   {
-    "__docId__": 15,
+    "__docId__": 82,
     "kind": "file",
     "name": "src/cartesian/kernel/core/$1.js",
     "content": "\nexport default ( $0 , $1 ) => ( )  => [ $1( ) , $0( ) ] ;\n\n",
@@ -367,7 +2228,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 16,
+    "__docId__": 83,
     "kind": "function",
     "name": "$1",
     "memberof": "src/cartesian/kernel/core/$1.js",
@@ -404,7 +2265,7 @@
     ]
   },
   {
-    "__docId__": 17,
+    "__docId__": 84,
     "kind": "file",
     "name": "src/cartesian/kernel/core/abs.js",
     "content": "\n/**\n * Computes the absolute value (or modulus or magnitude) of the complex number a + bi.\n */\n\nexport default ( sqrt , pow2 , add ) => ( a , b )  => sqrt( add( pow2( a ) , pow2( b ) ) ) ;\n\n",
@@ -415,7 +2276,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 18,
+    "__docId__": 85,
     "kind": "function",
     "name": "abs",
     "memberof": "src/cartesian/kernel/core/abs.js",
@@ -451,10 +2312,10 @@
     ]
   },
   {
-    "__docId__": 19,
+    "__docId__": 86,
     "kind": "file",
     "name": "src/cartesian/kernel/core/add.js",
-    "content": "\n/**\n * Addition algorithm.\n *\n * Returns the result of (a + bi) + (c + di).\n */\n\nexport default base => ( a , b , c , d )  => [ base( a , c ) , base( b , d ) ] ;\n\n",
+    "content": "\n/**\n * Addition algorithm.\n *\n * Returns the result of (a + bi) + (c + di).\n */\n\nexport default add => ( a , b , c , d )  => [ add( a , c ) , add( b , d ) ] ;\n\n",
     "static": true,
     "longname": "src/cartesian/kernel/core/add.js",
     "access": null,
@@ -462,7 +2323,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 20,
+    "__docId__": 87,
     "kind": "function",
     "name": "add",
     "memberof": "src/cartesian/kernel/core/add.js",
@@ -478,7 +2339,7 @@
     "lineNumber": 8,
     "params": [
       {
-        "name": "base",
+        "name": "add",
         "types": [
           "*"
         ]
@@ -486,7 +2347,7 @@
     ]
   },
   {
-    "__docId__": 21,
+    "__docId__": 88,
     "kind": "file",
     "name": "src/cartesian/kernel/core/arg.js",
     "content": "\n/**\n * Computes the argument of the complex number a + bi.\n */\n\nexport default atan2 => ( a , b )  => atan2( b , a ) ;\n\n",
@@ -497,7 +2358,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 22,
+    "__docId__": 89,
     "kind": "function",
     "name": "arg",
     "memberof": "src/cartesian/kernel/core/arg.js",
@@ -521,7 +2382,7 @@
     ]
   },
   {
-    "__docId__": 23,
+    "__docId__": 90,
     "kind": "file",
     "name": "src/cartesian/kernel/core/con.js",
     "content": "\n/**\n * Conjugate for cartesian representation\n */\n\nexport default neg => ( a , b )  => [ a , neg( b ) ] ;\n\n",
@@ -532,7 +2393,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 24,
+    "__docId__": 91,
     "kind": "function",
     "name": "con",
     "memberof": "src/cartesian/kernel/core/con.js",
@@ -556,10 +2417,10 @@
     ]
   },
   {
-    "__docId__": 25,
+    "__docId__": 92,
     "kind": "file",
     "name": "src/cartesian/kernel/core/div.js",
-    "content": "\n/**\n * Division algorithm\n */\n\nexport default ( base , pow2 , mul , add , sub )  => function ( a , b , c , d ) {\n\n\tconst tmp = add( pow2( c ) , pow2( d ) ) ;\n\n\tconst real = base( add( mul( a , c ) , mul( b , d ) ) , tmp ) ;\n\tconst img  = base( sub( mul( b , c ) , mul( a , d ) ) , tmp ) ;\n\n\treturn [ real , img ] ;\n\n}\n\n\n",
+    "content": "\n/**\n * Division algorithm\n */\n\nexport default ( div , pow2 , mul , add , sub ) => ( a , b , c , d ) => {\n\n\tconst tmp = add( pow2( c ) , pow2( d ) ) ;\n\n\tconst real = div( add( mul( a , c ) , mul( b , d ) ) , tmp ) ;\n\tconst img  = div( sub( mul( b , c ) , mul( a , d ) ) , tmp ) ;\n\n\treturn [ real , img ] ;\n\n} ;\n",
     "static": true,
     "longname": "src/cartesian/kernel/core/div.js",
     "access": null,
@@ -567,7 +2428,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 26,
+    "__docId__": 93,
     "kind": "function",
     "name": "div",
     "memberof": "src/cartesian/kernel/core/div.js",
@@ -583,7 +2444,7 @@
     "lineNumber": 6,
     "params": [
       {
-        "name": "base",
+        "name": "div",
         "types": [
           "*"
         ]
@@ -620,10 +2481,10 @@
     }
   },
   {
-    "__docId__": 27,
+    "__docId__": 94,
     "kind": "file",
     "name": "src/cartesian/kernel/core/div2.js",
-    "content": "\nexport default ( base ) => ( a , b )  => [ base( a ) , base( b ) ] ;\n\n",
+    "content": "\nexport default div2 => ( a , b )  => [ div2( a ) , div2( b ) ] ;\n\n",
     "static": true,
     "longname": "src/cartesian/kernel/core/div2.js",
     "access": null,
@@ -631,7 +2492,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 28,
+    "__docId__": 95,
     "kind": "function",
     "name": "div2",
     "memberof": "src/cartesian/kernel/core/div2.js",
@@ -654,7 +2515,7 @@
     ],
     "params": [
       {
-        "name": "base",
+        "name": "div2",
         "types": [
           "*"
         ]
@@ -662,10 +2523,70 @@
     ]
   },
   {
-    "__docId__": 29,
+    "__docId__": 96,
+    "kind": "file",
+    "name": "src/cartesian/kernel/core/exp.js",
+    "content": "// e^(a+ib) = (e^a)(e^(ib)) = (e^a)((cos b) + i(sin b)) = e^a cos b + i e^a sin b\nexport default ( exp , cos , sin , mul ) => ( a , b ) => [ mul( exp(a), cos(b) ) , mul( exp(a), sin(b) ) ] ;\n",
+    "static": true,
+    "longname": "src/cartesian/kernel/core/exp.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 97,
+    "kind": "function",
+    "name": "exp",
+    "memberof": "src/cartesian/kernel/core/exp.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/cartesian/kernel/core/exp.js~exp",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/cartesian/kernel/core/exp.js",
+    "importStyle": "exp",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "exp",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "cos",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "sin",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "mul",
+        "types": [
+          "*"
+        ]
+      }
+    ]
+  },
+  {
+    "__docId__": 98,
     "kind": "file",
     "name": "src/cartesian/kernel/core/index.js",
-    "content": "import $0 from './$0' ;\nimport $1 from './$1' ;\nimport abs from './abs' ;\nimport add from './add' ;\nimport arg from './arg' ;\nimport con from './con' ;\nimport div from './div' ;\nimport div2 from './div2' ;\nimport iroot2n from './iroot2n' ;\nimport mul from './mul' ;\nimport parse from './parse' ;\nimport root2n from './root2n' ;\nimport stringify from './stringify' ;\nimport sub from './sub' ;\n\nexport default {\n\t$0 ,\n\t$1 ,\n\tabs ,\n\tadd ,\n\targ ,\n\tcon ,\n\tdiv ,\n\tdiv2 ,\n\tiroot2n ,\n\tmul ,\n\tparse ,\n\troot2n ,\n\tstringify ,\n\tsub ,\n} ;\n\nexport {\n\t$0 ,\n\t$1 ,\n\tabs ,\n\tadd ,\n\targ ,\n\tcon ,\n\tdiv ,\n\tdiv2 ,\n\tiroot2n ,\n\tmul ,\n\tparse ,\n\troot2n ,\n\tstringify ,\n\tsub ,\n} ;\n",
+    "content": "import $0 from './$0' ;\nimport $1 from './$1' ;\nimport abs from './abs' ;\nimport add from './add' ;\nimport arg from './arg' ;\nimport con from './con' ;\nimport div from './div' ;\nimport div2 from './div2' ;\nimport exp from './exp' ;\nimport iroot2n from './iroot2n' ;\nimport mul from './mul' ;\nimport parse from './parse' ;\nimport pow from './pow' ;\nimport root2n from './root2n' ;\nimport stringify from './stringify' ;\nimport sub from './sub' ;\n\nexport default {\n\t$0 ,\n\t$1 ,\n\tabs ,\n\tadd ,\n\targ ,\n\tcon ,\n\tdiv ,\n\tdiv2 ,\n\texp ,\n\tiroot2n ,\n\tmul ,\n\tparse ,\n\tpow ,\n\troot2n ,\n\tstringify ,\n\tsub ,\n} ;\n\nexport {\n\t$0 ,\n\t$1 ,\n\tabs ,\n\tadd ,\n\targ ,\n\tcon ,\n\tdiv ,\n\tdiv2 ,\n\texp ,\n\tiroot2n ,\n\tmul ,\n\tparse ,\n\tpow ,\n\troot2n ,\n\tstringify ,\n\tsub ,\n} ;\n",
     "static": true,
     "longname": "src/cartesian/kernel/core/index.js",
     "access": null,
@@ -673,7 +2594,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 30,
+    "__docId__": 99,
     "kind": "file",
     "name": "src/cartesian/kernel/core/iroot2n.js",
     "content": "\n// l > 0\nexport default ( cos , sin , pi , div2n , neg ) => l  => [ cos( div2n( pi , l - 1 ) ) , neg( sin( div2n( pi , l - 1 ) ) ) ] ;\n\n\n\n",
@@ -684,7 +2605,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 31,
+    "__docId__": 100,
     "kind": "function",
     "name": "iroot2n",
     "memberof": "src/cartesian/kernel/core/iroot2n.js",
@@ -739,10 +2660,10 @@
     ]
   },
   {
-    "__docId__": 32,
+    "__docId__": 101,
     "kind": "file",
     "name": "src/cartesian/kernel/core/mul.js",
-    "content": "\n/**\n * Multiplication algorithm\n */\n\nexport default ( base , add , sub ) =>  ( a , b , c , d )  => [ sub( base( a , c ) , base( b , d ) ) ,  add( base( a , d ) , base( b , c ) ) ] ;\n\n",
+    "content": "\n/**\n * Multiplication algorithm\n */\n\nexport default ( mul , add , sub ) =>  ( a , b , c , d )  => [ sub( mul( a , c ) , mul( b , d ) ) ,  add( mul( a , d ) , mul( b , c ) ) ] ;\n\n",
     "static": true,
     "longname": "src/cartesian/kernel/core/mul.js",
     "access": null,
@@ -750,7 +2671,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 33,
+    "__docId__": 102,
     "kind": "function",
     "name": "mul",
     "memberof": "src/cartesian/kernel/core/mul.js",
@@ -766,7 +2687,7 @@
     "lineNumber": 6,
     "params": [
       {
-        "name": "base",
+        "name": "mul",
         "types": [
           "*"
         ]
@@ -786,10 +2707,10 @@
     ]
   },
   {
-    "__docId__": 34,
+    "__docId__": 103,
     "kind": "file",
     "name": "src/cartesian/kernel/core/parse.js",
-    "content": "\n/**\n * Parse\n *\n * /!\\ DOES NOT CURRENTLY KNOW WHAT\n *     WOULD BE THE BEST IMPLEMENTATION\n */\n\nexport default function parse (base, $0, $1, $_1, symbol) {\n\n\treturn function (s, i, j) {\n\n\t\tlet aj , bi , dflt ;\n\n\t\tif (i === j) {\n\t\t\treturn [$0(), $0()];\n\t\t}\n\n\t\tlet ai = i;\n\n\t\tlet c = s[i];\n\n\t\tfor (;;) {\n\n\t\t\tif (c === symbol) {\n\t\t\t\tif (ai === i) {\n\t\t\t\t\treturn [$0(), $1()];\n\t\t\t\t}\n\t\t\t\telse if (ai === i - 1) {\n\t\t\t\t\tif (s[ai] === '-') {\n\t\t\t\t\t\treturn [$0(), $_1()];\n\t\t\t\t\t}\n\t\t\t\t\telse if (s[ai] === '+') {\n\t\t\t\t\t\treturn [$0(), $1()];\n\t\t\t\t\t}\n\t\t\t\t\telse {\n\t\t\t\t\t\treturn [$0(), base(s.slice( ai , i))];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\treturn [$0(), base(s.slice( ai , i))];\n\t\t\t\t}\n\t\t\t}\n\n\t\t\t++i;\n\n\t\t\tif (i >= j) {\n\t\t\t\treturn [base(s.slice( ai , j)), $0()];\n\t\t\t}\n\n\t\t\tc = s[i];\n\n\t\t\tif ( c === '+' ) {\n\t\t\t\tdflt = $1;\n\t\t\t\taj = i;\n\t\t\t\tbi = i;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\telse if ( c === '-' ) {\n\t\t\t\tdflt = $_1;\n\t\t\t\taj = i;\n\t\t\t\tbi = i;\n\t\t\t\tbreak;\n\t\t\t}\n\n\t\t}\n\n\n\t\tfor (;;) {\n\n\t\t\t++i;\n\t\t\tc = s[i];\n\n\t\t\tif (c === symbol) {\n\t\t\t\tif (bi === i - 1) {\n\t\t\t\t\treturn [base(s.slice( ai , aj)), dflt()];\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\treturn [base(s.slice( ai , aj)), base(s.slice( bi , i))];\n\t\t\t\t}\n\t\t\t}\n\n\t\t}\n\n\t};\n}\n\n",
+    "content": "\n/**\n * Parse\n *\n * /!\\ DOES NOT CURRENTLY KNOW WHAT\n *     WOULD BE THE BEST IMPLEMENTATION\n */\n\nexport default function (parse, $0, $1, $_1, symbol) {\n\n\treturn function (s, i, j) {\n\n\t\tlet aj , bi , dflt ;\n\n\t\tif (i === j) {\n\t\t\treturn [$0(), $0()];\n\t\t}\n\n\t\tlet ai = i;\n\n\t\tlet c = s[i];\n\n\t\tfor (;;) {\n\n\t\t\tif (c === symbol) {\n\t\t\t\tif (ai === i) {\n\t\t\t\t\treturn [$0(), $1()];\n\t\t\t\t}\n\t\t\t\telse if (ai === i - 1) {\n\t\t\t\t\tif (s[ai] === '-') {\n\t\t\t\t\t\treturn [$0(), $_1()];\n\t\t\t\t\t}\n\t\t\t\t\telse if (s[ai] === '+') {\n\t\t\t\t\t\treturn [$0(), $1()];\n\t\t\t\t\t}\n\t\t\t\t\telse {\n\t\t\t\t\t\treturn [$0(), parse(s.slice( ai , i))];\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\treturn [$0(), parse(s.slice( ai , i))];\n\t\t\t\t}\n\t\t\t}\n\n\t\t\t++i;\n\n\t\t\tif (i >= j) {\n\t\t\t\treturn [parse(s.slice( ai , j)), $0()];\n\t\t\t}\n\n\t\t\tc = s[i];\n\n\t\t\tif ( c === '+' ) {\n\t\t\t\tdflt = $1;\n\t\t\t\taj = i;\n\t\t\t\tbi = i;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\telse if ( c === '-' ) {\n\t\t\t\tdflt = $_1;\n\t\t\t\taj = i;\n\t\t\t\tbi = i;\n\t\t\t\tbreak;\n\t\t\t}\n\n\t\t}\n\n\n\t\tfor (;;) {\n\n\t\t\t++i;\n\t\t\tc = s[i];\n\n\t\t\tif (c === symbol) {\n\t\t\t\tif (bi === i - 1) {\n\t\t\t\t\treturn [parse(s.slice( ai , aj)), dflt()];\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\treturn [parse(s.slice( ai , aj)), parse(s.slice( bi , i))];\n\t\t\t\t}\n\t\t\t}\n\n\t\t}\n\n\t};\n}\n\n",
     "static": true,
     "longname": "src/cartesian/kernel/core/parse.js",
     "access": null,
@@ -797,7 +2718,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 35,
+    "__docId__": 104,
     "kind": "function",
     "name": "parse",
     "memberof": "src/cartesian/kernel/core/parse.js",
@@ -813,7 +2734,7 @@
     "lineNumber": 9,
     "params": [
       {
-        "name": "base",
+        "name": "parse",
         "types": [
           "*"
         ]
@@ -850,7 +2771,90 @@
     }
   },
   {
-    "__docId__": 36,
+    "__docId__": 105,
+    "kind": "file",
+    "name": "src/cartesian/kernel/core/pow.js",
+    "content": "// (a+ib)^{c+id} = e^{log_e(abs(a+ib))(c+id)+i arg(a+ib)(c+id)}\n//               = e^{( c * \\log_e(abs(a+ib)) - d * arg(a+ib) ) + i ( d * \\log_e(abs(a+ib)) + c * arg(a+ib) ) }\nexport default ( exp , abs , arg , loge , mul , sub , add ) => ( a , b , c , d ) => {\n\tconst _log = loge(abs(a,b)) ;\n\tconst _arg = arg(a,b) ;\n\treturn exp(sub(mul(c,_log),mul(d,_arg)), add(mul(d,_log),mul(c,_arg))) ;\n} ;\n",
+    "static": true,
+    "longname": "src/cartesian/kernel/core/pow.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 106,
+    "kind": "function",
+    "name": "pow",
+    "memberof": "src/cartesian/kernel/core/pow.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/cartesian/kernel/core/pow.js~pow",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/cartesian/kernel/core/pow.js",
+    "importStyle": "pow",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "exp",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "abs",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "arg",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "loge",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "mul",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "sub",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "add",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 107,
     "kind": "file",
     "name": "src/cartesian/kernel/core/root2n.js",
     "content": "\n// l > 0\nexport default ( cos , sin , pi , div2n ) => l  => [ cos( div2n( pi , l - 1 ) ) , sin( div2n( pi , l - 1 ) ) ] ;\n\n\n\n",
@@ -861,7 +2865,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 37,
+    "__docId__": 108,
     "kind": "function",
     "name": "root2n",
     "memberof": "src/cartesian/kernel/core/root2n.js",
@@ -910,10 +2914,10 @@
     ]
   },
   {
-    "__docId__": 38,
+    "__docId__": 109,
     "kind": "file",
     "name": "src/cartesian/kernel/core/stringify.js",
-    "content": "\n/**\n * Stringify\n */\n\nexport default function stringify ( base , eq0 , eq1 , eq_1 , gt0 , symbol ) {\n\n\treturn function ( a , b ) {\n\n\t\tconst azero = eq0(a);\n\n\t\tconst bzero = eq0(b);\n\n\t\tif (azero && bzero) {\n\t\t\treturn \"0\";\n\t\t}\n\n\t\tlet out = \"\";\n\n\t\tif (!azero) {\n\n\t\t\tout += base(a);\n\n\t\t\tif (gt0(b)) {\n\t\t\t\tout += \"+\";\n\t\t\t}\n\n\t\t}\n\n\t\tif (!bzero) {\n\n\t\t\tif (eq_1(b)) {\n\t\t\t\tout += \"-\";\n\t\t\t}\n\t\t\telse if (!eq1(b)) {\n\t\t\t\tout += base(b);\n\t\t\t}\n\n\t\t\tout += symbol;\n\t\t}\n\n\t\treturn out;\n\n\t};\n}\n\n",
+    "content": "\n/**\n * Stringify\n */\n\nexport default function ( stringify , eq0 , eq1 , eq_1 , gt0 , symbol ) {\n\n\treturn function ( a , b ) {\n\n\t\tconst azero = eq0(a);\n\n\t\tconst bzero = eq0(b);\n\n\t\tif (azero && bzero) {\n\t\t\treturn \"0\";\n\t\t}\n\n\t\tlet out = \"\";\n\n\t\tif (!azero) {\n\n\t\t\tout += stringify(a);\n\n\t\t\tif (gt0(b)) {\n\t\t\t\tout += \"+\";\n\t\t\t}\n\n\t\t}\n\n\t\tif (!bzero) {\n\n\t\t\tif (eq_1(b)) {\n\t\t\t\tout += \"-\";\n\t\t\t}\n\t\t\telse if (!eq1(b)) {\n\t\t\t\tout += stringify(b);\n\t\t\t}\n\n\t\t\tout += symbol;\n\t\t}\n\n\t\treturn out;\n\n\t};\n}\n\n",
     "static": true,
     "longname": "src/cartesian/kernel/core/stringify.js",
     "access": null,
@@ -921,7 +2925,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 39,
+    "__docId__": 110,
     "kind": "function",
     "name": "stringify",
     "memberof": "src/cartesian/kernel/core/stringify.js",
@@ -937,7 +2941,7 @@
     "lineNumber": 6,
     "params": [
       {
-        "name": "base",
+        "name": "stringify",
         "types": [
           "*"
         ]
@@ -980,10 +2984,10 @@
     }
   },
   {
-    "__docId__": 40,
+    "__docId__": 111,
     "kind": "file",
     "name": "src/cartesian/kernel/core/sub.js",
-    "content": "\n/**\n * Subtraction algorithm\n *\n * Returns the result of (a + bi) - (c + di).\n */\n\nexport default base => ( a , b , c , d )  => [ base( a , c ) , base( b , d ) ] ;\n\n",
+    "content": "import add from './add' ;\n\n\n/**\n * Subtraction algorithm\n *\n * Returns the result of (a + bi) - (c + di).\n */\n\nexport default add ;\n",
     "static": true,
     "longname": "src/cartesian/kernel/core/sub.js",
     "access": null,
@@ -991,31 +2995,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 41,
-    "kind": "function",
-    "name": "sub",
-    "memberof": "src/cartesian/kernel/core/sub.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/cartesian/kernel/core/sub.js~sub",
-    "access": null,
-    "export": true,
-    "importPath": "@aureooms/js-complex/src/cartesian/kernel/core/sub.js",
-    "importStyle": "sub",
-    "description": "Subtraction algorithm\n\nReturns the result of (a + bi) - (c + di).",
-    "lineNumber": 8,
-    "params": [
-      {
-        "name": "base",
-        "types": [
-          "*"
-        ]
-      }
-    ]
-  },
-  {
-    "__docId__": 42,
+    "__docId__": 112,
     "kind": "file",
     "name": "src/cartesian/kernel/index.js",
     "content": "import compile from './compile' ;\nimport core from './core' ;\n\nexport default {\n\tcompile ,\n\tcore ,\n} ;\n\nexport {\n\tcompile ,\n\tcore ,\n} ;\n",
@@ -1026,10 +3006,10 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 43,
+    "__docId__": 113,
     "kind": "file",
     "name": "src/cartesian/object/compile.js",
-    "content": "import core from './core' ;\n\nexport default function compile ( {\n\n\t$0 , $1 , root2n , iroot2n ,\n\tadd , sub , mul , div ,\n\timul ,\n\tdiv2 ,\n\tabs , arg ,\n\tcon ,\n\tparse , stringify\n\n} , symbol ) {\n\n\treturn {\n\n\t\t\"complex\" : core.complex ,\n\t\t\"$0\" : core.$( $0 ) ,\n\t\t\"$1\" : core.$( $1 ) ,\n\t\t\"root2n\" : core.root2n( root2n ) ,\n\t\t\"iroot2n\" : core.root2n( iroot2n ) ,\n\t\t\"add\" : core.binary( add ) ,\n\t\t\"sub\" : core.binary( sub ) ,\n\t\t\"mul\" : core.binary( mul ) ,\n\t\t\"imul\" : core.binary( imul ) ,\n\t\t\"div\" : core.binary( div ) ,\n\t\t\"div2\" : core.unary( div2 ) ,\n\t\t\"abs\" : core.unary( abs ) ,\n\t\t\"arg\" : core.unary( arg ) ,\n\t\t\"con\" : core.unary( con ) ,\n\t\t\"parse\" : core.parse( parse ) ,\n\t\t\"stringify\" : core.stringify ( stringify )\n\n\t} ;\n\n}\n\n",
+    "content": "import core from './core' ;\n\nexport default function compile ( {\n\n\t$0 , $1 , root2n , iroot2n ,\n\tadd , sub , mul , div ,\n\timul ,\n\tdiv2 ,\n\tabs , arg ,\n\tcon ,\n\tparse , stringify ,\n\texp , pow ,\n\n} , symbol ) {\n\n\treturn {\n\n\t\t\"complex\" : core.complex ,\n\t\t\"$0\" : core.$( $0 ) ,\n\t\t\"$1\" : core.$( $1 ) ,\n\t\t\"root2n\" : core.root2n( root2n ) ,\n\t\t\"iroot2n\" : core.root2n( iroot2n ) ,\n\t\t\"add\" : core.binary( add ) ,\n\t\t\"sub\" : core.binary( sub ) ,\n\t\t\"mul\" : core.binary( mul ) ,\n\t\t\"imul\" : core.binary( imul ) ,\n\t\t\"div\" : core.binary( div ) ,\n\t\t\"div2\" : core.unary( div2 ) ,\n\t\t\"abs\" : core.unary( abs ) ,\n\t\t\"arg\" : core.unary( arg ) ,\n\t\t\"con\" : core.unary( con ) ,\n\t\t\"parse\" : core.parse( parse ) ,\n\t\t\"stringify\" : core.stringify ( stringify ) ,\n\t\t\"exp\" : core.unary( exp ) ,\n\t\t\"pow\" : core.binary( pow ) ,\n\n\t} ;\n\n}\n\n",
     "static": true,
     "longname": "src/cartesian/object/compile.js",
     "access": null,
@@ -1037,7 +3017,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 44,
+    "__docId__": 114,
     "kind": "function",
     "name": "compile",
     "memberof": "src/cartesian/object/compile.js",
@@ -1062,7 +3042,7 @@
       {
         "name": "objectPattern",
         "types": [
-          "{\"$0\": *, \"$1\": *, \"root2n\": *, \"iroot2n\": *, \"add\": *, \"sub\": *, \"mul\": *, \"div\": *, \"imul\": *, \"div2\": *, \"abs\": *, \"arg\": *, \"con\": *, \"parse\": *, \"stringify\": *}"
+          "{\"$0\": *, \"$1\": *, \"root2n\": *, \"iroot2n\": *, \"add\": *, \"sub\": *, \"mul\": *, \"div\": *, \"imul\": *, \"div2\": *, \"abs\": *, \"arg\": *, \"con\": *, \"parse\": *, \"stringify\": *, \"exp\": *, \"pow\": *}"
         ],
         "defaultRaw": {
           "$0": null,
@@ -1079,9 +3059,11 @@
           "arg": null,
           "con": null,
           "parse": null,
-          "stringify": null
+          "stringify": null,
+          "exp": null,
+          "pow": null
         },
-        "defaultValue": "{\"$0\":null,\"$1\":null,\"root2n\":null,\"iroot2n\":null,\"add\":null,\"sub\":null,\"mul\":null,\"div\":null,\"imul\":null,\"div2\":null,\"abs\":null,\"arg\":null,\"con\":null,\"parse\":null,\"stringify\":null}"
+        "defaultValue": "{\"$0\":null,\"$1\":null,\"root2n\":null,\"iroot2n\":null,\"add\":null,\"sub\":null,\"mul\":null,\"div\":null,\"imul\":null,\"div2\":null,\"abs\":null,\"arg\":null,\"con\":null,\"parse\":null,\"stringify\":null,\"exp\":null,\"pow\":null}"
       },
       {
         "name": "symbol",
@@ -1092,12 +3074,12 @@
     ],
     "return": {
       "types": [
-        "{\"complex\": *, \"$0\": *, \"$1\": *, \"root2n\": *, \"iroot2n\": *, \"add\": *, \"sub\": *, \"mul\": *, \"imul\": *, \"div\": *, \"div2\": *, \"abs\": *, \"arg\": *, \"con\": *, \"parse\": *, \"stringify\": *}"
+        "{\"complex\": *, \"$0\": *, \"$1\": *, \"root2n\": *, \"iroot2n\": *, \"add\": *, \"sub\": *, \"mul\": *, \"imul\": *, \"div\": *, \"div2\": *, \"abs\": *, \"arg\": *, \"con\": *, \"parse\": *, \"stringify\": *, \"exp\": *, \"pow\": *}"
       ]
     }
   },
   {
-    "__docId__": 45,
+    "__docId__": 115,
     "kind": "file",
     "name": "src/cartesian/object/core/$.js",
     "content": "import fromarray from './fromarray' ;\nexport default kernel => ( )  => fromarray( kernel( ) ) ;\n",
@@ -1108,7 +3090,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 46,
+    "__docId__": 116,
     "kind": "function",
     "name": "$",
     "memberof": "src/cartesian/object/core/$.js",
@@ -1139,7 +3121,7 @@
     ]
   },
   {
-    "__docId__": 47,
+    "__docId__": 117,
     "kind": "file",
     "name": "src/cartesian/object/core/Complex.js",
     "content": "\nexport default function Complex ( a , b ) {\n\n\tthis.real = a ;\n\tthis.img  = b ;\n\n}\n\n",
@@ -1150,7 +3132,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 48,
+    "__docId__": 118,
     "kind": "function",
     "name": "Complex",
     "memberof": "src/cartesian/object/core/Complex.js",
@@ -1187,7 +3169,7 @@
     ]
   },
   {
-    "__docId__": 49,
+    "__docId__": 119,
     "kind": "file",
     "name": "src/cartesian/object/core/binary.js",
     "content": "import fromarray from './fromarray' ;\nexport default kernel => ( { real : a , img : b } , { real : c , img : d } )  => fromarray( kernel( a , b , c , d ) ) ;\n",
@@ -1198,7 +3180,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 50,
+    "__docId__": 120,
     "kind": "function",
     "name": "binary",
     "memberof": "src/cartesian/object/core/binary.js",
@@ -1229,7 +3211,7 @@
     ]
   },
   {
-    "__docId__": 51,
+    "__docId__": 121,
     "kind": "file",
     "name": "src/cartesian/object/core/complex.js",
     "content": "import Complex from './Complex' ;\nexport default ( a , b )  => new Complex( a , b ) ;\n",
@@ -1240,7 +3222,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 52,
+    "__docId__": 122,
     "kind": "function",
     "name": "complex",
     "memberof": "src/cartesian/object/core/complex.js",
@@ -1277,7 +3259,7 @@
     ]
   },
   {
-    "__docId__": 53,
+    "__docId__": 123,
     "kind": "file",
     "name": "src/cartesian/object/core/fromarray.js",
     "content": "import complex from './complex' ;\nexport default ( [ a , b ] )  => complex( a , b ) ;\n",
@@ -1288,7 +3270,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 54,
+    "__docId__": 124,
     "kind": "function",
     "name": "fromarray",
     "memberof": "src/cartesian/object/core/fromarray.js",
@@ -1324,7 +3306,7 @@
     ]
   },
   {
-    "__docId__": 55,
+    "__docId__": 125,
     "kind": "file",
     "name": "src/cartesian/object/core/index.js",
     "content": "import $ from './$' ;\nimport Complex from './Complex' ;\nimport binary from './binary' ;\nimport complex from './complex' ;\nimport fromarray from './fromarray' ;\nimport parse from './parse' ;\nimport root2n from './root2n' ;\nimport stringify from './stringify' ;\nimport unary from './unary' ;\n\nexport default {\n\t$ ,\n\tComplex ,\n\tbinary ,\n\tcomplex ,\n\tfromarray ,\n\tparse ,\n\troot2n ,\n\tstringify ,\n\tunary ,\n} ;\n\nexport {\n\t$ ,\n\tComplex ,\n\tbinary ,\n\tcomplex ,\n\tfromarray ,\n\tparse ,\n\troot2n ,\n\tstringify ,\n\tunary ,\n} ;\n",
@@ -1335,7 +3317,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 56,
+    "__docId__": 126,
     "kind": "file",
     "name": "src/cartesian/object/core/parse.js",
     "content": "import fromarray from './fromarray' ;\nexport default kernel => ( s , i , j )  => fromarray( kernel( s , i , j ) ) ;\n",
@@ -1346,7 +3328,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 57,
+    "__docId__": 127,
     "kind": "function",
     "name": "parse",
     "memberof": "src/cartesian/object/core/parse.js",
@@ -1377,7 +3359,7 @@
     ]
   },
   {
-    "__docId__": 58,
+    "__docId__": 128,
     "kind": "file",
     "name": "src/cartesian/object/core/root2n.js",
     "content": "import fromarray from './fromarray' ;\nexport default kernel => ( l )  => fromarray( kernel( l ) ) ;\n",
@@ -1388,7 +3370,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 59,
+    "__docId__": 129,
     "kind": "function",
     "name": "root2n",
     "memberof": "src/cartesian/object/core/root2n.js",
@@ -1419,7 +3401,7 @@
     ]
   },
   {
-    "__docId__": 60,
+    "__docId__": 130,
     "kind": "file",
     "name": "src/cartesian/object/core/stringify.js",
     "content": "export default kernel => ( { real : a , img : b } )  => kernel( a , b ) ;\n",
@@ -1430,7 +3412,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 61,
+    "__docId__": 131,
     "kind": "function",
     "name": "stringify",
     "memberof": "src/cartesian/object/core/stringify.js",
@@ -1461,7 +3443,7 @@
     ]
   },
   {
-    "__docId__": 62,
+    "__docId__": 132,
     "kind": "file",
     "name": "src/cartesian/object/core/unary.js",
     "content": "import fromarray from './fromarray' ;\nexport default kernel => ( { real : a , img : b } )  => fromarray( kernel( a , b ) ) ;\n",
@@ -1472,7 +3454,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 63,
+    "__docId__": 133,
     "kind": "function",
     "name": "unary",
     "memberof": "src/cartesian/object/core/unary.js",
@@ -1503,7 +3485,7 @@
     ]
   },
   {
-    "__docId__": 64,
+    "__docId__": 134,
     "kind": "file",
     "name": "src/cartesian/object/index.js",
     "content": "import compile from './compile' ;\nimport core from './core' ;\n\nexport default {\n\tcompile ,\n\tcore ,\n} ;\n\nexport {\n\tcompile ,\n\tcore ,\n} ;\n",
@@ -1514,10 +3496,673 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 65,
+    "__docId__": 135,
+    "kind": "file",
+    "name": "src/complex.js",
+    "content": "import COMPLEX_DEFAULT_DISPLAY from './COMPLEX_DEFAULT_DISPLAY' ;\nimport CC from './CC' ;\n\nexport function $0 ( ) {\n\treturn CC.$0() ;\n}\n\nexport function $1 ( ) {\n\treturn CC.$1() ;\n}\n\nexport function parse ( object , representation = undefined ) {\n\treturn CC.from( object , representation ) ;\n}\n\nexport function stringify ( complex , representation = COMPLEX_DEFAULT_DISPLAY ) {\n\treturn complex.toString( representation ) ;\n}\n\nexport function add ( first , second ) {\n\treturn first.add(second) ;\n}\n\nexport function iadd ( first , second ) {\n\treturn first.iadd(second) ;\n}\n\nexport function sub ( first , second ) {\n\treturn first.sub(second) ;\n}\n\nexport function isub ( first , second ) {\n\treturn first.isub(second) ;\n}\n\nexport function mul ( first , second ) {\n\treturn first.mul(second) ;\n}\n\nexport function imul ( first , second ) {\n\treturn first.imul(second) ;\n}\n\nexport function pow ( first , second ) {\n\treturn first.pow(second) ;\n}\n\nexport function ipow ( first , second ) {\n\treturn first.ipow(second) ;\n}\n\nexport function div ( first , second ) {\n\treturn first.div(second) ;\n}\n\nexport function idiv ( first , second ) {\n\treturn first.idiv(second) ;\n}\n\nexport function mod ( first , second ) {\n\treturn first.mod(second) ;\n}\n\nexport function imod ( first , second ) {\n\treturn first.imod(second) ;\n}\n",
+    "static": true,
+    "longname": "src/complex.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 136,
+    "kind": "function",
+    "name": "$0",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~$0",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{$0}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 137,
+    "kind": "function",
+    "name": "$1",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~$1",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{$1}",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 138,
+    "kind": "function",
+    "name": "parse",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~parse",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{parse}",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "object",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "representation",
+        "optional": true,
+        "types": [
+          "*"
+        ],
+        "defaultRaw": "undefined",
+        "defaultValue": "undefined"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 139,
+    "kind": "function",
+    "name": "stringify",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~stringify",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{stringify}",
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "complex",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "representation",
+        "optional": true,
+        "types": [
+          "*"
+        ],
+        "defaultRaw": "COMPLEX_DEFAULT_DISPLAY",
+        "defaultValue": "COMPLEX_DEFAULT_DISPLAY"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 140,
+    "kind": "function",
+    "name": "add",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~add",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{add}",
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "first",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "second",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 141,
+    "kind": "function",
+    "name": "iadd",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~iadd",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{iadd}",
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "first",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "second",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 142,
+    "kind": "function",
+    "name": "sub",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~sub",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{sub}",
+    "description": null,
+    "lineNumber": 28,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "first",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "second",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 143,
+    "kind": "function",
+    "name": "isub",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~isub",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{isub}",
+    "description": null,
+    "lineNumber": 32,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "first",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "second",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 144,
+    "kind": "function",
+    "name": "mul",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~mul",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{mul}",
+    "description": null,
+    "lineNumber": 36,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "first",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "second",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 145,
+    "kind": "function",
+    "name": "imul",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~imul",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{imul}",
+    "description": null,
+    "lineNumber": 40,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "first",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "second",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 146,
+    "kind": "function",
+    "name": "pow",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~pow",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{pow}",
+    "description": null,
+    "lineNumber": 44,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "first",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "second",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 147,
+    "kind": "function",
+    "name": "ipow",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~ipow",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{ipow}",
+    "description": null,
+    "lineNumber": 48,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "first",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "second",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 148,
+    "kind": "function",
+    "name": "div",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~div",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{div}",
+    "description": null,
+    "lineNumber": 52,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "first",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "second",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 149,
+    "kind": "function",
+    "name": "idiv",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~idiv",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{idiv}",
+    "description": null,
+    "lineNumber": 56,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "first",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "second",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 150,
+    "kind": "function",
+    "name": "mod",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~mod",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{mod}",
+    "description": null,
+    "lineNumber": 60,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "first",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "second",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 151,
+    "kind": "function",
+    "name": "imod",
+    "memberof": "src/complex.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/complex.js~imod",
+    "access": null,
+    "export": true,
+    "importPath": "@aureooms/js-complex/src/complex.js",
+    "importStyle": "{imod}",
+    "description": null,
+    "lineNumber": 64,
+    "undocument": true,
+    "unknown": [
+      {
+        "tagName": "@_undocument",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "name": "first",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "second",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 152,
     "kind": "file",
     "name": "src/index.js",
-    "content": "import cartesian from './cartesian' ;\nimport polar from './polar' ;\n\nexport default {\n\tcartesian ,\n\tpolar ,\n} ;\n\nexport {\n\tcartesian ,\n\tpolar ,\n} ;\n",
+    "content": "import CC from './CC' ;\nimport COMPLEX_DEFAULT_DISPLAY from './COMPLEX_DEFAULT_DISPLAY' ;\nimport COMPLEX_DEFAULT_REPRESENTATION from './COMPLEX_DEFAULT_REPRESENTATION' ;\nimport Complex from './Complex' ;\nimport ComplexField from './ComplexField' ;\nimport ZeroDivisionError from './ZeroDivisionError' ;\nimport cartesian from './cartesian' ;\nimport * as complex from './complex' ;\nimport polar from './polar' ;\n\nexport default {\n\tCC ,\n\tCOMPLEX_DEFAULT_DISPLAY ,\n\tCOMPLEX_DEFAULT_REPRESENTATION ,\n\tComplex ,\n\tComplexField ,\n\tZeroDivisionError ,\n\tcartesian ,\n\tcomplex ,\n\tpolar ,\n} ;\n\nexport {\n\tCC ,\n\tCOMPLEX_DEFAULT_DISPLAY ,\n\tCOMPLEX_DEFAULT_REPRESENTATION ,\n\tComplex ,\n\tComplexField ,\n\tZeroDivisionError ,\n\tcartesian ,\n\tcomplex ,\n\tpolar ,\n} ;\n",
     "static": true,
     "longname": "src/index.js",
     "access": null,
@@ -1525,7 +4170,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 66,
+    "__docId__": 153,
     "kind": "file",
     "name": "src/polar/array/compile.js",
     "content": "import core from './core' ;\n\nexport default function compile ( {\n\n\tmul , div ,\n\treal , img ,\n\tcon\n\n} , symbol ) {\n\n\treturn {\n\n\t\t\"complex\" : core.complex ,\n\t\t\"mul\" : core.binary( mul ) ,\n\t\t\"div\" : core.binary( div ) ,\n\t\t\"real\" : core.real( real ) ,\n\t\t\"img\" : core.img( img ) ,\n\t\t\"con\" : core.unary( con ) ,\n\n\t} ;\n\n}\n\n",
@@ -1536,7 +4181,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 67,
+    "__docId__": 154,
     "kind": "function",
     "name": "compile",
     "memberof": "src/polar/array/compile.js",
@@ -1586,7 +4231,7 @@
     }
   },
   {
-    "__docId__": 68,
+    "__docId__": 155,
     "kind": "file",
     "name": "src/polar/array/core/binary.js",
     "content": "\nexport default kernel => ( [ a , b ] , [ c , d ] )  => kernel( a , b , c , d ) ;\n\n",
@@ -1597,7 +4242,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 69,
+    "__docId__": 156,
     "kind": "function",
     "name": "binary",
     "memberof": "src/polar/array/core/binary.js",
@@ -1628,7 +4273,7 @@
     ]
   },
   {
-    "__docId__": 70,
+    "__docId__": 157,
     "kind": "file",
     "name": "src/polar/array/core/complex.js",
     "content": "\nexport default ( a , b )  => [ a , b ] ;\n\n",
@@ -1639,7 +4284,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 71,
+    "__docId__": 158,
     "kind": "function",
     "name": "complex",
     "memberof": "src/polar/array/core/complex.js",
@@ -1676,7 +4321,7 @@
     ]
   },
   {
-    "__docId__": 72,
+    "__docId__": 159,
     "kind": "file",
     "name": "src/polar/array/core/img.js",
     "content": "\nexport default kernel => ( [ a , b ] )  => kernel( a , b ) ;\n\n",
@@ -1687,7 +4332,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 73,
+    "__docId__": 160,
     "kind": "function",
     "name": "img",
     "memberof": "src/polar/array/core/img.js",
@@ -1718,7 +4363,7 @@
     ]
   },
   {
-    "__docId__": 74,
+    "__docId__": 161,
     "kind": "file",
     "name": "src/polar/array/core/index.js",
     "content": "import binary from './binary' ;\nimport complex from './complex' ;\nimport img from './img' ;\nimport real from './real' ;\nimport unary from './unary' ;\n\nexport default {\n\tbinary ,\n\tcomplex ,\n\timg ,\n\treal ,\n\tunary ,\n} ;\n\nexport {\n\tbinary ,\n\tcomplex ,\n\timg ,\n\treal ,\n\tunary ,\n} ;\n",
@@ -1729,7 +4374,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 75,
+    "__docId__": 162,
     "kind": "file",
     "name": "src/polar/array/core/real.js",
     "content": "\nexport default kernel => ( [ a , b ] )  => kernel( a , b ) ;\n\n",
@@ -1740,7 +4385,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 76,
+    "__docId__": 163,
     "kind": "function",
     "name": "real",
     "memberof": "src/polar/array/core/real.js",
@@ -1771,7 +4416,7 @@
     ]
   },
   {
-    "__docId__": 77,
+    "__docId__": 164,
     "kind": "file",
     "name": "src/polar/array/core/unary.js",
     "content": "\nexport default kernel => ( [ a , b ] )  => kernel( a , b ) ;\n\n",
@@ -1782,7 +4427,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 78,
+    "__docId__": 165,
     "kind": "function",
     "name": "unary",
     "memberof": "src/polar/array/core/unary.js",
@@ -1813,7 +4458,7 @@
     ]
   },
   {
-    "__docId__": 79,
+    "__docId__": 166,
     "kind": "file",
     "name": "src/polar/array/index.js",
     "content": "import compile from './compile' ;\nimport core from './core' ;\n\nexport default {\n\tcompile ,\n\tcore ,\n} ;\n\nexport {\n\tcompile ,\n\tcore ,\n} ;\n",
@@ -1824,7 +4469,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 80,
+    "__docId__": 167,
     "kind": "file",
     "name": "src/polar/index.js",
     "content": "import array from './array' ;\nimport kernel from './kernel' ;\nimport object from './object' ;\n\nexport default {\n\tarray ,\n\tkernel ,\n\tobject ,\n} ;\n\nexport {\n\tarray ,\n\tkernel ,\n\tobject ,\n} ;\n",
@@ -1835,7 +4480,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 81,
+    "__docId__": 168,
     "kind": "file",
     "name": "src/polar/kernel/compile.js",
     "content": "import core from './core' ;\n\nexport default function compile ( {\n\n\tadd , sub , mul , div ,\n\tneg ,\n\tcos , sin\n\n} , symbol ) {\n\n\treturn {\n\n\t\t\"mul\" : core.mul( mul , add ) ,\n\t\t\"div\" : core.div( div , sub ) ,\n\t\t\"real\" : core.real( mul , cos ) ,\n\t\t\"img\" : core.img( mul , sin ) ,\n\t\t\"con\" : core.con( neg ) ,\n\n\t} ;\n\n}\n\n",
@@ -1846,7 +4491,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 82,
+    "__docId__": 169,
     "kind": "function",
     "name": "compile",
     "memberof": "src/polar/kernel/compile.js",
@@ -1898,7 +4543,7 @@
     }
   },
   {
-    "__docId__": 83,
+    "__docId__": 170,
     "kind": "file",
     "name": "src/polar/kernel/core/con.js",
     "content": "\n/**\n * Conjugate for polar representation\n */\n\nexport default neg => ( a , b )  => [ a , neg( b ) ] ;\n\n",
@@ -1909,7 +4554,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 84,
+    "__docId__": 171,
     "kind": "function",
     "name": "con",
     "memberof": "src/polar/kernel/core/con.js",
@@ -1933,10 +4578,10 @@
     ]
   },
   {
-    "__docId__": 85,
+    "__docId__": 172,
     "kind": "file",
     "name": "src/polar/kernel/core/div.js",
-    "content": "\nexport default ( base , sub ) => ( a , b , c , d )  => [ base( a , c ) , sub( b , d ) ] ;\n\n",
+    "content": "\nexport default ( div , sub ) => ( a , b , c , d )  => [ div( a , c ) , sub( b , d ) ] ;\n\n",
     "static": true,
     "longname": "src/polar/kernel/core/div.js",
     "access": null,
@@ -1944,7 +4589,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 86,
+    "__docId__": 173,
     "kind": "function",
     "name": "div",
     "memberof": "src/polar/kernel/core/div.js",
@@ -1967,7 +4612,7 @@
     ],
     "params": [
       {
-        "name": "base",
+        "name": "div",
         "types": [
           "*"
         ]
@@ -1981,7 +4626,7 @@
     ]
   },
   {
-    "__docId__": 87,
+    "__docId__": 174,
     "kind": "file",
     "name": "src/polar/kernel/core/img.js",
     "content": "\nexport default ( mul , sin ) => ( a , b )  => mul( a , sin( b ) ) ;\n\n",
@@ -1992,7 +4637,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 88,
+    "__docId__": 175,
     "kind": "function",
     "name": "img",
     "memberof": "src/polar/kernel/core/img.js",
@@ -2029,7 +4674,7 @@
     ]
   },
   {
-    "__docId__": 89,
+    "__docId__": 176,
     "kind": "file",
     "name": "src/polar/kernel/core/index.js",
     "content": "import con from './con' ;\nimport div from './div' ;\nimport img from './img' ;\nimport mul from './mul' ;\nimport real from './real' ;\n\nexport default {\n\tcon ,\n\tdiv ,\n\timg ,\n\tmul ,\n\treal ,\n} ;\n\nexport {\n\tcon ,\n\tdiv ,\n\timg ,\n\tmul ,\n\treal ,\n} ;\n",
@@ -2040,10 +4685,10 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 90,
+    "__docId__": 177,
     "kind": "file",
     "name": "src/polar/kernel/core/mul.js",
-    "content": "\nexport default ( base , add ) => ( a , b , c , d )  => [ base( a , c ) , add( b , d ) ] ;\n\n",
+    "content": "\nexport default ( mul , add ) => ( a , b , c , d )  => [ mul( a , c ) , add( b , d ) ] ;\n\n",
     "static": true,
     "longname": "src/polar/kernel/core/mul.js",
     "access": null,
@@ -2051,7 +4696,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 91,
+    "__docId__": 178,
     "kind": "function",
     "name": "mul",
     "memberof": "src/polar/kernel/core/mul.js",
@@ -2074,7 +4719,7 @@
     ],
     "params": [
       {
-        "name": "base",
+        "name": "mul",
         "types": [
           "*"
         ]
@@ -2088,7 +4733,7 @@
     ]
   },
   {
-    "__docId__": 92,
+    "__docId__": 179,
     "kind": "file",
     "name": "src/polar/kernel/core/real.js",
     "content": "\nexport default ( mul , cos ) => ( a , b )  => mul( a , cos( b ) ) ;\n\n",
@@ -2099,7 +4744,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 93,
+    "__docId__": 180,
     "kind": "function",
     "name": "real",
     "memberof": "src/polar/kernel/core/real.js",
@@ -2136,7 +4781,7 @@
     ]
   },
   {
-    "__docId__": 94,
+    "__docId__": 181,
     "kind": "file",
     "name": "src/polar/kernel/index.js",
     "content": "import compile from './compile' ;\nimport core from './core' ;\n\nexport default {\n\tcompile ,\n\tcore ,\n} ;\n\nexport {\n\tcompile ,\n\tcore ,\n} ;\n",
@@ -2147,7 +4792,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 95,
+    "__docId__": 182,
     "kind": "file",
     "name": "src/polar/object/compile.js",
     "content": "import core from './core' ;\n\nexport default function compile ( {\n\n\tmul , div ,\n\treal , img ,\n\tcon\n\n} , symbol ) {\n\n\treturn {\n\n\t\t\"complex\" : core.complex ,\n\t\t\"mul\" : core.binary( mul ) ,\n\t\t\"div\" : core.binary( div ) ,\n\t\t\"real\" : core.real( real ) ,\n\t\t\"img\" : core.img( img ) ,\n\t\t\"con\" : core.unary( con ) ,\n\n\t} ;\n\n}\n\n",
@@ -2158,7 +4803,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 96,
+    "__docId__": 183,
     "kind": "function",
     "name": "compile",
     "memberof": "src/polar/object/compile.js",
@@ -2208,7 +4853,7 @@
     }
   },
   {
-    "__docId__": 97,
+    "__docId__": 184,
     "kind": "file",
     "name": "src/polar/object/core/Complex.js",
     "content": "\nexport default function Complex ( a , b ) {\n\n\tthis.rho = a ;\n\tthis.theta  = b ;\n\n}\n\n",
@@ -2219,7 +4864,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 98,
+    "__docId__": 185,
     "kind": "function",
     "name": "Complex",
     "memberof": "src/polar/object/core/Complex.js",
@@ -2256,7 +4901,7 @@
     ]
   },
   {
-    "__docId__": 99,
+    "__docId__": 186,
     "kind": "file",
     "name": "src/polar/object/core/binary.js",
     "content": "\nexport default kernel => ( { rho : a , theta : b } , { rho : c , theta : d } )  => fromarray( kernel( a , b , c , d ) ) ;\n\n",
@@ -2267,7 +4912,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 100,
+    "__docId__": 187,
     "kind": "function",
     "name": "binary",
     "memberof": "src/polar/object/core/binary.js",
@@ -2298,7 +4943,7 @@
     ]
   },
   {
-    "__docId__": 101,
+    "__docId__": 188,
     "kind": "file",
     "name": "src/polar/object/core/complex.js",
     "content": "import { Complex } from './Complex' ;\nexport default ( a , b )  => new Complex( a , b ) ;\n",
@@ -2309,7 +4954,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 102,
+    "__docId__": 189,
     "kind": "function",
     "name": "complex",
     "memberof": "src/polar/object/core/complex.js",
@@ -2346,7 +4991,7 @@
     ]
   },
   {
-    "__docId__": 103,
+    "__docId__": 190,
     "kind": "file",
     "name": "src/polar/object/core/fromarray.js",
     "content": "import complex from './complex' ;\nexport default ( [ a , b ] )  => complex( a , b ) ;\n",
@@ -2357,7 +5002,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 104,
+    "__docId__": 191,
     "kind": "function",
     "name": "fromarray",
     "memberof": "src/polar/object/core/fromarray.js",
@@ -2393,7 +5038,7 @@
     ]
   },
   {
-    "__docId__": 105,
+    "__docId__": 192,
     "kind": "file",
     "name": "src/polar/object/core/img.js",
     "content": "\nexport default kernel => ( { rho : a , theta : b } )  => kernel( a , b ) ;\n\n",
@@ -2404,7 +5049,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 106,
+    "__docId__": 193,
     "kind": "function",
     "name": "img",
     "memberof": "src/polar/object/core/img.js",
@@ -2435,7 +5080,7 @@
     ]
   },
   {
-    "__docId__": 107,
+    "__docId__": 194,
     "kind": "file",
     "name": "src/polar/object/core/index.js",
     "content": "import Complex from './Complex' ;\nimport binary from './binary' ;\nimport complex from './complex' ;\nimport fromarray from './fromarray' ;\nimport img from './img' ;\nimport real from './real' ;\nimport unary from './unary' ;\n\nexport default {\n\tComplex ,\n\tbinary ,\n\tcomplex ,\n\tfromarray ,\n\timg ,\n\treal ,\n\tunary ,\n} ;\n\nexport {\n\tComplex ,\n\tbinary ,\n\tcomplex ,\n\tfromarray ,\n\timg ,\n\treal ,\n\tunary ,\n} ;\n",
@@ -2446,7 +5091,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 108,
+    "__docId__": 195,
     "kind": "file",
     "name": "src/polar/object/core/real.js",
     "content": "\nexport default kernel => ( { rho : a , theta : b } )  => kernel( a , b ) ;\n\n",
@@ -2457,7 +5102,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 109,
+    "__docId__": 196,
     "kind": "function",
     "name": "real",
     "memberof": "src/polar/object/core/real.js",
@@ -2488,7 +5133,7 @@
     ]
   },
   {
-    "__docId__": 110,
+    "__docId__": 197,
     "kind": "file",
     "name": "src/polar/object/core/unary.js",
     "content": "\nexport default kernel => ( { rho : a , theta : b } )  => fromarray( kernel( a , b ) ) ;\n\n",
@@ -2499,7 +5144,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 111,
+    "__docId__": 198,
     "kind": "function",
     "name": "unary",
     "memberof": "src/polar/object/core/unary.js",
@@ -2530,7 +5175,7 @@
     ]
   },
   {
-    "__docId__": 112,
+    "__docId__": 199,
     "kind": "file",
     "name": "src/polar/object/index.js",
     "content": "import compile from './compile' ;\nimport core from './core' ;\n\nexport default {\n\tcompile ,\n\tcore ,\n} ;\n\nexport {\n\tcompile ,\n\tcore ,\n} ;\n",
@@ -2541,7 +5186,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 114,
+    "__docId__": 201,
     "kind": "external",
     "name": "Infinity",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
@@ -2553,7 +5198,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 115,
+    "__docId__": 202,
     "kind": "external",
     "name": "NaN",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
@@ -2565,7 +5210,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 116,
+    "__docId__": 203,
     "kind": "external",
     "name": "undefined",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
@@ -2577,7 +5222,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 117,
+    "__docId__": 204,
     "kind": "external",
     "name": "null",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
@@ -2589,7 +5234,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 118,
+    "__docId__": 205,
     "kind": "external",
     "name": "Object",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
@@ -2601,7 +5246,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 119,
+    "__docId__": 206,
     "kind": "external",
     "name": "object",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
@@ -2613,7 +5258,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 120,
+    "__docId__": 207,
     "kind": "external",
     "name": "Function",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
@@ -2625,7 +5270,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 121,
+    "__docId__": 208,
     "kind": "external",
     "name": "function",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
@@ -2637,7 +5282,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 122,
+    "__docId__": 209,
     "kind": "external",
     "name": "Boolean",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
@@ -2649,7 +5294,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 123,
+    "__docId__": 210,
     "kind": "external",
     "name": "boolean",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
@@ -2661,7 +5306,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 124,
+    "__docId__": 211,
     "kind": "external",
     "name": "Symbol",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
@@ -2673,7 +5318,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 125,
+    "__docId__": 212,
     "kind": "external",
     "name": "Error",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
@@ -2685,7 +5330,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 126,
+    "__docId__": 213,
     "kind": "external",
     "name": "EvalError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
@@ -2697,7 +5342,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 127,
+    "__docId__": 214,
     "kind": "external",
     "name": "InternalError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
@@ -2709,7 +5354,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 128,
+    "__docId__": 215,
     "kind": "external",
     "name": "RangeError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
@@ -2721,7 +5366,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 129,
+    "__docId__": 216,
     "kind": "external",
     "name": "ReferenceError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
@@ -2733,7 +5378,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 130,
+    "__docId__": 217,
     "kind": "external",
     "name": "SyntaxError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
@@ -2745,7 +5390,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 131,
+    "__docId__": 218,
     "kind": "external",
     "name": "TypeError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
@@ -2757,7 +5402,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 132,
+    "__docId__": 219,
     "kind": "external",
     "name": "URIError",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
@@ -2769,7 +5414,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 133,
+    "__docId__": 220,
     "kind": "external",
     "name": "Number",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
@@ -2781,7 +5426,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 134,
+    "__docId__": 221,
     "kind": "external",
     "name": "number",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
@@ -2793,7 +5438,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 135,
+    "__docId__": 222,
     "kind": "external",
     "name": "Date",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
@@ -2805,7 +5450,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 136,
+    "__docId__": 223,
     "kind": "external",
     "name": "String",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
@@ -2817,7 +5462,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 137,
+    "__docId__": 224,
     "kind": "external",
     "name": "string",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
@@ -2829,7 +5474,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 138,
+    "__docId__": 225,
     "kind": "external",
     "name": "RegExp",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
@@ -2841,7 +5486,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 139,
+    "__docId__": 226,
     "kind": "external",
     "name": "Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
@@ -2853,7 +5498,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 140,
+    "__docId__": 227,
     "kind": "external",
     "name": "Int8Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
@@ -2865,7 +5510,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 141,
+    "__docId__": 228,
     "kind": "external",
     "name": "Uint8Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
@@ -2877,7 +5522,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 142,
+    "__docId__": 229,
     "kind": "external",
     "name": "Uint8ClampedArray",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
@@ -2889,7 +5534,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 143,
+    "__docId__": 230,
     "kind": "external",
     "name": "Int16Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
@@ -2901,7 +5546,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 144,
+    "__docId__": 231,
     "kind": "external",
     "name": "Uint16Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
@@ -2913,7 +5558,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 145,
+    "__docId__": 232,
     "kind": "external",
     "name": "Int32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
@@ -2925,7 +5570,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 146,
+    "__docId__": 233,
     "kind": "external",
     "name": "Uint32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
@@ -2937,7 +5582,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 147,
+    "__docId__": 234,
     "kind": "external",
     "name": "Float32Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
@@ -2949,7 +5594,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 148,
+    "__docId__": 235,
     "kind": "external",
     "name": "Float64Array",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
@@ -2961,7 +5606,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 149,
+    "__docId__": 236,
     "kind": "external",
     "name": "Map",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
@@ -2973,7 +5618,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 150,
+    "__docId__": 237,
     "kind": "external",
     "name": "Set",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
@@ -2985,7 +5630,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 151,
+    "__docId__": 238,
     "kind": "external",
     "name": "WeakMap",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
@@ -2997,7 +5642,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 152,
+    "__docId__": 239,
     "kind": "external",
     "name": "WeakSet",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
@@ -3009,7 +5654,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 153,
+    "__docId__": 240,
     "kind": "external",
     "name": "ArrayBuffer",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
@@ -3021,7 +5666,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 154,
+    "__docId__": 241,
     "kind": "external",
     "name": "DataView",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
@@ -3033,7 +5678,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 155,
+    "__docId__": 242,
     "kind": "external",
     "name": "JSON",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
@@ -3045,7 +5690,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 156,
+    "__docId__": 243,
     "kind": "external",
     "name": "Promise",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
@@ -3057,7 +5702,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 157,
+    "__docId__": 244,
     "kind": "external",
     "name": "Generator",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
@@ -3069,7 +5714,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 158,
+    "__docId__": 245,
     "kind": "external",
     "name": "GeneratorFunction",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
@@ -3081,7 +5726,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 159,
+    "__docId__": 246,
     "kind": "external",
     "name": "Reflect",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
@@ -3093,7 +5738,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 160,
+    "__docId__": 247,
     "kind": "external",
     "name": "Proxy",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
@@ -3106,7 +5751,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 162,
+    "__docId__": 249,
     "kind": "external",
     "name": "CanvasRenderingContext2D",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
@@ -3118,7 +5763,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 163,
+    "__docId__": 250,
     "kind": "external",
     "name": "DocumentFragment",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
@@ -3130,7 +5775,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 164,
+    "__docId__": 251,
     "kind": "external",
     "name": "Element",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
@@ -3142,7 +5787,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 165,
+    "__docId__": 252,
     "kind": "external",
     "name": "Event",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
@@ -3154,7 +5799,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 166,
+    "__docId__": 253,
     "kind": "external",
     "name": "Node",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
@@ -3166,7 +5811,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 167,
+    "__docId__": 254,
     "kind": "external",
     "name": "NodeList",
     "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
@@ -3178,7 +5823,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 168,
+    "__docId__": 255,
     "kind": "external",
     "name": "XMLHttpRequest",
     "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
@@ -3190,7 +5835,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 169,
+    "__docId__": 256,
     "kind": "external",
     "name": "AudioContext",
     "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
