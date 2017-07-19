@@ -1,3 +1,3 @@
 
-export default ( base , add ) => ( a , b , c , d )  => [ base( a , c ) , add( b , d ) ] ;
+export default ( mul , add ) => ( a , b , c , d )  => [ mul( a , c ) , add( b , d ) ] ;
 

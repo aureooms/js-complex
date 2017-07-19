@@ -1,20 +1,6 @@
 import ZeroDivisionError from './ZeroDivisionError' ;
 
-import { increasing } from '@aureooms/js-number' ;
-
-import COMPLEX_DEFAULT_CARTESIAN_KERNEL from './COMPLEX_DEFAULT_CARTESIAN_KERNEL' ;
-
-const {
-	stringify ,
-	add ,
-	sub ,
-	mul ,
-	div ,
-	abs ,
-	arg ,
-	pow ,
-	exp ,
-} = COMPLEX_DEFAULT_CARTESIAN_KERNEL ;
+import COMPLEX_DEFAULT_DISPLAY from './COMPLEX_DEFAULT_DISPLAY' ;
 
 export default class Complex {
 
@@ -35,39 +21,42 @@ export default class Complex {
 		return new Complex( this.representation , this.real , this.img ) ;
 	}
 
-	toString ( representation = DEFAULT_DISPLAY_REPRESENTATION ) {
-		return stringify( this.real , this.img ) ;
+	toString ( representation = COMPLEX_DEFAULT_DISPLAY ) {
+		// TODO use proper representation conversion
+		return this.representation.kernel.stringify( this.real , this.img ) ;
 	}
 
 	add ( other ) {
 
-		const [ real , img ] = add( this.real , this.img , other.real , other.img ) ;
+		const [ real , img ] = this.representation.kernel.add( this.real , this.img , other.real , other.img ) ;
 
-		return Complex( this.representation , real , img ) ;
+		return new Complex( this.representation , real , img ) ;
 
 	}
 
 	iadd ( other ) {
+		// TODO optimize but be careful with side effects
 		return this.add(other).move(this);
 	}
 
 	sub ( other ) {
 
-		const [ real , img ] = sub( this.real , this.img , other.real , other.img ) ;
+		const [ real , img ] = this.representation.kernel.sub( this.real , this.img , other.real , other.img ) ;
 
-		return Complex( this.representation , real , img ) ;
+		return new Complex( this.representation , real , img ) ;
 
 	}
 
 	isub ( other ) {
+		// TODO optimize but be careful with side effects
 		return this.sub(other).move(this);
 	}
 
 	mul ( other ) {
 
-		const [ real , img ] = mul( this.real , this.img , other.real , other.img ) ;
+		const [ real , img ] = this.representation.kernel.mul( this.real , this.img , other.real , other.img ) ;
 
-		return Complex( this.representation , real , img ) ;
+		return new Complex( this.representation , real , img ) ;
 
 	}
 
@@ -78,28 +67,29 @@ export default class Complex {
 
 	/**
 	 * Computes <code>this</code> raised to the <code>x</code>th power.
-	 * <code>x</code> is a double smaller or equal to 2^53.
 	 *
-	 * @param {Number} x The power to raise <code>this</code> to.
-	 * @return {Integer} <code>this ^ x</code>
+	 * @param {Complex} x The power to raise <code>this</code> to.
+	 * @return {Complex} <code>this ^ x</code>
 	 */
-	pow ( x ) {
-		return this.polar( ).pow( x.polar( ) ).cartesian( ) ;
+	pow ( other ) {
+		// TODO optimize for special cases
+		const [ real , img ] = this.representation.kernel.pow( this.real , this.img , other.real , other.img ) ;
+		return new Complex( this.representation , real , img ) ;
 	}
 
-	ipow ( x ) {
+	ipow ( other ) {
 		// TODO optimize but be careful with side effects
 		return this.pow(x).move(this);
 	}
 
 	square ( ) {
-		// TODO optimize but be careful with side effects
-		return this.pow(2);
+		// TODO optimize
+		return this.mul(this);
 	}
 
 	isquare ( ) {
-		// TODO optimize
-		return this.ipow(2);
+		// TODO optimize but be careful with side effects
+		return this.square().move(this);
 	}
 
 	div ( other ) {
@@ -107,6 +97,7 @@ export default class Complex {
 	}
 
 	idiv ( other ) {
+		// TODO optimize but be careful with side effects
 		return this.div(other).move(this);
 	}
 
@@ -123,7 +114,7 @@ export default class Complex {
 	}
 
 	__truediv__ ( other ) {
-		const [ real , img ] = div( this.real , this.img , other.real , other.img ) ;
+		const [ real , img ] = this.representation.kernel.div( this.real , this.img , other.real , other.img ) ;
 		return new Complex( this.representation , real , img ) ;
 	}
 
@@ -132,53 +123,35 @@ export default class Complex {
 	}
 
 	opposite ( ) {
-		return new Complex( this.representation , ~this.is_negative , this.real , this.img ) ;
+		return new Complex( this.representation , this.representation.model.neg( this.real ) , this.representation.model.neg( this.img ) ) ;
 	}
 
 	conjugate ( ) {
-		return new Complex( this.representation , ~this.is_negative , this.real , this.img ) ;
+		return new Complex( this.representation , this.real , this.representation.model.neg( this.img ) ) ;
 	}
 
 	negate ( ) {
 		// TODO optimize but be careful with side effects
+		// TODO what would be the name for in-place conjugate -_- ?
 		return this.opposite().move(this);
 	}
 
-	sign ( ) {
-		return this.iszero() ? 0 : this.is_negative ? -1 : 1 ;
+	signum ( ) {
+		return this.iszero() ? this : this.divide_knowing_model_contains( this.abs() ) ;
 	}
 
 	iszero ( ) {
-		return _jz( this.real , this.img ) ;
+		return this.representation.model.eq( this.representation.model.$0() , this.real ) &&
+		this.representation.model.eq( this.representation.model.$0() , this.img ) ;
 	}
 
 	isone ( ) {
-		if ( this.is_negative ) return false ;
-		return _eq( this.limbs , 0 , this.limbs.length , [ 1 ] , 0 , 1 ) ;
+		return this.representation.model.eq( this.representation.model.$1() , this.real ) &&
+		this.representation.model.eq( this.representation.model.$0() , this.img ) ;
 	}
 
 	nonzero ( ) {
 		return !this.iszero();
-	}
-
-	bin ( ) {
-		return this.toString( 2 ) ;
-	}
-
-	oct ( ) {
-		return this.toString( 8 ) ;
-	}
-
-	hex ( ) {
-		return this.toString( 16 ) ;
-	}
-
-	digits ( base = DEFAULT_DISPLAY_BASE ) {
-		return convert( this.base , base , this.limbs , 0 , this.limbs.length ).reverse( ) ;
-	}
-
-	bits ( ) {
-		return this.digits( 2 ) ;
 	}
 
 	divides ( other ) {
@@ -189,16 +162,28 @@ export default class Complex {
 		return this.div( other ) ;
 	}
 
+	divide_knowing_model_contains ( other ) {
+		const real = this.representation.model.div( this.real , other ) ;
+		const img = this.representation.model.div( this.img , other ) ;
+		return new Complex( this.representation , real , img ) ;
+	}
+
 	abs ( ) {
-		return abs( this.real , this.img ) ;
+		return this.representation.kernel.abs( this.real , this.img ) ;
 	}
 
 	cmp ( other ) {
-		return increasing( this.abs() , other.abs() ) ;
+		// TODO could also be
+		// throw TypeError: no ordering relation is defined for complex numbers
+		return this.representation.model.increasing( this.abs() , other.abs() ) ;
 	}
 
 	eq ( other ) {
-		return this.cmp( other ) === 0 ;
+		return this.representation.model.eq(this.real, other.real) && this.representation.model.eq(this.img, other.img) ;
+	}
+
+	ne ( other ) {
+		return !this.eq(other) ;
 	}
 
 	ge ( other ) {
@@ -215,10 +200,6 @@ export default class Complex {
 
 	lt ( other ) {
 		return this.cmp( other ) < 0 ;
-	}
-
-	ne ( other ) {
-		return this.cmp( other ) !== 0 ;
 	}
 
 }

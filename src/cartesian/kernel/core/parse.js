@@ -6,7 +6,7 @@
  *     WOULD BE THE BEST IMPLEMENTATION
  */
 
-export default function parse (base, $0, $1, $_1, symbol) {
+export default function (parse, $0, $1, $_1, symbol) {
 
 	return function (s, i, j) {
 
@@ -34,18 +34,18 @@ export default function parse (base, $0, $1, $_1, symbol) {
 						return [$0(), $1()];
 					}
 					else {
-						return [$0(), base(s.slice( ai , i))];
+						return [$0(), parse(s.slice( ai , i))];
 					}
 				}
 				else {
-					return [$0(), base(s.slice( ai , i))];
+					return [$0(), parse(s.slice( ai , i))];
 				}
 			}
 
 			++i;
 
 			if (i >= j) {
-				return [base(s.slice( ai , j)), $0()];
+				return [parse(s.slice( ai , j)), $0()];
 			}
 
 			c = s[i];
@@ -73,10 +73,10 @@ export default function parse (base, $0, $1, $_1, symbol) {
 
 			if (c === symbol) {
 				if (bi === i - 1) {
-					return [base(s.slice( ai , aj)), dflt()];
+					return [parse(s.slice( ai , aj)), dflt()];
 				}
 				else {
-					return [base(s.slice( ai , aj)), base(s.slice( bi , i))];
+					return [parse(s.slice( ai , aj)), parse(s.slice( bi , i))];
 				}
 			}
 

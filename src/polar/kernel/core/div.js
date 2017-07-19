@@ -1,3 +1,3 @@
 
-export default ( base , sub ) => ( a , b , c , d )  => [ base( a , c ) , sub( b , d ) ] ;
+export default ( div , sub ) => ( a , b , c , d )  => [ div( a , c ) , sub( b , d ) ] ;
 

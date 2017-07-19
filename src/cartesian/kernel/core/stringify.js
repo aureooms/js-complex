@@ -3,7 +3,7 @@
  * Stringify
  */
 
-export default function stringify ( base , eq0 , eq1 , eq_1 , gt0 , symbol ) {
+export default function ( stringify , eq0 , eq1 , eq_1 , gt0 , symbol ) {
 
 	return function ( a , b ) {
 
@@ -19,7 +19,7 @@ export default function stringify ( base , eq0 , eq1 , eq_1 , gt0 , symbol ) {
 
 		if (!azero) {
 
-			out += base(a);
+			out += stringify(a);
 
 			if (gt0(b)) {
 				out += "+";
@@ -33,7 +33,7 @@ export default function stringify ( base , eq0 , eq1 , eq_1 , gt0 , symbol ) {
 				out += "-";
 			}
 			else if (!eq1(b)) {
-				out += base(b);
+				out += stringify(b);
 			}
 
 			out += symbol;

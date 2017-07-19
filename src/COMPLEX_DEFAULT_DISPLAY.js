@@ -1,7 +1,13 @@
 import * as number from '@aureooms/js-number' ;
 
+import compile from './cartesian/kernel/compile' ;
+
+const model = number ;
+const symbol = 'j' ;
+
 export default {
-	cartesian : true , // cartesian or polar
-	model : number ,
-	symbol : 'j' ,
+	type : 'cartesian' , // cartesian or polar
+	model ,
+	symbol ,
+	kernel : compile( model , symbol ) ,
 } ;

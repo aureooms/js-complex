@@ -9,12 +9,12 @@ export function $1 ( ) {
 	return CC.$1() ;
 }
 
-export function parse ( object , base = undefined , is_negative = 0 ) {
-	return CC.from( object , base , is_negative ) ;
+export function parse ( object , representation = undefined ) {
+	return CC.from( object , representation ) ;
 }
 
-export function stringify ( complex , display = COMPLEX_DEFAULT_DISPLAY ) {
-	return complex.toString( display ) ;
+export function stringify ( complex , representation = COMPLEX_DEFAULT_DISPLAY ) {
+	return complex.toString( representation ) ;
 }
 
 export function add ( first , second ) {

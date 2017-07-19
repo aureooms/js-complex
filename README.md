@@ -9,9 +9,9 @@ Parent is [@aureooms/js-algorithms](https://github.com/aureooms/js-algorithms).
 
 ```js
 import { CC } from '@aureooms/js-complex' ;
-const a = CC.from( '2+3i' ) ;
-const b = CC.from( '1-7i' ) ;
-a.mul( b ).toString( ) ; // '23-11i'
+const a = CC.from( '2+3j' ) ;
+const b = CC.from( '1-7j' ) ;
+a.mul( b ).toString( ) ; // '23-11j'
 ```
 
 
