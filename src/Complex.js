@@ -66,10 +66,10 @@ export default class Complex {
 	}
 
 	/**
-	 * Computes <code>this</code> raised to the <code>x</code>th power.
+	 * Computes <code>this</code> raised to the <code>other</code>th power.
 	 *
-	 * @param {Complex} x The power to raise <code>this</code> to.
-	 * @return {Complex} <code>this ^ x</code>
+	 * @param {Complex} other The power to raise <code>this</code> to.
+	 * @return {Complex} <code>this ^ other</code>
 	 */
 	pow ( other ) {
 		// TODO optimize for special cases
