@@ -16,7 +16,7 @@ for (var i = 0; i < n; ++i) {
 
 	var l = randint( 1 , 128 ) ;
 
-	t.deepEqual( iroot2n( l ) , _( Math.cos( 2 * Math.PI / Math.pow( 2 , l ) ) , -Math.sin( 2 * Math.PI / Math.pow( 2 , l ) ) ) , l ) ;
+	t.deepEqual( iroot2n( l ) , _( Math.cos( 2 * Math.PI / Math.pow( 2 , l ) ) , -Math.sin( 2 * Math.PI / Math.pow( 2 , l ) ) ) , l.toString() ) ;
 
 }
 

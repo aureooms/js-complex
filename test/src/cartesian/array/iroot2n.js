@@ -14,7 +14,7 @@ test( "iroot2n" , t => {
 
 		let l = randint( 1 , 128 ) ;
 
-		t.deepEqual( iroot2n( l ) , [ Math.cos( 2 * Math.PI / Math.pow( 2 , l ) ) , -Math.sin( 2 * Math.PI / Math.pow( 2 , l ) ) ] , l ) ;
+		t.deepEqual( iroot2n( l ) , [ Math.cos( 2 * Math.PI / Math.pow( 2 , l ) ) , -Math.sin( 2 * Math.PI / Math.pow( 2 , l ) ) ] , l.toString() ) ;
 
 	}
 
