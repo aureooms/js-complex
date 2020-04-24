@@ -15,13 +15,17 @@ a.mul( b ).toString( ) ; // '23-11j'
 ```
 
 
-[![License](https://img.shields.io/github/license/aureooms/js-complex.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-complex/master/LICENSE)
-[![NPM version](https://img.shields.io/npm/v/@aureooms/js-complex.svg?style=flat)](https://www.npmjs.org/package/@aureooms/js-complex)
-[![Build Status](https://img.shields.io/travis/aureooms/js-complex.svg?style=flat)](https://travis-ci.org/aureooms/js-complex)
-[![Coverage Status](https://img.shields.io/coveralls/aureooms/js-complex.svg?style=flat)](https://coveralls.io/r/aureooms/js-complex)
-[![Dependencies Status](https://img.shields.io/david/aureooms/js-complex.svg?style=flat)](https://david-dm.org/aureooms/js-complex#info=dependencies)
-[![devDependencies Status](https://img.shields.io/david/dev/aureooms/js-complex.svg?style=flat)](https://david-dm.org/aureooms/js-complex#info=devDependencies)
-[![Code Climate](https://img.shields.io/codeclimate/github/aureooms/js-complex.svg?style=flat)](https://codeclimate.com/github/aureooms/js-complex)
-[![NPM downloads per month](https://img.shields.io/npm/dm/@aureooms/js-complex.svg?style=flat)](https://www.npmjs.org/package/@aureooms/js-complex)
-[![GitHub issues](https://img.shields.io/github/issues/aureooms/js-complex.svg?style=flat)](https://github.com/aureooms/js-complex/issues)
-[![Documentation](https://aureooms.github.io/js-complex/badge.svg)](https://aureooms.github.io/js-complex/source.html)
+[![License](https://img.shields.io/github/license/aureooms/js-complex.svg)](https://raw.githubusercontent.com/aureooms/js-complex/master/LICENSE)
+[![Version](https://img.shields.io/npm/v/@aureooms/js-complex.svg)](https://www.npmjs.org/package/@aureooms/js-complex)
+[![Build](https://img.shields.io/travis/aureooms/js-complex/master.svg)](https://travis-ci.org/aureooms/js-complex/branches)
+[![Dependencies](https://img.shields.io/david/aureooms/js-complex.svg)](https://david-dm.org/aureooms/js-complex)
+[![Dev dependencies](https://img.shields.io/david/dev/aureooms/js-complex.svg)](https://david-dm.org/aureooms/js-complex?type=dev)
+[![GitHub issues](https://img.shields.io/github/issues/aureooms/js-complex.svg)](https://github.com/aureooms/js-complex/issues)
+[![Downloads](https://img.shields.io/npm/dm/@aureooms/js-complex.svg)](https://www.npmjs.org/package/@aureooms/js-complex)
+
+[![Code issues](https://img.shields.io/codeclimate/issues/aureooms/js-complex.svg)](https://codeclimate.com/github/aureooms/js-complex/issues)
+[![Code maintainability](https://img.shields.io/codeclimate/maintainability/aureooms/js-complex.svg)](https://codeclimate.com/github/aureooms/js-complex/trends/churn)
+[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-complex/master.svg)](https://codecov.io/gh/aureooms/js-complex)
+[![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-complex.svg)](https://codeclimate.com/github/aureooms/js-complex/trends/technical_debt)
+[![Documentation](http://aureooms.github.io/js-complex//badge.svg)](http://aureooms.github.io/js-complex//source.html)
+[![Package size](https://img.shields.io/bundlephobia/minzip/@aureooms/js-complex)](https://bundlephobia.com/result?p=@aureooms/js-complex)
