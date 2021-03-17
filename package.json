@@ -28,7 +28,7 @@
     "url": "https://github.com/aureooms/js-complex/issues"
   },
   "dependencies": {
-    "@aureooms/js-error": "^4.0.0",
+    "@aureooms/js-error": "^5.0.0",
     "@aureooms/js-number": "^3.1.0"
   },
   "devDependencies": {
