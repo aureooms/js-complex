@@ -25,7 +25,7 @@
     }
   },
   "bugs": {
-    "url": "https://github.com/aureooms/js-complex/issues"
+    "url": "https://github.com/make-github-pseudonymous-again/js-complex/issues"
   },
   "dependencies": {
     "@aureooms/js-error": "^5.0.0",
@@ -64,7 +64,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aureooms/js-complex.git"
+    "url": "https://github.com/make-github-pseudonymous-again/js-complex.git"
   },
   "scripts": {
     "build": "rm -rf lib && babel src -d lib",
