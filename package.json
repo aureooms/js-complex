@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@aureooms/js-error": "^5.0.0",
-    "@aureooms/js-number": "^3.1.0"
+    "@aureooms/js-number": "^4.0.0"
   },
   "devDependencies": {
     "@aureooms/js-algorithms": "3.0.7",
